@@ -1,0 +1,17 @@
+/*
+  Recoleta es de pago (license comercial). Por default usamos "Fraunces"
+  (Google Fonts, gratis) como reemplazo visualmente cercano (serif display,
+  contraste alto, corte editorial). Si conseguís la licencia de Recoleta,
+  descomentá el @font-face de abajo y cambiá --font-display en variables.css.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+/*
+@font-face {
+  font-family: 'Recoleta';
+  src: url('/fonts/Recoleta-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+*/

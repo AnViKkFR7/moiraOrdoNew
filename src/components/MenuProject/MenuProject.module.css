@@ -1,0 +1,44 @@
+.nav {
+  position: relative;
+  display: none;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+@media (min-width: 1000px) {
+  .nav {
+    display: flex;
+  }
+}
+
+.item {
+  position: relative;
+  font-size: var(--fs-button);
+  font-weight: var(--fw-body-medium);
+}
+
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16rem;
+  height: 20rem;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  transition: opacity var(--dur-micro) var(--ease-micro), transform var(--dur-micro) var(--ease-micro);
+}
+
+.preview.isVisible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

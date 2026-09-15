@@ -1,0 +1,61 @@
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+h1,
+.h1 {
+  font-size: var(--fs-h1);
+}
+
+h2,
+.h2 {
+  font-size: var(--fs-h2);
+}
+
+h3,
+.h3 {
+  font-size: var(--fs-h3);
+}
+
+p,
+.body {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-body-light);
+  line-height: 1.5;
+}
+
+.body-lg {
+  font-size: var(--fs-body-lg);
+}
+
+.text-small {
+  font-size: var(--fs-small);
+}
+
+/* Palabra de acento dentro de un título o párrafo. Nunca usar como fondo. */
+.accent-blue {
+  color: var(--accent-blue);
+}
+.accent-blue-light {
+  color: var(--accent-blue-light);
+}
+.accent-yellow {
+  color: var(--accent-yellow);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--grey-mid);
+}

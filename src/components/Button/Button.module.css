@@ -1,0 +1,51 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.4rem 2.8rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--text-base);
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: var(--fs-button);
+  font-weight: var(--fw-body-medium);
+  color: var(--text-base);
+  isolation: isolate;
+}
+
+.button.filled {
+  border-color: var(--accent-blue);
+}
+
+.label {
+  position: relative;
+  z-index: 2;
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+/* Capa interna que "llena" el botón al hacer hover, separada del label
+   para que el color de texto pueda invertir sin animar su propio bg */
+.fill {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--text-base);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--dur-reveal) var(--ease-reveal);
+}
+
+.button.filled .fill {
+  background-color: var(--accent-blue);
+}
+
+.button:hover .fill {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.button:hover .label {
+  color: var(--bg-base);
+}

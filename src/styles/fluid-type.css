@@ -1,0 +1,69 @@
+/*
+  SISTEMA TIPOGRÁFICO FLUIDO
+  ---------------------------------------------------------------
+  html.font-size se define en vw, así 1rem = X% del viewport actual.
+  Eso da escalado proporcional continuo DENTRO de cada tier (mobile,
+  tablet, desktop) sin saltos entre breakpoints intermedios.
+
+  Los componentes (h1, h2, body, etc) usan variables --fs-* que se
+  REDEFINEN en cada tier. Esto no es redundante: como el multiplicador
+  vw cambia bruscamente en cada breakpoint (.55vw -> 1vw), hay que
+  recalibrar el valor en rem para que el tamaño en píxeles resultante
+  siga una progresión visualmente coherente en vez de saltar o crecer
+  sin control dentro del rango mobile/tablet.
+
+  Regla práctica para tunear un tamaño nuevo:
+    rem = px_objetivo / (viewport_px * multiplicador_vw / 100)
+*/
+
+html {
+  font-size: 0.55vw; /* base mobile/tablet, < 1000px */
+}
+
+@media (min-width: 1000px) {
+  html {
+    font-size: 1vw; /* base desktop */
+  }
+}
+
+/* Rango especial: pantallas landscape medianas (tablets/laptops chicas) */
+@media (min-width: 1024px) and (max-width: 1367px) and (orientation: landscape) {
+  html {
+    font-size: 0.8vw;
+  }
+}
+
+:root {
+  /* Escala tipográfica — mobile-first */
+  --fs-h1: 19.4rem;
+  --fs-h2: 13.6rem;
+  --fs-h3: 10.7rem;
+  --fs-body-lg: 7.8rem;
+  --fs-body: 6.8rem;
+  --fs-small: 5.8rem;
+  --fs-button: 6.8rem;
+}
+
+@media (min-width: 650px) {
+  :root {
+    --fs-h1: 15.2rem;
+    --fs-h2: 9.5rem;
+    --fs-h3: 6.6rem;
+    --fs-body-lg: 4.3rem;
+    --fs-body: 3.6rem;
+    --fs-small: 3.1rem;
+    --fs-button: 3.6rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  :root {
+    --fs-h1: 7.6rem;
+    --fs-h2: 4.4rem;
+    --fs-h3: 2.5rem;
+    --fs-body-lg: 1.4rem;
+    --fs-body: 1.1rem;
+    --fs-small: 0.9rem;
+    --fs-button: 1rem;
+  }
+}

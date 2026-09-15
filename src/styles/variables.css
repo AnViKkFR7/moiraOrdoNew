@@ -1,0 +1,47 @@
+/*
+  Design tokens del sistema. Todos los colores y curvas de animación
+  se referencian desde acá — nunca hardcodear valores en componentes.
+*/
+:root {
+  /* Color */
+  --bg-base: #fcfbf7;
+  --text-base: #00051e;
+  --accent-blue: #4692ff;
+  --accent-blue-light: #82daff;
+  --accent-yellow: #ffcf80;
+  --bg-warm-1: #fff5e6;
+  --bg-warm-2: #ffe2d2;
+  --grey-light: #f0f0f2;
+  --grey-mid: #585b6a;
+
+  /* Tipografía */
+  --font-display: 'Fraunces', 'Recoleta', serif;
+  --font-body: 'Barlow', sans-serif;
+  --fw-body-light: 300;
+  --fw-body-regular: 400;
+  --fw-body-medium: 500;
+
+  /* Curvas de animación (usar tal cual, no inventar nuevas) */
+  --ease-micro: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-reveal: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-wipe: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  --dur-micro: 0.25s;
+  --dur-reveal: 0.7s;
+  --dur-wipe: 0.4s;
+
+  /* Forma */
+  --radius-pill: 80rem;
+  --radius-circle: 50%;
+
+  /* Layout / viewport (recalculadas por JS, ver useViewportUnits) */
+  --vw: 1vw;
+  --vh: 1vh;
+
+  /* Espaciado base fluido, escala en rem que se comporta como % del viewport */
+  --space-xs: 0.8rem;
+  --space-sm: 1.6rem;
+  --space-md: 3.2rem;
+  --space-lg: 6.4rem;
+  --space-xl: 9.6rem;
+}

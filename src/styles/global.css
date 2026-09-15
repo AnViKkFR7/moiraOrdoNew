@@ -1,0 +1,37 @@
+@import './fonts.css';
+@import './variables.css';
+@import './reset.css';
+@import './fluid-type.css';
+@import './typography.css';
+
+.container {
+  width: 100%;
+  padding-inline: var(--space-sm);
+  margin-inline: auto;
+}
+
+@media (min-width: 1000px) {
+  .container {
+    max-width: 144rem;
+    padding-inline: var(--space-md);
+  }
+}
+
+.section {
+  padding-block: var(--space-lg);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Cursor custom: escondemos el cursor nativo solo cuando el custom está activo */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none;
+}

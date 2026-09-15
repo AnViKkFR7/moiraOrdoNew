@@ -1,0 +1,54 @@
+.trigger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 60;
+  position: relative;
+}
+
+@media (min-width: 1000px) {
+  .trigger {
+    display: none;
+  }
+}
+
+.bar {
+  width: 2.4rem;
+  height: 2px;
+  background-color: var(--text-base);
+  transition: transform var(--dur-micro) var(--ease-micro), opacity var(--dur-micro) var(--ease-micro);
+}
+
+.trigger.isOpen .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.trigger.isOpen .bar:nth-child(2) {
+  opacity: 0;
+}
+.trigger.isOpen .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--bg-base);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--dur-wipe) var(--ease-wipe);
+}
+
+.panel.isOpen {
+  clip-path: inset(0 0 0 0);
+}
+
+.link {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 300;
+}

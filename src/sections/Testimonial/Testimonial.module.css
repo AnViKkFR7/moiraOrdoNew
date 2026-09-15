@@ -1,0 +1,18 @@
+.testimonial {
+  text-align: center;
+  background-color: var(--bg-warm-2);
+}
+
+.quote {
+  max-width: 60ch;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.author {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-small);
+  color: var(--grey-mid);
+}

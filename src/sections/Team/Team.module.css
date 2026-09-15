@@ -1,0 +1,27 @@
+.team {
+  text-align: center;
+}
+
+.media {
+  margin-top: var(--space-md);
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+  border-radius: 0.8rem;
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text {
+  margin: var(--space-sm) auto 0;
+  max-width: 48ch;
+}
+
+.cta {
+  margin-top: var(--space-md);
+  display: flex;
+  justify-content: center;
+}
