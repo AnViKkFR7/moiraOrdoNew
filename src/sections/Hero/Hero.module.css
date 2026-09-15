@@ -1,17 +1,27 @@
 .hero {
-  position: relative;
-  min-height: 100vh;
+  background-color: var(--bg-warm-1);
+  padding: 0 var(--space-md) var(--space-xl);
+}
+
+.textBlock {
+  padding-top: calc(var(--space-xl) * 2);
+  padding-bottom: var(--space-lg);
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  justify-content: center;
+  text-align: center;
+}
+
+.title {
+  max-width: 44ch;
+  color: var(--text-base);
+  font-size: var(--fs-h2);
 }
 
 .media {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.8rem;
 }
 
 .media img {
@@ -20,20 +30,22 @@
   object-fit: cover;
 }
 
-.media::after {
-  content: '';
+.scrollButton {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 5, 30, 0) 40%, rgba(0, 5, 30, 0.35) 100%);
+  right: var(--space-md);
+  bottom: -3rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: var(--radius-circle);
+  background-color: var(--accent-blue);
+  color: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: transform var(--dur-micro) var(--ease-micro);
 }
 
-.title {
-  color: var(--bg-base);
-  max-width: 16ch;
-}
-
-.text {
-  margin-top: var(--space-sm);
-  max-width: 40ch;
-  color: var(--bg-base);
+.scrollButton:hover {
+  transform: scale(1.08);
 }

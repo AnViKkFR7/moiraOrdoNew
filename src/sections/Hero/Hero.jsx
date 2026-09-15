@@ -5,19 +5,19 @@ import heroImage from '../../assets/images/creacion-paginas.webp'
 export default function Hero() {
   return (
     <section className={styles.hero}>
-      <div className={styles.media}>
-        <img src={heroImage} alt="" />
+      <div className={styles.textBlock}>
+        <RevealText as="h1" className={styles.title}>
+          El destino ordenado del contenido. Un sistema estable para contenido cambiante. Pensado
+          para <span className="accent-blue">webs que no se improvisan</span>.
+        </RevealText>
       </div>
 
-      <RevealText as="h1" className={styles.title}>
-        El destino ordenado del contenido
-      </RevealText>
-
-      <p className={styles.text}>
-        Un sistema estable para contenido cambiante.
-        <br />
-        Pensado para webs que no se improvisan.
-      </p>
+      <div className={styles.media}>
+        <img src={heroImage} alt="" />
+        <a href="#proyectos" className={styles.scrollButton} data-cursor-hover aria-label="Ver más">
+          ↓
+        </a>
+      </div>
     </section>
   )
 }
