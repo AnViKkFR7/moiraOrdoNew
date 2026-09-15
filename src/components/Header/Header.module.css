@@ -11,9 +11,14 @@
 }
 
 .logo {
-  font-family: var(--font-display);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-body);
   font-size: var(--fs-h3);
-  font-weight: 300;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-base);
 }
 
 .actions {

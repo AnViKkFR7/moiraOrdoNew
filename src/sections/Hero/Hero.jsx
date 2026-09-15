@@ -1,23 +1,22 @@
 import styles from './Hero.module.css'
 import RevealText from '../../components/RevealText/RevealText'
+import heroImage from '../../assets/images/creacion-paginas.webp'
 
-/**
- * TODO: reemplazar por contenido real (imagen/video de fondo, título y texto).
- */
 export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className={styles.media}>
-        <img src="https://placehold.co/1920x1080" alt="" />
+        <img src={heroImage} alt="" />
       </div>
 
       <RevealText as="h1" className={styles.title}>
-        Título de ejemplo para el hero
+        El destino ordenado del contenido
       </RevealText>
 
       <p className={styles.text}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Texto placeholder que describe
-        brevemente la propuesta de valor.
+        Un sistema estable para contenido cambiante.
+        <br />
+        Pensado para webs que no se improvisan.
       </p>
     </section>
   )

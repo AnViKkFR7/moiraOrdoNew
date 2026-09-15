@@ -15,8 +15,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <a href="/" className={styles.logo} data-cursor-hover>
-        {/* TODO: reemplazar por contenido real */}
-        Logo
+        moira<span className="accent-blue">ordo</span>
       </a>
 
       <MenuProject items={NAV_ITEMS} />
