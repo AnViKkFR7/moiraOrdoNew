@@ -21,6 +21,14 @@ export default function Loader({ onFinish }) {
     onFinish?.()
   }
 
+  useEffect(() => {
+    // Red de seguridad: si el evento onComplete de Lottie no dispara
+    // (p. ej. la pestaña estuvo en background y el rAF se pausó), el
+    // loader no debe bloquear la página para siempre.
+    const timeout = setTimeout(handleComplete, 4000)
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
     <div className={`${styles.loader} ${isHidden ? styles.isHidden : ''}`} aria-hidden={isHidden}>
       <Lottie
