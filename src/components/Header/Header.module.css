@@ -7,7 +7,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-xs) var(--space-md);
+  background-color: transparent;
+  box-shadow: none;
+  transition: background-color var(--dur-reveal) var(--ease-reveal),
+    box-shadow var(--dur-reveal) var(--ease-reveal);
+}
+
+.header.isScrolled {
+  background-color: var(--bg-base);
+  box-shadow: 0 1px 0 var(--grey-light);
 }
 
 .logo {
@@ -19,6 +28,12 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-base);
+}
+
+.rightGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
 }
 
 .actions {

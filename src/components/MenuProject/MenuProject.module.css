@@ -13,32 +13,25 @@
 
 .item {
   position: relative;
-  font-size: var(--fs-button);
+  display: inline-block;
+  font-size: var(--fs-small);
   font-weight: var(--fw-body-medium);
+  padding-bottom: 0.4rem;
 }
 
-.preview {
-  position: fixed;
-  top: 0;
+.item::after {
+  content: '';
+  position: absolute;
   left: 0;
-  width: 16rem;
-  height: 20rem;
-  overflow: hidden;
-  border-radius: 0.8rem;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.9);
-  transition: opacity var(--dur-micro) var(--ease-micro), transform var(--dur-micro) var(--ease-micro);
-}
-
-.preview.isVisible {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.preview img {
+  bottom: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 1px;
+  background-color: var(--text-base);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.item:hover::after {
+  transform: scaleX(1);
 }
