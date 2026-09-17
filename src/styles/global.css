@@ -35,3 +35,25 @@ html.has-custom-cursor,
 html.has-custom-cursor * {
   cursor: none;
 }
+
+/* Marco: líneas verticales fijas a los costados de toda la página,
+   alineadas con el padding-inline de .container / header (var(--space-md)) */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--grey-light);
+  z-index: 100;
+  pointer-events: none;
+}
+
+body::before {
+  left: var(--space-md);
+}
+
+body::after {
+  right: var(--space-md);
+}

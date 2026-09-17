@@ -18,6 +18,18 @@ export default function Hero() {
           ↓
         </a>
       </div>
+
+      <div className={styles.textWrap}>
+        <span className={styles.eyebrow}>Tu Centro de Control</span>
+
+        <p className={styles.mediaText}>
+          Analizamos a fondo la operativa de tu negocio para arquitecturar un modelo de datos
+          dinámico a medida. Estructuramos meticulosamente toda tu información —desde contenidos
+          multimedia y documentos corporativos hasta catálogos complejos— creando{' '}
+          <span className="accent-blue">un ecosistema digital que se adapta exactamente a tus
+          necesidades reales</span>.
+        </p>
+      </div>
     </section>
   )
 }

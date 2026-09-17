@@ -49,3 +49,46 @@
 .scrollButton:hover {
   transform: scale(1.08);
 }
+
+.textWrap {
+  margin-top: calc(var(--space-xl) * 1.4);
+  margin-left: var(--space-md);
+  max-width: 1500px;
+  text-align: left;
+}
+
+@media (min-width: 1000px) {
+  .textWrap {
+    margin-left: 190px;
+  }
+}
+
+.eyebrow {
+  display: block;
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-blue);
+  margin-bottom: 36px;
+}
+
+.mediaText {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.4;
+  color: var(--text-base);
+}
+
+@media (min-width: 650px) {
+  .mediaText {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .mediaText {
+    font-size: 52px;
+  }
+}
