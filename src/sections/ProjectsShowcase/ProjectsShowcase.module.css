@@ -1,0 +1,117 @@
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 650px) {
+  .grid {
+    grid-template-columns: 31% 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  height: 80vh;
+}
+
+@media (min-width: 650px) {
+  .card {
+    height: 88vh;
+  }
+}
+
+.card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 5, 30, 0) 40%, rgba(0, 5, 30, 0.65) 100%);
+}
+
+.badges {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: flex;
+  gap: 7px;
+}
+
+.badge {
+  background-color: var(--bg-base);
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-base);
+}
+
+.panel {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: var(--accent-yellow);
+}
+
+.panelTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 25px;
+  color: var(--text-base);
+}
+
+.panelText {
+  margin-top: 8px;
+  max-width: 85%;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-base);
+}
+
+.panelArrow {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-circle);
+  background-color: var(--text-base);
+  color: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.card:hover .panelArrow {
+  transform: scale(1.1) rotate(45deg);
+}
+
+.wideTitle {
+  position: absolute;
+  left: 28px;
+  bottom: 26px;
+  right: 28px;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 40px;
+  color: var(--bg-base);
+}
