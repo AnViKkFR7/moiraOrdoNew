@@ -7,6 +7,7 @@ import Blog from '../sections/Blog/Blog'
 import Testimonial from '../sections/Testimonial/Testimonial'
 import ProjectsIntro from '../sections/ProjectsIntro/ProjectsIntro'
 import ProjectsShowcase from '../sections/ProjectsShowcase/ProjectsShowcase'
+import ServicesHighlight from '../sections/ServicesHighlight/ServicesHighlight'
 
 export default function Home() {
   return (
@@ -22,6 +23,8 @@ export default function Home() {
             <ProjectsShowcase />
           </div>
         </section>
+
+        <ServicesHighlight />
 
         <Expertises />
         <Team />

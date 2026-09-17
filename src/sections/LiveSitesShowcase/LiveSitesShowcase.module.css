@@ -1,0 +1,83 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 650px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  height: 60vh;
+  background-color: var(--grey-light);
+}
+
+@media (min-width: 650px) {
+  .card {
+    height: 75vh;
+  }
+}
+
+.card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.6s var(--ease-reveal);
+}
+
+.card:hover img {
+  transform: scale(1.04);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 5, 30, 0) 55%, rgba(0, 5, 30, 0.75) 100%);
+}
+
+.info {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--bg-base);
+}
+
+.arrow {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-circle);
+  background-color: var(--bg-base);
+  color: var(--text-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.card:hover .arrow {
+  transform: scale(1.1) rotate(45deg);
+}
