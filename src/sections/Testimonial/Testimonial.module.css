@@ -16,3 +16,9 @@
   font-size: var(--fs-small);
   color: var(--grey-mid);
 }
+
+.text {
+  margin: var(--space-sm) auto 0;
+  max-width: 55ch;
+  color: var(--grey-mid);
+}

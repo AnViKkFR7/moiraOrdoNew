@@ -1,16 +1,17 @@
 import styles from './Testimonial.module.css'
 import RevealText from '../../components/RevealText/RevealText'
 
-/**
- * TODO: reemplazar por contenido real (cita y autor).
- */
 export default function Testimonial() {
   return (
     <section className={`section container ${styles.testimonial}`}>
       <RevealText as="p" className={`h2 ${styles.quote}`}>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, testimonio de ejemplo."
+        "No creamos el mundo. Decidimos cómo fluye."
       </RevealText>
-      <p className={styles.author}>Nombre Apellido — Cargo, Empresa</p>
+      <p className={styles.author}>— Filosofía Moira Ordo</p>
+      <p className={styles.text}>
+        Esta es nuestra guía. No sobreactuamos. No complicamos lo simple. Creamos sistemas que
+        funcionan en silencio y permiten que tu contenido y tu mensaje sean los protagonistas.
+      </p>
     </section>
   )
 }

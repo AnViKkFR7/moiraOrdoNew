@@ -11,7 +11,7 @@
 
 @media (min-width: 650px) {
   .top {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.4fr 1fr;
   }
 }
 
@@ -19,7 +19,13 @@
   font-family: var(--font-display);
   font-size: var(--fs-h2);
   font-weight: 300;
-  max-width: 20ch;
+  max-width: 24ch;
+}
+
+.columns {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .column {
@@ -55,4 +61,9 @@
   border-top: 1px solid var(--grey-light);
   font-size: var(--fs-small);
   color: var(--grey-mid);
+}
+
+.social {
+  display: flex;
+  gap: var(--space-sm);
 }

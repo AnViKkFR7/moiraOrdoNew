@@ -22,7 +22,7 @@
 .logo {
   display: flex;
   align-items: center;
-  font-family: var(--font-body);
+  font-family: 'Barlow', sans-serif;
   font-size: var(--fs-h3);
   font-weight: 700;
   text-transform: uppercase;

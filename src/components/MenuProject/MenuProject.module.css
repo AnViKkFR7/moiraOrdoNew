@@ -14,8 +14,11 @@
 .item {
   position: relative;
   display: inline-block;
-  font-size: var(--fs-small);
-  font-weight: var(--fw-body-medium);
+  font-family: var(--font-body);
+  font-size: calc(var(--fs-small) * 0.7);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   padding-bottom: 0.4rem;
 }
 
