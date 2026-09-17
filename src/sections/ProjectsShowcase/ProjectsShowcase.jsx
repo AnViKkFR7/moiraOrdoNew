@@ -1,49 +1,83 @@
+import { useState } from 'react'
 import styles from './ProjectsShowcase.module.css'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import arquelia from '../../assets/images/arquelia.png'
 import regiamare from '../../assets/images/regiamare.jpg'
 
+// TODO: reemplazar por contenido real
+const PROJECTS = [
+  {
+    image: arquelia,
+    alt: 'Arquelia',
+    city: 'Madrid',
+    size: '120 m²',
+    title: 'Arquelia',
+    description: 'Rediseño integral de marca y sitio web para un estudio de arquitectura.',
+    accent: 'var(--accent-yellow)',
+  },
+  {
+    image: regiamare,
+    alt: 'Regiamare',
+    city: 'Barcelona',
+    size: '240 m²',
+    title: 'Regiamare',
+    description: 'Plataforma web y sistema visual para un desarrollo residencial de lujo.',
+    accent: 'var(--accent-blue-light)',
+  },
+]
+
 /**
- * TODO: reemplazar por contenido real (imágenes, badges, título y
- * descripción de cada proyecto).
+ * El panel de color con título + descripción + botón se transfiere a la
+ * tarjeta bajo el cursor; la otra vuelve a su estado mínimo (solo título
+ * en blanco sobre la imagen).
  */
 export default function ProjectsShowcase() {
+  const [activeIndex, setActiveIndex] = useState(0)
   const leftRef = useScrollReveal({ y: 30 })
   const rightRef = useScrollReveal({ y: 30, delay: 0.1 })
+  const refs = [leftRef, rightRef]
 
   return (
     <div className={styles.grid}>
-      <a ref={leftRef} href="#" className={styles.card} data-cursor-hover>
-        <img src={arquelia} alt="Arquelia" />
-        <div className={styles.overlay} />
+      {PROJECTS.map((project, i) => {
+        const isActive = i === activeIndex
 
-        <div className={styles.badges}>
-          <span className={styles.badge}>Madrid</span>
-          <span className={styles.badge}>120 m²</span>
-        </div>
+        return (
+          <a
+            key={project.title}
+            ref={refs[i]}
+            href="#"
+            className={styles.card}
+            data-cursor-hover
+            onMouseEnter={() => setActiveIndex(i)}
+          >
+            <img src={project.image} alt={project.alt} />
+            <div className={styles.overlay} />
 
-        <div className={styles.panel}>
-          <h3 className={styles.panelTitle}>Arquelia</h3>
-          <p className={styles.panelText}>
-            Rediseño integral de marca y sitio web para un estudio de arquitectura.
-          </p>
-          <span className={styles.panelArrow} aria-hidden="true">
-            ↗
-          </span>
-        </div>
-      </a>
+            <div className={styles.badges}>
+              <span className={styles.badge}>{project.city}</span>
+              <span className={styles.badge}>{project.size}</span>
+            </div>
 
-      <a ref={rightRef} href="#" className={styles.card} data-cursor-hover>
-        <img src={regiamare} alt="Regiamare" />
-        <div className={styles.overlay} />
+            <div
+              className={`${styles.panel} ${isActive ? styles.isActive : ''}`}
+              style={{ backgroundColor: isActive ? project.accent : 'transparent' }}
+            >
+              <h3 className={`${styles.title} ${isActive ? styles.titleActive : ''}`}>
+                {project.title}
+              </h3>
 
-        <div className={styles.badges}>
-          <span className={styles.badge}>Barcelona</span>
-          <span className={styles.badge}>240 m²</span>
-        </div>
+              <div className={`${styles.extra} ${isActive ? styles.isActive : ''}`}>
+                <p className={styles.desc}>{project.description}</p>
+              </div>
 
-        <h3 className={styles.wideTitle}>Regiamare</h3>
-      </a>
+              <span className={`${styles.arrow} ${isActive ? styles.isActive : ''}`} aria-hidden="true">
+                ↗
+              </span>
+            </div>
+          </a>
+        )
+      })}
     </div>
   )
 }

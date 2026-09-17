@@ -66,28 +66,50 @@
   z-index: 2;
   border-radius: 12px;
   padding: 20px;
-  background-color: var(--accent-yellow);
+  background-color: transparent;
+  transition: background-color 0.35s ease-out;
 }
 
-.panelTitle {
+.title {
+  position: relative;
+  z-index: 2;
   font-family: var(--font-display);
   font-weight: 300;
   font-size: 25px;
+  color: var(--bg-base);
+  transition: color 0.3s ease-out;
+}
+
+.title.titleActive {
   color: var(--text-base);
 }
 
-.panelText {
+.extra {
+  max-height: 0;
+  margin-top: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.2s ease-in, margin-top 0.4s ease-in-out;
+}
+
+.extra.isActive {
+  max-height: 6rem;
   margin-top: 8px;
+  opacity: 1;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-out 0.1s, margin-top 0.4s ease-out;
+}
+
+.desc {
   max-width: 85%;
   font-size: 12px;
   line-height: 1.4;
   color: var(--text-base);
 }
 
-.panelArrow {
+.arrow {
   position: absolute;
-  right: 14px;
-  bottom: 14px;
+  right: 16px;
+  bottom: 16px;
   width: 32px;
   height: 32px;
   border-radius: var(--radius-circle);
@@ -97,21 +119,17 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  transition: transform var(--dur-micro) var(--ease-micro);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.2s ease-in, transform 0.3s ease-in;
 }
 
-.card:hover .panelArrow {
+.arrow.isActive {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease-out 0.1s, transform 0.4s ease-out 0.1s;
+}
+
+.card:hover .arrow.isActive {
   transform: scale(1.1) rotate(45deg);
-}
-
-.wideTitle {
-  position: absolute;
-  left: 28px;
-  bottom: 26px;
-  right: 28px;
-  z-index: 2;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 40px;
-  color: var(--bg-base);
 }
