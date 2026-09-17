@@ -6,7 +6,7 @@ import Expertises from '../sections/Expertises/Expertises'
 import Team from '../sections/Team/Team'
 import Blog from '../sections/Blog/Blog'
 import Testimonial from '../sections/Testimonial/Testimonial'
-import RevealText from '../components/RevealText/RevealText'
+import ProjectsIntro from '../sections/ProjectsIntro/ProjectsIntro'
 
 // TODO: reemplazar por contenido real
 const PROJECTS = [
@@ -24,8 +24,8 @@ export default function Home() {
         <Hero />
 
         <section className="section container">
-          <RevealText as="h2">Proyectos seleccionados</RevealText>
-          <div style={{ marginTop: 'var(--space-md)' }}>
+          <ProjectsIntro />
+          <div style={{ marginTop: 'var(--space-lg)' }}>
             <GridProjects projects={PROJECTS} />
           </div>
         </section>

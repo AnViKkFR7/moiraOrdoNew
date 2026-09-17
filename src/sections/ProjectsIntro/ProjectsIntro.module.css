@@ -1,0 +1,70 @@
+/*
+  Layout escalonado: la etiqueta flota a la izquierda con un ancho fijo
+  reservado; el texto grande envuelve ese float solo en su primera línea
+  (porque el float es más bajo que el line-height del texto) y a partir
+  de la segunda línea vuelve al margen izquierdo completo del bloque.
+*/
+.wrapper {
+  position: relative;
+  margin: 0 50px;
+}
+
+@media (max-width: 649px) {
+  .wrapper {
+    margin: 0 var(--space-md);
+  }
+}
+
+.wrapper::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.label {
+  float: left;
+  width: 380px;
+  padding-top: 14px;
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-blue);
+}
+
+@media (min-width: 1000px) {
+  .label {
+    width: 420px;
+  }
+}
+
+@media (max-width: 649px) {
+  .label {
+    float: none;
+    display: block;
+    width: auto;
+    padding-top: 0;
+    margin-bottom: var(--space-sm);
+  }
+}
+
+.text {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.18;
+  color: var(--text-base);
+}
+
+@media (min-width: 650px) {
+  .text {
+    font-size: 42px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .text {
+    font-size: 56px;
+  }
+}
