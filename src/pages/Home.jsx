@@ -1,7 +1,6 @@
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Hero from '../sections/Hero/Hero'
-import Expertises from '../sections/Expertises/Expertises'
 import Team from '../sections/Team/Team'
 import Blog from '../sections/Blog/Blog'
 import Testimonial from '../sections/Testimonial/Testimonial'
@@ -26,7 +25,6 @@ export default function Home() {
 
         <ServicesHighlight />
 
-        <Expertises />
         <Team />
         <Blog />
         <Testimonial />

@@ -1,23 +1,109 @@
 .team {
+  background-color: var(--bg-warm-1);
   text-align: center;
 }
 
-.media {
-  margin-top: var(--space-md);
-  aspect-ratio: 21 / 9;
-  overflow: hidden;
-  border-radius: 0.8rem;
+.text {
+  margin: var(--space-sm) auto 0;
+  max-width: 70ch;
 }
 
-.media img {
+.grid {
+  margin-top: var(--space-md);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 22px;
+  text-align: left;
+}
+
+@media (min-width: 650px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Columna del medio arriba; izquierda y derecha más abajo, efecto "ola" */
+@media (min-width: 650px) {
+  .column:nth-child(1),
+  .column:nth-child(3) {
+    margin-top: 60px;
+  }
+}
+
+.photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 18px 18px 0 0;
+  overflow: hidden;
+}
+
+.photo img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.text {
-  margin: var(--space-sm) auto 0;
-  max-width: 48ch;
+.photoLoader {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 5, 30, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.photoLoader.isVisible {
+  opacity: 1;
+}
+
+.photoLoader svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--accent-blue);
+}
+
+.col1 {
+  aspect-ratio: 4 / 5;
+}
+
+.col2 {
+  aspect-ratio: 3 / 4.6;
+}
+
+.col3 {
+  aspect-ratio: 3 / 4.1;
+}
+
+.name {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 20px;
+  color: var(--text-base);
+}
+
+.role {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-small);
+  color: var(--grey-mid);
 }
 
 .cta {
