@@ -96,6 +96,13 @@ export default function Team() {
               >
                 <img src={member.image} alt={member.name} loading="lazy" />
 
+                <span className={styles.hoverCircle} aria-hidden="true">
+                  ↗
+                </span>
+                <span className={styles.hoverName} aria-hidden="true">
+                  {member.firstName}
+                </span>
+
                 <span className={`${styles.photoLoader} ${loadingIndex === i ? styles.isVisible : ''}`}>
                   <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M24 4 L42 24 L24 44 L6 24 Z" strokeWidth="2" strokeLinejoin="round" />

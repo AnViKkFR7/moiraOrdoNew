@@ -2,9 +2,6 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 24px;
   background-color: rgba(0, 5, 30, 0.45);
   opacity: 0;
@@ -20,20 +17,22 @@
 .modal {
   position: relative;
   width: 100%;
-  max-width: 1100px;
-  max-height: 88vh;
+  max-height: calc(100vh - 48px);
   border-radius: 20px;
   overflow: hidden;
   background-color: var(--bg-base);
   display: grid;
   grid-template-columns: 1fr;
-  transform: scale(0.95);
-  transition: transform 0.25s ease;
+  transform-origin: top left;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }
 
 @media (min-width: 800px) {
   .modal {
-    grid-template-columns: 1.1fr 1fr;
+    width: 66vw;
+    height: calc(100vh - 48px);
+    grid-template-columns: 1fr 1.15fr;
   }
 }
 
@@ -59,9 +58,9 @@
 
 .left {
   order: 2;
-  padding: 48px 40px;
+  padding: 56px 48px;
   overflow-y: auto;
-  max-height: 88vh;
+  max-height: calc(100vh - 48px);
 }
 
 @media (min-width: 800px) {
@@ -129,7 +128,13 @@
 .right {
   order: 1;
   position: relative;
-  min-height: 260px;
+  min-height: 320px;
+}
+
+@media (min-width: 800px) {
+  .right {
+    min-height: 100%;
+  }
 }
 
 @media (min-width: 800px) {

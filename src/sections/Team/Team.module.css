@@ -55,6 +55,56 @@
   object-fit: cover;
 }
 
+.hoverCircle {
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  z-index: 2;
+  width: 25%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-circle);
+  background-color: var(--accent-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(20px, 3vw, 32px);
+  color: var(--text-base);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: center;
+  transition: transform 0.5s var(--ease-reveal), opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.photo:hover .hoverCircle {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hoverName {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  max-width: 80%;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(32px, 9vw, 64px);
+  line-height: 1.1;
+  text-align: center;
+  color: var(--bg-base);
+  text-shadow: 0 2px 12px rgba(0, 5, 30, 0.25);
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(8px);
+  transition: transform 0.4s var(--ease-reveal), opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.photo:hover .hoverName {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
 .photoLoader {
   position: absolute;
   inset: 0;
