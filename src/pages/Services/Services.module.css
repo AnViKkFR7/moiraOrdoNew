@@ -1,0 +1,580 @@
+/* ---------- Comunes ---------- */
+
+.kicker {
+  display: block;
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-blue);
+}
+
+.headline {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--text-base);
+}
+
+@media (min-width: 650px) {
+  .headline {
+    font-size: 54px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .headline {
+    font-size: 68px;
+  }
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  background-color: var(--bg-warm-1);
+  padding: 0 var(--space-md) var(--space-xl);
+}
+
+.heroText {
+  padding-top: calc(var(--space-xl) * 2);
+  padding-bottom: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.heroTitle {
+  margin-top: 24px;
+  max-width: 18ch;
+  font-size: var(--fs-h1);
+  color: var(--text-base);
+}
+
+.heroLead {
+  margin-top: 32px;
+  max-width: 34ch;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.35;
+  color: var(--text-base);
+}
+
+@media (min-width: 1000px) {
+  .heroLead {
+    font-size: 32px;
+  }
+}
+
+.heroTagline {
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--grey-mid);
+}
+
+.heroMedia {
+  position: relative;
+}
+
+.heroImage {
+  aspect-ratio: 16 / 9;
+}
+
+.scrollButton {
+  position: absolute;
+  right: var(--space-md);
+  bottom: -3rem;
+  width: 6rem;
+  height: 6rem;
+  min-width: 56px;
+  min-height: 56px;
+  border-radius: var(--radius-circle);
+  background-color: var(--accent-blue);
+  color: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.scrollButton:hover {
+  transform: scale(1.08);
+}
+
+/* ---------- Lo que hacemos ---------- */
+
+.whatWeDo {
+  padding-block: 110px;
+  background-color: var(--bg-base);
+}
+
+.whatWeDoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+}
+
+@media (min-width: 1000px) {
+  .whatWeDoGrid {
+    grid-template-columns: 1fr 1.1fr;
+    gap: 90px;
+    align-items: start;
+  }
+
+  .whatWeDoIntro {
+    position: sticky;
+    top: 120px;
+  }
+}
+
+.whatWeDoIntro .text {
+  margin-top: 28px;
+  max-width: 44ch;
+}
+
+.whatWeDoImage {
+  margin-top: 40px;
+  aspect-ratio: 4 / 5;
+  max-height: 60vh;
+  border-radius: 18px 18px 0 0;
+}
+
+.serviceList {
+  list-style: none;
+  border-bottom: 1px solid var(--grey-light);
+}
+
+.serviceItem {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  padding: 36px 0;
+  border-top: 1px solid var(--grey-light);
+}
+
+.serviceIndex {
+  padding-top: 8px;
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
+  letter-spacing: 0.1em;
+  color: var(--grey-mid);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.serviceTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.15;
+  color: var(--text-base);
+  transition: transform var(--dur-reveal) var(--ease-reveal);
+}
+
+@media (min-width: 1000px) {
+  .serviceTitle {
+    font-size: 36px;
+  }
+}
+
+.serviceText {
+  margin-top: 12px;
+  max-width: 46ch;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}
+
+.serviceItem:hover .serviceIndex {
+  color: var(--accent-blue);
+}
+
+.serviceItem:hover .serviceTitle {
+  transform: translateX(12px);
+}
+
+/* ---------- Enfoque ---------- */
+
+.approach {
+  padding-block: 110px;
+  background-color: var(--bg-warm-2);
+}
+
+.steps {
+  list-style: none;
+  margin-top: 72px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+@media (min-width: 650px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+}
+
+.step {
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 5, 30, 0.2);
+}
+
+.stepNumber {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--accent-blue);
+}
+
+@media (min-width: 1000px) {
+  .stepNumber {
+    font-size: 96px;
+  }
+}
+
+.stepTitle {
+  margin-top: 28px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--text-base);
+}
+
+.stepText {
+  margin-top: 12px;
+  max-width: 30ch;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}
+
+/* ---------- Banda de imágenes ---------- */
+
+.band {
+  padding-block: 110px 0;
+  background-color: var(--bg-base);
+}
+
+.bandGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+@media (min-width: 650px) {
+  .bandGrid {
+    grid-template-columns: 1.6fr 1fr;
+  }
+
+  /* Misma "ola" que en Conocé al equipo */
+  .bandGrid > :nth-child(2) {
+    margin-top: 80px;
+  }
+}
+
+.bandLeft {
+  aspect-ratio: 4 / 3;
+  border-radius: 18px 18px 0 0;
+}
+
+.bandRight {
+  aspect-ratio: 3 / 4;
+  border-radius: 18px 18px 0 0;
+}
+
+/* ---------- Características ---------- */
+
+.features {
+  padding-block: 110px;
+  background-color: var(--bg-base);
+}
+
+.featuresHead {
+  max-width: 900px;
+}
+
+.featureGrid {
+  margin-top: 72px;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--grey-light);
+  border-left: 1px solid var(--grey-light);
+}
+
+@media (min-width: 650px) {
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .featureGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature {
+  padding: 40px 32px 48px;
+  border-right: 1px solid var(--grey-light);
+  border-bottom: 1px solid var(--grey-light);
+}
+
+.featureIcon {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-circle);
+  border: 1px solid var(--grey-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--accent-blue);
+  transition:
+    background-color var(--dur-reveal) var(--ease-reveal),
+    border-color var(--dur-reveal) var(--ease-reveal),
+    color var(--dur-micro) var(--ease-micro),
+    transform var(--dur-reveal) var(--ease-reveal);
+}
+
+.feature:hover .featureIcon {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: var(--bg-base);
+  transform: scale(1.06);
+}
+
+.featureTitle {
+  margin-top: 36px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--text-base);
+}
+
+.featureText {
+  margin-top: 12px;
+  max-width: 34ch;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}
+
+/* ---------- Tarifas ---------- */
+
+.pricing {
+  padding-block: 110px;
+  background-color: var(--bg-warm-1);
+}
+
+.pricingHead {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  align-items: end;
+}
+
+@media (min-width: 1000px) {
+  .pricingHead {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 90px;
+  }
+}
+
+.pricingHead .text {
+  max-width: 40ch;
+}
+
+.priceList {
+  list-style: none;
+  margin-top: 64px;
+  border-bottom: 1px solid rgba(0, 5, 30, 0.15);
+}
+
+.priceRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px 24px;
+  padding: 32px 16px;
+  border-top: 1px solid rgba(0, 5, 30, 0.15);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--text-base);
+}
+
+@media (min-width: 1000px) {
+  .priceRow {
+    grid-template-columns: 1.4fr 1.1fr 200px 56px;
+    padding: 36px 24px;
+  }
+}
+
+/* Mismo "fill" que el Button: sube desde abajo al hacer hover */
+.priceFill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--text-base);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--dur-reveal) var(--ease-reveal);
+}
+
+.priceRow:hover .priceFill {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.priceName {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.15;
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+@media (min-width: 1000px) {
+  .priceName {
+    font-size: 40px;
+  }
+}
+
+.priceText {
+  grid-column: 1 / -1;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+@media (min-width: 1000px) {
+  .priceText {
+    grid-column: auto;
+    max-width: 40ch;
+  }
+}
+
+.priceValue {
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+@media (min-width: 1000px) {
+  .priceValue {
+    grid-row: auto;
+    grid-column: auto;
+    font-size: 44px;
+  }
+}
+
+.priceValue small {
+  margin-bottom: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--grey-mid);
+  transition: color var(--dur-micro) var(--ease-micro);
+}
+
+.priceValue .priceAsk {
+  margin: 0;
+  padding: 10px 16px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  color: var(--text-base);
+}
+
+.priceArrow {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .priceArrow {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-circle);
+    background-color: var(--accent-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--text-base);
+    transform: scale(0);
+    transition: transform 0.5s var(--ease-reveal);
+  }
+}
+
+.priceRow:hover .priceName,
+.priceRow:hover .priceValue,
+.priceRow:hover .priceValue .priceAsk {
+  color: var(--bg-base);
+}
+
+.priceRow:hover .priceText,
+.priceRow:hover .priceValue small {
+  color: rgba(252, 251, 247, 0.7);
+}
+
+.priceRow:hover .priceArrow {
+  transform: scale(1);
+}
+
+/* ---------- CTA ---------- */
+
+.cta {
+  padding-block: 140px;
+  background-color: var(--bg-base);
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  color: var(--text-base);
+}
+
+.ctaText {
+  margin: 28px auto 40px;
+  max-width: 44ch;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}

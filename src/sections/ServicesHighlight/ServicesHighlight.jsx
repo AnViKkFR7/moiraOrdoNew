@@ -42,7 +42,7 @@ export default function ServicesHighlight() {
               crecer contigo.
             </p>
 
-            <Button as="a" href="#" className={styles.cta}>
+            <Button as="a" href="/servicios" className={styles.cta}>
               Descubre Nuestros Servicios
             </Button>
           </div>

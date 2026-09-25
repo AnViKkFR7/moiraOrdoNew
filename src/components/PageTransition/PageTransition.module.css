@@ -1,0 +1,21 @@
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background-color: var(--text-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  transform: scaleY(0);
+  pointer-events: none;
+}
+
+.mark {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 64px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg-base);
+}
