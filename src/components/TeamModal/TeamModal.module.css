@@ -4,87 +4,80 @@
   z-index: 200;
   padding: 24px;
   background-color: rgba(0, 5, 30, 0.45);
-  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease;
 }
 
 .overlay.isOpen {
-  opacity: 1;
   pointer-events: all;
 }
 
+/* Las medidas internas usan cqw (ancho del modal) para respetar las
+   proporciones de la referencia: ✕ grande, nombre enorme y foto vertical
+   anclada abajo a la derecha. */
 .modal {
   position: relative;
   width: 100%;
-  max-height: calc(100vh - 48px);
+  height: calc(100vh - 48px);
   border-radius: 20px;
-  overflow: hidden;
   background-color: var(--bg-base);
-  display: grid;
-  grid-template-columns: 1fr;
-  transform-origin: top left;
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  container-type: inline-size;
+  clip-path: inset(0% 100% 100% 0% round 20px);
+  will-change: clip-path;
 }
 
 @media (min-width: 800px) {
   .modal {
     width: 66vw;
-    height: calc(100vh - 48px);
-    grid-template-columns: 1fr 1.15fr;
   }
-}
-
-.overlay.isOpen .modal {
-  transform: scale(1);
 }
 
 .close {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 2cqw;
+  right: 2cqw;
   z-index: 2;
-  width: 40px;
-  height: 40px;
+  width: max(52px, 12cqw);
+  height: max(52px, 12cqw);
   border-radius: var(--radius-circle);
   background-color: var(--grey-light);
   color: var(--text-base);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  transition: background-color 0.25s ease;
+}
+
+.close:hover {
+  background-color: #e4e4e8;
+}
+
+.close svg {
+  width: 36%;
+  height: 36%;
 }
 
 .left {
-  order: 2;
-  padding: 56px 48px;
-  overflow-y: auto;
-  max-height: calc(100vh - 48px);
-}
-
-@media (min-width: 800px) {
-  .left {
-    order: 1;
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 2.5cqw;
 }
 
 .name {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: 44px;
-  line-height: 1.05;
+  font-size: max(44px, 12.5cqw);
+  line-height: 1;
   color: var(--text-base);
-}
-
-@media (min-width: 650px) {
-  .name {
-    font-size: 64px;
-  }
+  padding-right: calc(max(52px, 12cqw) + 2cqw);
 }
 
 .bio {
-  margin-top: 32px;
+  margin-top: 4cqw;
 }
 
 .bio p {
@@ -97,10 +90,13 @@
   margin-top: 20px;
 }
 
+.projects {
+  margin-top: 40px;
+}
+
 .projectsLabel {
   display: block;
-  margin-top: 80px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: var(--fw-body-medium);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -111,42 +107,67 @@
   margin-top: 14px;
   display: flex;
   flex-wrap: wrap;
-  gap: 11px;
+  gap: 10px;
 }
 
 .projectPill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border: 1px solid var(--grey-light);
   border-radius: var(--radius-pill);
-  font-size: 13px;
+  font-size: 12px;
+  text-transform: uppercase;
   color: var(--text-base);
 }
 
-.right {
-  order: 1;
+.photo {
   position: relative;
-  min-height: 320px;
+  flex-shrink: 0;
+  margin: 0 2.5cqw 2.5cqw;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-@media (min-width: 800px) {
-  .right {
-    min-height: 100%;
-  }
-}
-
-@media (min-width: 800px) {
-  .right {
-    order: 2;
-  }
-}
-
-.right img {
+.photo img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  will-change: transform;
+}
+
+@media (min-width: 800px) {
+  .modal {
+    overflow: hidden;
+  }
+
+  .left {
+    flex: 1;
+    min-height: 0;
+    width: 38cqw;
+    overflow-y: auto;
+  }
+
+  .name {
+    padding-right: 0;
+    white-space: nowrap;
+  }
+
+  .projects {
+    margin-top: auto;
+    padding-top: 40px;
+  }
+
+  .photo {
+    position: absolute;
+    right: 2.5cqw;
+    bottom: 2.5cqw;
+    margin: 0;
+    width: 40cqw;
+    max-height: calc(100% - max(52px, 12cqw) - 6cqw);
+  }
 }
