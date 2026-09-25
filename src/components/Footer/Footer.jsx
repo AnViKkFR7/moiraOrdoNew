@@ -108,7 +108,7 @@ export default function Footer() {
               <a className={styles.link} href="#">
                 Sobre nosotros
               </a>
-              <a className={styles.link} href="#">
+              <a className={styles.link} href="/contacto">
                 Contacto
               </a>
             </div>

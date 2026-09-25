@@ -34,7 +34,7 @@ export default function Header() {
         <MenuProject items={NAV_ITEMS} />
 
         <div className={styles.actions}>
-          <Button as="a" href="#contacto">
+          <Button as="a" href="/contacto">
             Contactar
           </Button>
           <NavigationMobile links={NAV_ITEMS} />

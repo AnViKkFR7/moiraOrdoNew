@@ -14,6 +14,45 @@ export function setTransitionHandler(fn) {
   transitionHandler = fn
 }
 
+/*
+ * "Página visible": las animaciones de entrada de una página esperan a que
+ * el loader termine y el telón de transición se levante, para no correr
+ * escondidas detrás.
+ */
+let isTransitioning = false
+let visibleWaiters = []
+
+const isPageVisible = () => !isTransitioning && document.body.classList.contains('is-loaded')
+
+function flushVisibleWaiters() {
+  if (!isPageVisible()) return
+  const waiters = visibleWaiters
+  visibleWaiters = []
+  waiters.forEach((waiter) => waiter())
+}
+
+export function setTransitioning(value) {
+  isTransitioning = value
+  flushVisibleWaiters()
+}
+
+/** Avisar cuando cambia algo que afecta la visibilidad (p. ej. fin del loader). */
+export function notifyPageVisible() {
+  flushVisibleWaiters()
+}
+
+/** Ejecuta `cb` cuando la página está a la vista. Devuelve una función para cancelar. */
+export function whenPageVisible(cb) {
+  if (isPageVisible()) {
+    cb()
+    return () => {}
+  }
+  visibleWaiters.push(cb)
+  return () => {
+    visibleWaiters = visibleWaiters.filter((waiter) => waiter !== cb)
+  }
+}
+
 /** Lleva a una sección por id (ej. "equipo"), compensando el header fijo. */
 export function scrollToHash(hash, { immediate = false } = {}) {
   const el = hash && document.getElementById(hash)

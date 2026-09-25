@@ -255,7 +255,7 @@ export default function Services() {
             <ul className={styles.priceList}>
               {PRICES.map((item, i) => (
                 <Reveal as="li" key={item.name} y={20} delay={i * 0.05}>
-                  <a href="#contacto" className={styles.priceRow} data-cursor-hover>
+                  <a href="/contacto" className={styles.priceRow} data-cursor-hover>
                     <span className={styles.priceFill} aria-hidden="true" />
                     <span className={styles.priceName}>{item.name}</span>
                     <span className={styles.priceText}>{item.text}</span>
@@ -288,8 +288,7 @@ export default function Services() {
             <p className={styles.ctaText}>
               Cuéntanos qué necesitas y te respondemos con una propuesta pensada para ti.
             </p>
-            {/* TODO: poner el email/formulario de contacto real */}
-            <Button as="a" href="#" variant="filled">
+            <Button as="a" href="/contacto" variant="filled">
               Contactar
             </Button>
           </div>

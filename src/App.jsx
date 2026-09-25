@@ -3,13 +3,15 @@ import Loader from './components/Loader/Loader'
 import PageTransition from './components/PageTransition/PageTransition'
 import Home from './pages/Home'
 import Services from './pages/Services/Services'
+import Contact from './pages/Contact/Contact'
 import { lenisRef, useLenis } from './hooks/useLenis'
 import { useViewportUnits } from './hooks/useViewportUnits'
-import { useLinkInterception, usePathname } from './router'
+import { notifyPageVisible, useLinkInterception, usePathname } from './router'
 
 const ROUTES = {
   '/': Home,
   '/servicios': Services,
+  '/contacto': Contact,
 }
 
 export default function App() {
@@ -27,6 +29,7 @@ export default function App() {
     if (isLoaded) {
       lenisRef.current?.scrollTo(0, { immediate: true, force: true })
       window.scrollTo(0, 0)
+      notifyPageVisible()
     }
   }, [isLoaded])
 
