@@ -2,7 +2,6 @@ import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Hero from '../sections/Hero/Hero'
 import Team from '../sections/Team/Team'
-import Blog from '../sections/Blog/Blog'
 import Testimonial from '../sections/Testimonial/Testimonial'
 import ProjectsIntro from '../sections/ProjectsIntro/ProjectsIntro'
 import ProjectsShowcase from '../sections/ProjectsShowcase/ProjectsShowcase'
@@ -26,7 +25,6 @@ export default function Home() {
         <ServicesHighlight />
 
         <Team />
-        <Blog />
         <Testimonial />
       </main>
 

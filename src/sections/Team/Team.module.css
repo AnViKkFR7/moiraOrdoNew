@@ -140,22 +140,6 @@
   aspect-ratio: 3 / 4.1;
 }
 
-.name {
-  display: block;
-  margin-top: 14px;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 20px;
-  color: var(--text-base);
-}
-
-.role {
-  display: block;
-  margin-top: 2px;
-  font-size: var(--fs-small);
-  color: var(--grey-mid);
-}
-
 .cta {
   margin-top: var(--space-md);
   display: flex;

@@ -8,13 +8,12 @@ import aaron from '../../assets/images/aaron.png'
 import joselyn from '../../assets/images/joselyn.png'
 import fede from '../../assets/images/fede.png'
 
-// TODO: reemplazar por contenido real (apellidos, cargos, bios y proyectos)
+// TODO: reemplazar por contenido real (apellidos, bios y proyectos)
 const MEMBERS = [
   {
     image: aaron,
     name: 'Aaron',
     firstName: 'Aaron',
-    role: 'Cargo',
     className: 'col1',
     bio: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Encargado de traducir cada brief en un sistema de diseño claro y funcional.',
@@ -26,7 +25,6 @@ const MEMBERS = [
     image: joselyn,
     name: 'Joselyn',
     firstName: 'Joselyn',
-    role: 'Cargo',
     className: 'col2',
     bio: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lidera el desarrollo técnico, cuidando cada detalle de rendimiento y accesibilidad.',
@@ -38,7 +36,6 @@ const MEMBERS = [
     image: fede,
     name: 'Fede',
     firstName: 'Fede',
-    role: 'Cargo',
     className: 'col3',
     bio: [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Acompaña a cada cliente desde el primer diagnóstico hasta la entrega final.',
@@ -109,9 +106,6 @@ export default function Team() {
                   </svg>
                 </span>
               </button>
-
-              <span className={styles.name}>{member.name}</span>
-              <span className={styles.role}>{member.role}</span>
             </div>
           ))}
         </div>
