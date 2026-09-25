@@ -3,7 +3,7 @@ import Loader from './components/Loader/Loader'
 import PageTransition from './components/PageTransition/PageTransition'
 import Home from './pages/Home'
 import Services from './pages/Services/Services'
-import { useLenis } from './hooks/useLenis'
+import { lenisRef, useLenis } from './hooks/useLenis'
 import { useViewportUnits } from './hooks/useViewportUnits'
 import { useLinkInterception, usePathname } from './router'
 
@@ -23,6 +23,11 @@ export default function App() {
 
   useEffect(() => {
     document.body.classList.toggle('is-loaded', isLoaded)
+    // Al salir del loader la página siempre empieza desde arriba
+    if (isLoaded) {
+      lenisRef.current?.scrollTo(0, { immediate: true, force: true })
+      window.scrollTo(0, 0)
+    }
   }, [isLoaded])
 
   return (

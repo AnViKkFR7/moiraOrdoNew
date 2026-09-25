@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { setTransitionHandler } from '../../router'
+import { scrollToHash, setTransitionHandler } from '../../router'
 import { lenisRef } from '../../hooks/useLenis'
 import styles from './PageTransition.module.css'
 
@@ -17,7 +17,7 @@ export default function PageTransition() {
     const curtain = curtainRef.current
     const mark = markRef.current
 
-    setTransitionHandler((go) => {
+    setTransitionHandler((go, hash) => {
       gsap
         .timeline()
         .set(curtain, { visibility: 'visible', transformOrigin: 'bottom', scaleY: 0 })
@@ -29,7 +29,11 @@ export default function PageTransition() {
           lenisRef.current?.scrollTo(0, { immediate: true, force: true })
           window.scrollTo(0, 0)
         })
-        .add(() => ScrollTrigger.refresh(), '+=0.15')
+        .add(() => {
+          ScrollTrigger.refresh()
+          // Si el link apunta a una sección, se aterriza ahí antes de abrir el telón
+          scrollToHash(hash, { immediate: true })
+        }, '+=0.15')
         .to(mark, { autoAlpha: 0, yPercent: -40, duration: 0.3, ease: 'power2.in' })
         .set(curtain, { transformOrigin: 'top' })
         .to(curtain, { scaleY: 0, duration: 0.7, ease: 'expo.inOut' }, '-=0.1')

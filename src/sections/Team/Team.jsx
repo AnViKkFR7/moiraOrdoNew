@@ -64,7 +64,7 @@ export default function Team() {
   }
 
   return (
-    <section className={styles.team}>
+    <section id="equipo" className={styles.team}>
       <div className="section container">
         <RevealText as="h2">
           Conocé al <span className="accent-yellow">equipo</span>

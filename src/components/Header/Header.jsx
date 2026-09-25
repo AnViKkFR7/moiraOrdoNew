@@ -8,7 +8,7 @@ import Button from '../Button/Button'
 const NAV_ITEMS = [
   { label: 'Inicio', href: '/' },
   { label: 'Producto ', href: '#' },
-  { label: 'Nosotros', href: '#' },
+  { label: 'Nosotros', href: '/#equipo' },
   { label: 'Servicios', href: '/servicios' },
   { label: 'Proyectos', href: '#' },
 
