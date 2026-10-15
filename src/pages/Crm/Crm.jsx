@@ -6,6 +6,8 @@ import Button from '../../components/Button/Button'
 import ImageSlot from '../../components/ImageSlot/ImageSlot'
 import { useParallax } from '../../hooks/useParallax'
 import heroImage from '../../assets/images/10d22448-d0fc-427c-8eaa-681c5b797ab8.png'
+import whatIsImage from '../../assets/images/mackbook.admin.moiraordo.es.png'
+import macbookImage from '../../assets/images/Macbook-Air-admin.moiraordo.es.png'
 import styles from './Crm.module.css'
 
 const CONCEPTS = [
@@ -93,13 +95,13 @@ const ROLES = [
   },
 ]
 
-function ParallaxImage({ label, className }) {
-  const ref = useParallax({ distance: 50 })
+function ParallaxImage({ src, alt, label, className, distance = 50 }) {
+  const ref = useParallax({ distance })
 
   return (
     <div className={`${styles.parallaxBox} ${className}`}>
       <div ref={ref} className={styles.parallaxMover}>
-        <ImageSlot label={label} className={styles.parallaxSlot} />
+        <ImageSlot src={src} alt={alt} label={label} className={styles.parallaxSlot} />
       </div>
     </div>
   )
@@ -160,7 +162,9 @@ export default function Crm() {
               </p>
               <Reveal y={30}>
                 <ImageSlot
-                  label="Selector de empresa activa · 4:5"
+                  src={whatIsImage}
+                  alt="Listado de items del panel de administración visto en un MacBook Air"
+                  label="Selector de empresa activa"
                   className={styles.whatIsImage}
                 />
               </Reveal>
@@ -251,8 +255,13 @@ export default function Crm() {
         {/* Banda de imágenes */}
         <section className={styles.band}>
           <div className={`container ${styles.bandGrid}`}>
-            <ParallaxImage label="Vista general del panel · 16:9" className={styles.bandLeft} />
-            <ParallaxImage label="Gestión de contenido · 3:4" className={styles.bandRight} />
+            <ParallaxImage
+              src={macbookImage}
+              alt="Analítica del panel de administración en un MacBook Air"
+              label="Analítica · 16:9"
+              className={styles.bandSingle}
+              distance={40}
+            />
           </div>
         </section>
 

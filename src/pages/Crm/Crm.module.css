@@ -147,9 +147,13 @@
 
 .whatIsImage {
   margin-top: 40px;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   max-height: 60vh;
-  border-radius: 18px 18px 0 0;
+  background-color: transparent;
+}
+
+.whatIsImage img {
+  object-fit: contain;
 }
 
 .conceptList {
@@ -416,37 +420,30 @@
   align-items: start;
 }
 
-@media (min-width: 650px) {
-  .bandGrid {
-    grid-template-columns: 1.6fr 1fr;
-  }
-
-  .bandGrid > :nth-child(2) {
-    margin-top: 80px;
-  }
-}
-
 .parallaxBox {
   position: relative;
   overflow: hidden;
   border-radius: 18px 18px 0 0;
 }
 
-.bandLeft {
+.bandSingle {
   aspect-ratio: 16 / 9;
-}
-
-.bandRight {
-  aspect-ratio: 3 / 4;
+  max-width: 920px;
+  margin-inline: auto;
 }
 
 .parallaxMover {
   position: absolute;
-  inset: -12% 0;
+  inset: -16% 0;
 }
 
 .parallaxSlot {
   height: 100%;
+  background-color: transparent;
+}
+
+.parallaxSlot img {
+  object-fit: contain;
 }
 
 /* ---------- Módulos ---------- */
@@ -601,7 +598,7 @@
 .ctaTitle {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: var(--fs-h1);
+  font-size: var(--fs-h2);
   line-height: 1.05;
   color: var(--text-base);
 }
