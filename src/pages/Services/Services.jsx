@@ -252,7 +252,7 @@ export default function Services() {
         </section>
 
         {/* Tarifas */}
-        <section className={styles.pricing}>
+        <section id="tarifas" className={styles.pricing}>
           <div className="container">
             <div className={styles.pricingHead}>
               <div>

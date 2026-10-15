@@ -6,12 +6,11 @@ import Button from '../Button/Button'
 
 // TODO: reemplazar por contenido real
 const NAV_ITEMS = [
-  { label: 'Inicio', href: '/' },
-  { label: 'Producto ', href: '#' },
+  { label: 'Proyectos', href: '#' },
+  { label: 'CRM', href: '#' },
   { label: 'Nosotros', href: '/#equipo' },
   { label: 'Servicios', href: '/servicios' },
-  { label: 'Proyectos', href: '#' },
-
+  { label: 'Pricing', href: '/servicios#tarifas' },
 ]
 
 export default function Header() {
