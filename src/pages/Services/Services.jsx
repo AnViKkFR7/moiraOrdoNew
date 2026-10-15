@@ -5,13 +5,16 @@ import Reveal from '../../components/Reveal/Reveal'
 import Button from '../../components/Button/Button'
 import ImageSlot from '../../components/ImageSlot/ImageSlot'
 import styles from './Services.module.css'
+import heroImage from '../../assets/images/proyecto.png'
+import teamProcessImage from '../../assets/images/equipo-proceso.png'
+import bandLeftImage from '../../assets/images/diseno-desarrollo.png'
+import bandRightImage from '../../assets/images/diseno-detalle.png'
 
-// TODO: reemplazar `null` por imports de las imágenes reales
 const IMAGES = {
-  hero: null,
-  whatWeDo: null,
-  bandLeft: null,
-  bandRight: null,
+  hero: heroImage,
+  whatWeDo: teamProcessImage,
+  bandLeft: bandLeftImage,
+  bandRight: bandRightImage,
 }
 
 const WHAT_WE_DO = [
@@ -130,6 +133,7 @@ export default function Services() {
           <Reveal className={styles.heroMedia}>
             <ImageSlot
               src={IMAGES.hero}
+              alt="Escritorio con una página web a medida abierta en pantalla"
               label="Imagen principal · 16:9"
               className={styles.heroImage}
             />
@@ -160,6 +164,7 @@ export default function Services() {
               <Reveal y={30}>
                 <ImageSlot
                   src={IMAGES.whatWeDo}
+                  alt="Equipo de Moira Ordo revisando bocetos y diseños de un proyecto"
                   label="Imagen de equipo / proceso · 4:5"
                   className={styles.whatWeDoImage}
                 />
@@ -204,10 +209,20 @@ export default function Services() {
         <section className={styles.band}>
           <div className={`container ${styles.bandGrid}`}>
             <Reveal y={30}>
-              <ImageSlot src={IMAGES.bandLeft} label="Imagen de proyecto · 4:3" className={styles.bandLeft} />
+              <ImageSlot
+                src={IMAGES.bandLeft}
+                alt="Diseño y desarrollo de una web a medida, vista en escritorio, portátil y móvil"
+                label="Imagen de proyecto · 16:9"
+                className={styles.bandLeft}
+              />
             </Reveal>
             <Reveal y={30} delay={0.1}>
-              <ImageSlot src={IMAGES.bandRight} label="Imagen de detalle · 3:4" className={styles.bandRight} />
+              <ImageSlot
+                src={IMAGES.bandRight}
+                alt="Bocetos, fotografías y materiales durante el diseño de un proyecto"
+                label="Imagen de detalle · 3:4"
+                className={styles.bandRight}
+              />
             </Reveal>
           </div>
         </section>

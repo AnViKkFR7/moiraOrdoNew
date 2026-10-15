@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 import styles from './ServicesHighlight.module.css'
 import RevealText from '../../components/RevealText/RevealText'
 import Button from '../../components/Button/Button'
@@ -9,6 +11,37 @@ import { useScrollReveal } from '../../hooks/useScrollReveal'
  */
 export default function ServicesHighlight() {
   const iconRef = useScrollReveal({ y: 20 })
+  const diamondRef = useRef(null)
+  const orbitRef = useRef(null)
+
+  // El rombo gira como una moneda y un punto orbita el círculo; al pasar el
+  // mouse ambos aceleran suavemente (timeScale) en vez de saltar.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const spin = gsap.to(diamondRef.current, {
+      rotationY: 360,
+      duration: 6,
+      ease: 'none',
+      repeat: -1,
+    })
+    const orbit = gsap.to(orbitRef.current, { rotation: 360, duration: 12, ease: 'none', repeat: -1 })
+
+    const circle = iconRef.current
+    const speedTo = (value) => () =>
+      gsap.to([spin, orbit], { timeScale: value, duration: 0.8, ease: 'power2.out', overwrite: true })
+    const onEnter = speedTo(3)
+    const onLeave = speedTo(1)
+    circle.addEventListener('mouseenter', onEnter)
+    circle.addEventListener('mouseleave', onLeave)
+
+    return () => {
+      circle.removeEventListener('mouseenter', onEnter)
+      circle.removeEventListener('mouseleave', onLeave)
+      spin.kill()
+      orbit.kill()
+    }
+  }, [iconRef])
 
   return (
     <section className={styles.section}>
@@ -25,14 +58,17 @@ export default function ServicesHighlight() {
 
         <div className={styles.right}>
           <div ref={iconRef} className={styles.iconCircle}>
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M24 4 L42 24 L24 44 L6 24 Z"
-                strokeWidth="1.6"
-                strokeLinejoin="round"
-              />
-              <path d="M24 4 V44" strokeWidth="1.6" />
-            </svg>
+            <span ref={orbitRef} className={styles.orbit} aria-hidden="true" />
+            <span ref={diamondRef} className={styles.diamond}>
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24 4 L42 24 L24 44 L6 24 Z"
+                  strokeWidth="1.6"
+                  strokeLinejoin="round"
+                />
+                <path d="M24 4 V44" strokeWidth="1.6" />
+              </svg>
+            </span>
           </div>
 
           <div className={styles.textBlock}>
