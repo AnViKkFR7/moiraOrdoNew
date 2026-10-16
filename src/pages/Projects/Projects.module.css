@@ -119,3 +119,148 @@
   line-height: 1.5;
   color: var(--grey-mid);
 }
+
+.games {
+  background-color: var(--bg-warm-1);
+}
+
+/* ---------- Navegación entre grupos ---------- */
+
+.groupNav {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.groupLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border: 1px solid var(--text-base);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-base);
+  transition: background-color var(--dur-micro) var(--ease-micro), color var(--dur-micro) var(--ease-micro);
+}
+
+.groupLink:hover {
+  background-color: var(--text-base);
+  color: var(--bg-base);
+}
+
+.groupIndex {
+  color: var(--accent-blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.groupCount {
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(0, 5, 30, 0.08);
+  font-size: 11px;
+}
+
+.groupLink:hover .groupCount {
+  background-color: rgba(252, 251, 247, 0.2);
+}
+
+/* ---------- Cabecera de cada grupo ---------- */
+
+.group {
+  scroll-margin-top: 80px;
+}
+
+.groupHead {
+  margin-bottom: 56px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(0, 5, 30, 0.2);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px 40px;
+  align-items: end;
+}
+
+@media (min-width: 1000px) {
+  .groupHead {
+    grid-template-columns: auto 1.5fr 1fr;
+    gap: 0 56px;
+    margin-bottom: 72px;
+  }
+}
+
+.groupNumber {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--accent-blue);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 1000px) {
+  .groupNumber {
+    font-size: 96px;
+  }
+}
+
+.groupHead .headline {
+  margin-top: 12px;
+}
+
+.groupText {
+  max-width: 40ch;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}
+
+.groupMeta {
+  display: block;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-base);
+}
+
+/* ---------- Bloque lateral de Games ---------- */
+
+.gamesAside {
+  height: 100%;
+  min-height: 260px;
+  padding: 32px;
+  border: 1px dashed rgba(0, 5, 30, 0.3);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.gamesAsideTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.15;
+  color: var(--text-base);
+}
+
+.gamesAsideText {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}
+
+@media (min-width: 1000px) {
+  .groupHead .headline {
+    font-size: 52px;
+  }
+}

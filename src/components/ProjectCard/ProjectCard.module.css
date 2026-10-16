@@ -4,7 +4,7 @@
 }
 
 .media {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: var(--card-ratio, 4 / 5);
 }
 
 .media img {

@@ -11,12 +11,12 @@ import musibingoImage from '../../assets/images/projects/musibingo.jpg'
 import matchriseImage from '../../assets/images/projects/matchrise.png'
 import styles from './Projects.module.css'
 
-const PROJECTS = [
+const COMPANIES = [
   {
-    image: vemaroImage,
-    tag: 'Transfers privados',
-    title: 'Vemaro Transfers',
-    href: 'https://www.vemarotransfers.com/',
+    image: navagliImage,
+    tag: 'Reformas y construcción',
+    title: 'Navagli',
+    href: 'https://www.navagli.com/',
     external: true,
   },
   {
@@ -27,10 +27,10 @@ const PROJECTS = [
     external: true,
   },
   {
-    image: navagliImage,
-    tag: 'Reformas y construcción',
-    title: 'Navagli',
-    href: 'https://www.navagli.com/',
+    image: vemaroImage,
+    tag: 'Transfers privados',
+    title: 'Vemaro Transfers',
+    href: 'https://www.vemarotransfers.com/',
     external: true,
   },
   {
@@ -40,25 +40,28 @@ const PROJECTS = [
     href: 'https://arquelia.es/',
     external: true,
   },
+]
+
+const GAMES = [
   {
     image: musibingoImage,
-    tag: 'Videojuego · Bingo musical',
+    tag: 'Bingo musical',
     title: 'MusiBingo',
     href: 'https://musibingo.com/',
     external: true,
   },
   {
     image: matchriseImage,
-    tag: 'Videojuego · Manager de fútbol',
+    tag: 'Manager de fútbol',
     title: 'MatchRise',
     href: 'https://www.matchrise.es/',
     external: true,
   },
-  {
-    tag: 'División de videojuegos',
-    title: 'Moira Ordo Games',
-    href: '#',
-  },
+]
+
+const GROUPS = [
+  { id: 'empresas', index: '01', label: 'Para empresas', count: COMPANIES.length },
+  { id: 'games', index: '02', label: 'Moira Ordo Games', count: GAMES.length },
 ]
 
 export default function Projects() {
@@ -70,7 +73,7 @@ export default function Projects() {
         {/* Hero */}
         <section className={styles.hero}>
           <div className={styles.heroText}>
-            <span className={styles.kicker}>Para empresas</span>
+            <span className={styles.kicker}>Proyectos</span>
             <RevealText as="h1" className={styles.heroTitle}>
               Proyectos que <span className="accent-blue">hablan por sí solos</span>
             </RevealText>
@@ -78,23 +81,78 @@ export default function Projects() {
               Webs y productos digitales que diseñamos y desarrollamos de principio a fin para
               negocios reales.
             </p>
-            <p className={styles.heroTagline}>
-              Inmobiliaria · Construcción · Movilidad · Videojuegos
-            </p>
+            <nav className={styles.groupNav} aria-label="Tipos de proyecto">
+              {GROUPS.map((group) => (
+                <a key={group.id} href={`/proyectos#${group.id}`} className={styles.groupLink} data-cursor-hover>
+                  <span className={styles.groupIndex}>{group.index}</span>
+                  {group.label}
+                  <span className={styles.groupCount}>{group.count}</span>
+                </a>
+              ))}
+            </nav>
           </div>
         </section>
 
-        {/* Grid de proyectos */}
-        <section className={styles.showcase}>
+        {/* Para empresas */}
+        <section id="empresas" className={styles.showcase}>
           <div className="container">
-            <div className={styles.showcaseHead}>
-              <span className={styles.kicker}>Proyectos</span>
-              <RevealText as="h2" className={styles.headline}>
-                Cada proyecto, <span className="accent-blue">su propio mundo</span>
-              </RevealText>
+            <div className={`${styles.groupHead} ${styles.group}`}>
+              <span className={styles.groupNumber}>01</span>
+              <div>
+                <span className={styles.kicker}>Para empresas</span>
+                <RevealText as="h2" className={styles.headline}>
+                  Webs a medida para <span className="accent-blue">negocios reales</span>
+                </RevealText>
+              </div>
+              <div>
+                <p className={styles.groupText}>
+                  Inmobiliaria, construcción y movilidad: sitios diseñados y desarrollados con
+                  contenido que el cliente gestiona solo.
+                </p>
+                <span className={styles.groupMeta}>{COMPANIES.length} proyectos</span>
+              </div>
             </div>
 
-            <GridProjects projects={PROJECTS} />
+            <GridProjects projects={COMPANIES} columns={2} />
+          </div>
+        </section>
+
+        {/* Moira Ordo Games */}
+        <section id="games" className={`${styles.showcase} ${styles.games}`}>
+          <div className="container">
+            <div className={`${styles.groupHead} ${styles.group}`}>
+              <span className={styles.groupNumber}>02</span>
+              <div>
+                <span className={styles.kicker}>Moira Ordo Games</span>
+                <RevealText as="h2" className={styles.headline}>
+                  Juegos que <span className="accent-blue">se juegan en el navegador</span>
+                </RevealText>
+              </div>
+              <div>
+                <p className={styles.groupText}>
+                  Experiencias jugables para web y móvil, creadas con la misma estabilidad que
+                  nuestras webs.
+                </p>
+                <span className={styles.groupMeta}>{GAMES.length} juegos</span>
+              </div>
+            </div>
+
+            <GridProjects
+              projects={GAMES}
+              aside={
+                <div className={styles.gamesAside}>
+                  <div>
+                    <div className={styles.gamesAsideTitle}>¿Tienes una idea de juego?</div>
+                    <p className={styles.gamesAsideText}>
+                      Juegos móviles HTML5 a medida, listos para jugar desde cualquier navegador.
+                    </p>
+                  </div>
+                  <Button as="a" href="/contacto" variant="filled">
+                    Hablemos
+                  </Button>
+                </div>
+              }
+            />
           </div>
         </section>
 
