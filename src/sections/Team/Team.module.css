@@ -145,3 +145,48 @@
   display: flex;
   justify-content: center;
 }
+
+/* Móvil: fotos más compactas y nombre siempre visible (no hay hover) */
+@media (max-width: 649px) {
+  .col1,
+  .col2,
+  .col3 {
+    aspect-ratio: 4 / 5;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+}
+
+@media (hover: none) {
+  .hoverCircle {
+    opacity: 1;
+    top: auto;
+    bottom: 16px;
+    left: auto;
+    right: 16px;
+    width: 44px;
+    transform: none;
+    font-size: 20px;
+  }
+
+  .hoverName {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    max-width: calc(100% - 90px);
+    font-size: clamp(28px, 8vw, 44px);
+    text-align: left;
+    opacity: 1;
+    transform: none;
+  }
+
+  .photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 5, 30, 0) 55%, rgba(0, 5, 30, 0.55) 100%);
+    pointer-events: none;
+  }
+}

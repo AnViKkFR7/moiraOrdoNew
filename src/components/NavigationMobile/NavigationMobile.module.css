@@ -1,7 +1,12 @@
 .trigger {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
   z-index: 60;
   position: relative;
 }
@@ -13,20 +18,20 @@
 }
 
 .bar {
-  width: 2.4rem;
+  width: 24px;
   height: 2px;
   background-color: var(--text-base);
   transition: transform var(--dur-micro) var(--ease-micro), opacity var(--dur-micro) var(--ease-micro);
 }
 
 .trigger.isOpen .bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 .trigger.isOpen .bar:nth-child(2) {
   opacity: 0;
 }
 .trigger.isOpen .bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 .panel {
@@ -36,19 +41,56 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: var(--space-sm);
-  padding: var(--space-md);
+  gap: 4px;
+  padding: 96px var(--space-md) var(--space-lg);
+  overflow-y: auto;
   background-color: var(--bg-base);
   clip-path: inset(0 0 100% 0);
-  transition: clip-path var(--dur-wipe) var(--ease-wipe);
+  visibility: hidden;
+  transition: clip-path var(--dur-wipe) var(--ease-wipe), visibility 0s linear var(--dur-wipe);
 }
 
 .panel.isOpen {
   clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition: clip-path var(--dur-wipe) var(--ease-wipe), visibility 0s;
 }
 
 .link {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--grey-light);
   font-family: var(--font-display);
-  font-size: var(--fs-h2);
+  font-size: clamp(34px, 10vw, 56px);
   font-weight: 300;
+  line-height: 1.1;
+  color: var(--text-base);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur-reveal) var(--ease-reveal), transform var(--dur-reveal) var(--ease-reveal),
+    color var(--dur-micro) var(--ease-micro);
+}
+
+.link:last-child {
+  border-bottom: none;
+}
+
+.link:active {
+  color: var(--accent-blue);
+}
+
+.index {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--fw-body-medium);
+  letter-spacing: 0.1em;
+  color: var(--accent-blue);
+}
+
+.panel.isOpen .link {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 0.06s + 0.15s);
 }

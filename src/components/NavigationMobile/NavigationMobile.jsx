@@ -10,6 +10,9 @@ export default function NavigationMobile({ links }) {
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [isOpen])
 
   return (
@@ -26,13 +29,16 @@ export default function NavigationMobile({ links }) {
       </button>
 
       <div className={`${styles.panel} ${isOpen ? styles.isOpen : ''}`}>
-        {links.map((link) => (
+        {links.map((link, i) => (
           <a
             key={link.label}
             href={link.href}
             className={styles.link}
+            style={{ '--i': i }}
+            tabIndex={isOpen ? 0 : -1}
             onClick={() => setIsOpen(false)}
           >
+            <span className={styles.index}>{String(i + 1).padStart(2, '0')}</span>
             {link.label}
           </a>
         ))}

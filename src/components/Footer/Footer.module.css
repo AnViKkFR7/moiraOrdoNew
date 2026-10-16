@@ -34,7 +34,7 @@
 .wordmark {
   font-family: 'Barlow', sans-serif;
   font-weight: 700;
-  font-size: clamp(56px, 10.5vw, 220px);
+  font-size: clamp(36px, calc((100vw - 48px) / 5.9), 100px);
   line-height: 0.9;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -104,4 +104,39 @@
 .socialLink svg {
   width: 18px;
   height: 18px;
+}
+
+/* Móvil: columnas en rejilla y enlaces fáciles de pulsar */
+@media (max-width: 999px) {
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md) var(--space-sm);
+    width: 100%;
+  }
+
+  .column {
+    gap: 4px;
+    font-size: 14px;
+  }
+
+  .column .link,
+  .column span {
+    padding-block: 5px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .tagline {
+    margin-top: var(--space-md);
+  }
+}
+
+@media (min-width: 1000px) {
+  .wordmark {
+    font-size: clamp(56px, 10.5vw, 220px);
+  }
 }

@@ -17,8 +17,8 @@
 }
 
 .animation {
-  width: 12rem;
-  height: 12rem;
+  width: 84px;
+  height: 84px;
 }
 
 @media (min-width: 1000px) {

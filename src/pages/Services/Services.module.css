@@ -95,11 +95,9 @@
 .scrollButton {
   position: absolute;
   right: var(--space-md);
-  bottom: -3rem;
-  width: 6rem;
-  height: 6rem;
-  min-width: 56px;
-  min-height: 56px;
+  bottom: min(-26px, -3rem);
+  width: max(56px, 6rem);
+  height: max(56px, 6rem);
   border-radius: var(--radius-circle);
   background-color: var(--accent-blue);
   color: var(--bg-base);
@@ -577,4 +575,60 @@
   font-size: 16px;
   line-height: 1.5;
   color: var(--grey-mid);
+}
+
+/* Móvil: tarjetas de características compactas (icono a la izquierda) */
+@media (max-width: 649px) {
+  .features {
+    padding-block: 72px;
+  }
+
+  .featureGrid {
+    margin-top: 40px;
+  }
+
+  .feature {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    column-gap: 16px;
+    align-items: start;
+    padding: 24px 16px;
+  }
+
+  .featureIcon {
+    grid-row: span 2;
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .featureTitle {
+    margin-top: 0;
+    font-size: 22px;
+    line-height: 1.15;
+    align-self: center;
+  }
+
+  .featureText {
+    margin-top: 6px;
+    grid-column: 2;
+  }
+}
+
+/* Móviles muy estrechos: precio debajo del nombre */
+@media (max-width: 420px) {
+  .priceRow {
+    grid-template-columns: 1fr;
+  }
+
+  .priceValue {
+    grid-row: auto;
+    grid-column: 1;
+    order: 1;
+    align-items: flex-start;
+  }
+
+  .priceText {
+    order: 2;
+  }
 }

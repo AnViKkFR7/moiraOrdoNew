@@ -3,8 +3,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 1.4rem 2.8rem;
+  gap: max(6px, 0.6rem);
+  padding: max(12px, 1.4rem) max(24px, 2.8rem);
+  min-height: 44px;
+  text-align: center;
   border-radius: var(--radius-pill);
   border: 1px solid var(--text-base);
   overflow: hidden;

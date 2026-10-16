@@ -1,7 +1,7 @@
 .slot {
   position: relative;
   overflow: hidden;
-  border-radius: 0.8rem;
+  border-radius: max(10px, 0.8rem);
   background-color: var(--grey-light);
 }
 

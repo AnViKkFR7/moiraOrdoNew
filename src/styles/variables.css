@@ -45,3 +45,26 @@
   --space-lg: 6.4rem;
   --space-xl: 9.6rem;
 }
+
+/*
+  En móvil/tablet el rem vale ~2-4px (html = 0.55vw), así que la escala
+  anterior daba paddings de 3-10px. Por debajo de 1000px el espaciado
+  pasa a px fijos para que las secciones respiren.
+*/
+@media (max-width: 999px) {
+  :root {
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 56px;
+    --space-xl: 72px;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 999px) {
+  :root {
+    --space-md: 32px;
+    --space-lg: 72px;
+    --space-xl: 96px;
+  }
+}

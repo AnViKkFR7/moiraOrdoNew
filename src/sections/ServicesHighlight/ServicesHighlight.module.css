@@ -111,6 +111,8 @@
 .textBlock {
   margin-top: 32px;
   max-width: 34ch;
+  /* sin esto el ch se calcula con el rem diminuto del móvil y el texto queda en una columna de 30px */
+  font-size: 16px;
 }
 
 @media (min-width: 1000px) {
@@ -130,5 +132,17 @@
 }
 
 .showcase {
-  margin-top: 80px;
+  margin-top: 56px;
+}
+
+@media (min-width: 1000px) {
+  .showcase {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 649px) {
+  .section {
+    padding-block: 72px;
+  }
 }

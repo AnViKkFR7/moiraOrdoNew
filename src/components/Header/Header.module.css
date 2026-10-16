@@ -41,3 +41,15 @@
   align-items: center;
   gap: var(--space-sm);
 }
+
+/* El logo queda por encima del menú móvil abierto */
+.logo {
+  position: relative;
+  z-index: 58;
+}
+
+@media (max-width: 380px) {
+  .actions {
+    gap: 4px;
+  }
+}

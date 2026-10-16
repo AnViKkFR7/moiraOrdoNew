@@ -35,8 +35,12 @@ const PROJECTS = [
  * tarjeta bajo el cursor; la otra vuelve a su estado mínimo (solo título
  * en blanco sobre la imagen).
  */
+const HOVER_QUERY = '(min-width: 1000px) and (hover: hover)'
+
 export default function ProjectsShowcase() {
   const [activeIndex, setActiveIndex] = useState(0)
+  // En móvil/tablet o en pantallas táctiles no hay hover: todos los paneles quedan abiertos
+  const [canHover, setCanHover] = useState(() => window.matchMedia(HOVER_QUERY).matches)
   const gridRef = useRef(null)
   const narrowCardRef = useRef(null)
   const leftRef = useScrollReveal({ y: 30 })
@@ -47,6 +51,13 @@ export default function ProjectsShowcase() {
   // es la más angosta, medimos su ancho real y lo aplicamos a ambas vía
   // una variable CSS (si no, el panel de la tarjeta derecha —más ancha—
   // terminaría siendo más grande que el de la izquierda).
+  useEffect(() => {
+    const query = window.matchMedia(HOVER_QUERY)
+    const onChange = (e) => setCanHover(e.matches)
+    query.addEventListener('change', onChange)
+    return () => query.removeEventListener('change', onChange)
+  }, [])
+
   useEffect(() => {
     const syncPanelWidth = () => {
       if (!narrowCardRef.current || !gridRef.current) return
@@ -62,7 +73,7 @@ export default function ProjectsShowcase() {
   return (
     <div ref={gridRef} className={styles.grid}>
       {PROJECTS.map((project, i) => {
-        const isActive = i === activeIndex
+        const isActive = !canHover || i === activeIndex
 
         return (
           <a

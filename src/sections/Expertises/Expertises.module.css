@@ -14,7 +14,7 @@
 .media {
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 0.8rem;
+  border-radius: max(10px, 0.8rem);
 }
 
 .media img {

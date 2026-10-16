@@ -4,7 +4,7 @@
   grid-template-columns: 1fr;
 }
 
-@media (min-width: 650px) {
+@media (min-width: 1000px) {
   .grid {
     grid-template-columns: 31% 1fr;
   }
@@ -15,10 +15,17 @@
   display: block;
   border-radius: 14px;
   overflow: hidden;
-  height: 80vh;
+  height: min(78vh, 620px);
+  min-height: 480px;
 }
 
 @media (min-width: 650px) {
+  .card {
+    height: min(70vh, 680px);
+  }
+}
+
+@media (min-width: 1000px) {
   .card {
     height: 88vh;
   }
@@ -75,7 +82,7 @@
   z-index: 2;
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: 62px;
+  font-size: clamp(40px, 11.5vw, 62px);
   line-height: 1.05;
   text-transform: uppercase;
   color: var(--bg-base);
@@ -140,4 +147,11 @@
 
 .card:hover .arrow.isActive {
   transform: scale(1.1) rotate(45deg);
+}
+
+/* Escritorio estrecho: el título escala con el ancho del panel para no cortarse */
+@media (min-width: 1000px) {
+  .title {
+    font-size: clamp(40px, 4.4vw, 62px);
+  }
 }
