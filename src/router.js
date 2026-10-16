@@ -54,11 +54,33 @@ export function whenPageVisible(cb) {
 }
 
 /** Lleva a una sección por id (ej. "equipo"), compensando el header fijo. */
+const HEADER_OFFSET = 80
+const MAX_SCROLL_ATTEMPTS = 4
+
 export function scrollToHash(hash, { immediate = false } = {}) {
   const el = hash && document.getElementById(hash)
   if (!el) return
-  if (lenisRef.current) lenisRef.current.scrollTo(el, { offset: -80, immediate, force: true })
-  else el.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' })
+
+  const lenis = lenisRef.current
+  if (!lenis) {
+    el.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' })
+    return
+  }
+
+  // La posición se calcula al empezar el scroll; si mientras tanto cambia el alto de la
+  // página (imágenes diferidas, animaciones de entrada), se aterriza fuera de sitio.
+  // Al terminar se comprueba y se corrige, para que llegue a la sección a la primera.
+  const scroll = (attempt, instant) => {
+    lenis.scrollTo(el, { offset: -HEADER_OFFSET, immediate: instant, force: true })
+    const startedAt = Date.now()
+    const settle = () => {
+      if (lenis.isScrolling && Date.now() - startedAt < 4000) return window.setTimeout(settle, 120)
+      const off = el.getBoundingClientRect().top - HEADER_OFFSET
+      if (Math.abs(off) > 6 && attempt < MAX_SCROLL_ATTEMPTS) scroll(attempt + 1, true)
+    }
+    window.setTimeout(settle, instant ? 150 : 400)
+  }
+  scroll(1, immediate)
 }
 
 /** `to` admite query y hash: "/servicios", "/#equipo", "/contacto?servicio=diseno-web". */

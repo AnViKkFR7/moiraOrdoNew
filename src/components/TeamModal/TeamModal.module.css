@@ -76,14 +76,47 @@
   padding-right: calc(max(52px, 12cqw) + 2cqw);
 }
 
+.role {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-blue-ink);
+}
+
 .bio {
-  margin-top: 4cqw;
+  margin-top: 3cqw;
 }
 
 .bio p {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
-  color: var(--grey-mid);
+  color: #3a3d4b;
+}
+
+.linkedin {
+  align-self: flex-start;
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  background-color: #0a66c2;
+  font-size: 15px;
+  font-weight: var(--fw-body-medium);
+  color: #fff;
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.linkedin:hover {
+  transform: translateY(-2px);
+}
+
+.linkedin svg {
+  width: 18px;
+  height: 18px;
 }
 
 .bio p + p {
@@ -91,35 +124,44 @@
 }
 
 .projects {
-  margin-top: 40px;
+  margin-top: 28px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background-color: var(--bg-warm-1);
 }
 
 .projectsLabel {
   display: block;
-  font-size: 12px;
-  font-weight: var(--fw-body-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--grey-mid);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--text-base);
 }
 
 .projectsList {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .projectPill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
-  border: 1px solid var(--grey-light);
+  padding: 7px 14px;
+  border: 1px solid var(--text-base);
   border-radius: var(--radius-pill);
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
   color: var(--text-base);
+  transition: background-color var(--dur-micro) var(--ease-micro), color var(--dur-micro) var(--ease-micro);
+}
+
+.projectPill:hover {
+  background-color: var(--text-base);
+  color: var(--bg-base);
 }
 
 .photo {
@@ -148,8 +190,21 @@
   .left {
     flex: 1;
     min-height: 0;
-    width: 38cqw;
+    width: 52cqw;
     overflow-y: auto;
+  }
+
+  /* Los proyectos se quedan fijos al pie del texto: siempre visibles aunque la bio haga scroll */
+  .projects {
+    position: sticky;
+    bottom: 0;
+    margin-top: auto;
+    box-shadow: 0 -14px 14px -4px var(--bg-base);
+  }
+
+  .bio + .projects,
+  .linkedin + .projects {
+    margin-top: 28px;
   }
 
   .name {
@@ -157,17 +212,12 @@
     white-space: nowrap;
   }
 
-  .projects {
-    margin-top: auto;
-    padding-top: 40px;
-  }
-
   .photo {
     position: absolute;
     right: 2.5cqw;
     bottom: 2.5cqw;
     margin: 0;
-    width: 40cqw;
+    width: 35cqw;
     max-height: calc(100% - max(52px, 12cqw) - 6cqw);
   }
 }

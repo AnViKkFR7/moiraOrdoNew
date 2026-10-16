@@ -6,9 +6,6 @@ import Button from '../../components/Button/Button'
 import LiveSitesShowcase from '../LiveSitesShowcase/LiveSitesShowcase'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 
-/**
- * TODO: reemplazar por contenido real (kicker, titular, ícono, párrafo y CTA).
- */
 export default function ServicesHighlight() {
   const iconRef = useScrollReveal({ y: 20 })
   const diamondRef = useRef(null)
@@ -54,6 +51,12 @@ export default function ServicesHighlight() {
             <span className={styles.plus}>+</span>{' '}
             <span className="accent-blue-light">Moira Ordo Games</span>
           </RevealText>
+
+          <p className={styles.text}>
+            Cada proyecto empieza con un diagnóstico real de tu negocio. A partir de ahí,
+            diseñamos y desarrollamos un sistema a medida — no una plantilla — pensado para
+            crecer contigo.
+          </p>
         </div>
 
         <div className={styles.right}>
@@ -71,17 +74,9 @@ export default function ServicesHighlight() {
             </span>
           </div>
 
-          <div className={styles.textBlock}>
-            <p className={styles.text}>
-              Cada proyecto empieza con un diagnóstico real de tu negocio. A partir de ahí,
-              diseñamos y desarrollamos un sistema a medida — no una plantilla — pensado para
-              crecer contigo.
-            </p>
-
-            <Button as="a" href="/servicios" className={styles.cta}>
-              Descubre Nuestros Servicios
-            </Button>
-          </div>
+          <Button as="a" href="/servicios" className={styles.cta}>
+            Descubre Nuestros Servicios
+          </Button>
         </div>
       </div>
 

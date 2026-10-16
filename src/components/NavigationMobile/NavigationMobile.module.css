@@ -86,7 +86,7 @@
   font-size: 12px;
   font-weight: var(--fw-body-medium);
   letter-spacing: 0.1em;
-  color: var(--accent-blue);
+  color: var(--accent-blue-ink);
 }
 
 .panel.isOpen .link {

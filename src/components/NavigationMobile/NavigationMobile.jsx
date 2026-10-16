@@ -3,7 +3,6 @@ import styles from './NavigationMobile.module.css'
 
 /**
  * Menu mobile a pantalla completa con efecto "cortina" (clip-path).
- * TODO: reemplazar por contenido real (links del nav).
  */
 export default function NavigationMobile({ links }) {
   const [isOpen, setIsOpen] = useState(false)

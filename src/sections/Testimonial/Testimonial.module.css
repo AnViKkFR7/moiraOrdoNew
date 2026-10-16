@@ -4,16 +4,18 @@
 }
 
 .quote {
-  max-width: 60ch;
+  max-width: 34ch;
   margin: 0 auto;
   font-family: var(--font-display);
   font-weight: 300;
   font-style: italic;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.2;
 }
 
 .author {
   margin-top: var(--space-sm);
-  font-size: var(--fs-small);
+  font-size: 15px;
   color: var(--grey-mid);
 }
 

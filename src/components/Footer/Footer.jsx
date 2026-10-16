@@ -98,6 +98,7 @@ export default function Footer() {
             </nav>
 
             <nav className={styles.column} aria-label="Empresa">
+              <a className={styles.link} href="/#casos">Opiniones de clientes</a>
               <a className={styles.link} href="/#equipo">Sobre nosotros</a>
               <a className={styles.link} href="/contacto">Contacto</a>
               <a className={styles.link} href="mailto:info@moiraordo.es">info@moiraordo.es</a>

@@ -36,26 +36,6 @@
   object-fit: cover;
 }
 
-.scrollButton {
-  position: absolute;
-  right: var(--space-md);
-  bottom: min(-26px, -3rem);
-  width: max(52px, 6rem);
-  height: max(52px, 6rem);
-  border-radius: var(--radius-circle);
-  background-color: var(--accent-blue);
-  color: var(--bg-base);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: max(20px, 2rem);
-  transition: transform var(--dur-micro) var(--ease-micro);
-}
-
-.scrollButton:hover {
-  transform: scale(1.08);
-}
-
 .textWrap {
   margin-top: calc(var(--space-xl) * 1.4);
   margin-left: var(--space-md);
@@ -82,7 +62,7 @@
   font-weight: var(--fw-body-medium);
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--accent-blue);
+  color: var(--accent-blue-ink);
   margin-bottom: 36px;
 }
 

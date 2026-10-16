@@ -8,6 +8,8 @@
   --text-base: #00051e;
   --accent-blue: #4692ff;
   --accent-blue-light: #82daff;
+  /* Variante oscura del azul para textos pequeños: cumple contraste AA (4.5:1) sobre los fondos claros */
+  --accent-blue-ink: #1f63cc;
   --accent-yellow: #ffcf80;
   --bg-warm-1: #fff5e6;
   --bg-warm-2: #ffe2d2;

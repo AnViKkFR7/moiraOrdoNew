@@ -16,3 +16,11 @@
     gap: var(--space-lg);
   }
 }
+
+/* Con un número impar de proyectos, el último ocupa todo el ancho en vez de quedar suelto */
+@media (min-width: 650px) {
+  .grid.isTwoCols > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    --card-ratio: 21 / 9;
+  }
+}

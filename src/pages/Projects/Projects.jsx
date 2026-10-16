@@ -5,8 +5,9 @@ import Button from '../../components/Button/Button'
 import GridProjects from '../../components/GridProjects/GridProjects'
 import arqueliaImage from '../../assets/images/arquelia.png?w=1400&format=webp'
 import regiamareImage from '../../assets/images/regiamare-web.webp'
-import vemaroImage from '../../assets/images/projects/vemaro-transfers.jpg?format=webp'
+import vemaroImage from '../../assets/images/projects/vemaro-transfers.webp?w=1400&format=webp'
 import navagliImage from '../../assets/images/projects/navagli.jpg?format=webp'
+import llobregatImage from '../../assets/images/projects/reformas-llobregat.png?w=1400&format=webp'
 import musibingoImage from '../../assets/images/projects/musibingo.png?w=1200&format=webp'
 import matchriseImage from '../../assets/images/projects/matchrise.webp'
 import styles from './Projects.module.css'
@@ -35,6 +36,28 @@ const COMPANIES = [
     external: true,
   },
   {
+    image: arqueliaImage,
+    tag: 'Arquitectura y reformas',
+    title: 'Arquelia',
+    headline: 'Web premium, CRM y marketing online',
+    description:
+      'Diseño editorial a medida para una constructora premium en Cataluña, con el contenido gestionado desde nuestro CRM. Además llevamos su marketing online y su publicidad para que la web no solo luzca: que traiga clientes.',
+    accent: '#c8f0d8',
+    href: 'https://arquelia.es/',
+    external: true,
+  },
+  {
+    image: llobregatImage,
+    tag: 'Reformas integrales',
+    title: 'Reformas Llobregat',
+    headline: 'Web de captación, SEO y publicidad',
+    description:
+      'Web pensada para convertir en una empresa de reformas del Baix Llobregat: formulario de presupuesto optimizado, SEO local y campañas de publicidad gestionadas por nosotros. El formulario trae 4 veces más clientes.',
+    accent: '#c8f0d8',
+    href: 'https://reformasllobregat.com/',
+    external: true,
+  },
+  {
     image: vemaroImage,
     tag: 'Transfers privados',
     title: 'Vemaro Transfers',
@@ -43,17 +66,6 @@ const COMPANIES = [
       'Plataforma propia para gestionar flota, chóferes y reservas, más un frontal moderno y responsive con presupuesto al instante y pagos integrados para traslados, servicio por horas y viajes a medida.',
     accent: 'var(--accent-yellow)',
     href: 'https://www.vemarotransfers.com/',
-    external: true,
-  },
-  {
-    image: arqueliaImage,
-    tag: 'Arquitectura y reformas',
-    title: 'Arquelia',
-    headline: 'Web premium de diseñador sobre nuestro CRM',
-    description:
-      'Diseño editorial a medida para una constructora premium en Cataluña. El contenido —proyectos, servicios y textos— se gestiona desde nuestro CRM manteniendo intacto el diseño.',
-    accent: '#c8f0d8',
-    href: 'https://arquelia.es/',
     external: true,
   },
 ]
@@ -130,7 +142,7 @@ export default function Projects() {
               </div>
               <div>
                 <p className={styles.groupText}>
-                  Inmobiliaria, construcción y movilidad: sitios diseñados y desarrollados con
+                  Inmobiliaria, reformas y movilidad: sitios diseñados y desarrollados con
                   contenido que el cliente gestiona solo.
                 </p>
                 <span className={styles.groupMeta}>{COMPANIES.length} proyectos</span>

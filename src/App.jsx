@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Loader from './components/Loader/Loader'
 import PageTransition from './components/PageTransition/PageTransition'
 import { findRoute } from './routes'
@@ -39,6 +41,9 @@ export default function App() {
       <Loader onFinish={() => setIsLoaded(true)} />
       <PageTransition />
       <Page key={pathname} {...props} />
+      {/* Con el router propio se les pasa la ruta para que cuenten cada cambio de página */}
+      <Analytics route={route.path} path={pathname} />
+      <SpeedInsights route={route.path} />
     </>
   )
 }

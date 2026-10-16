@@ -1,0 +1,268 @@
+.section {
+  padding-block: 110px;
+  background-color: var(--bg-base);
+}
+
+.head {
+  max-width: 820px;
+}
+
+.kicker {
+  display: block;
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent-blue-ink);
+}
+
+.headline {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 1.1;
+  color: var(--text-base);
+}
+
+@media (min-width: 650px) {
+  .headline {
+    font-size: 54px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .headline {
+    font-size: 68px;
+  }
+}
+
+.intro {
+  margin-top: 20px;
+  max-width: 48ch;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}
+
+/* ---------- Lista de casos ---------- */
+
+.list {
+  margin-top: 64px;
+  border-bottom: 1px solid var(--grey-light);
+}
+
+.case {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  padding-block: 48px;
+  border-top: 1px solid var(--grey-light);
+}
+
+@media (min-width: 1000px) {
+  .case {
+    grid-template-columns: 1fr 2.2fr;
+    gap: 80px;
+    padding-block: 64px;
+  }
+
+  .caseHead {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+}
+
+.caseHead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.index {
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
+  letter-spacing: 0.1em;
+  color: var(--grey-mid);
+}
+
+.client {
+  margin-top: 12px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 1.1;
+  color: var(--text-base);
+}
+
+@media (min-width: 1000px) {
+  .client {
+    font-size: 40px;
+  }
+}
+
+.sector {
+  margin-top: 10px;
+  font-size: 15px;
+  color: var(--grey-mid);
+}
+
+.services {
+  margin-top: 14px;
+  padding: 6px 12px;
+  border: 1px solid var(--accent-blue-ink);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
+  color: var(--accent-blue-ink);
+}
+
+.visit {
+  margin-top: 20px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  color: var(--text-base);
+  transition: transform var(--dur-micro) var(--ease-micro);
+}
+
+.visit:hover {
+  transform: translateY(-2px);
+}
+
+.caseBody {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 650px) {
+  .story {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+.storyLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-base);
+}
+
+.storyText {
+  margin-top: 10px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--grey-mid);
+}
+
+/* ---------- Cifras ---------- */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 2px solid var(--accent);
+}
+
+.metricValue {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--text-base);
+}
+
+@media (min-width: 1000px) {
+  .metricValue {
+    font-size: 52px;
+  }
+}
+
+.metricLabel {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--grey-mid);
+}
+
+/* ---------- Frase del cliente ---------- */
+
+.quote {
+  padding: 28px 32px;
+  border-radius: 14px;
+  background-color: var(--bg-warm-1);
+}
+
+.quote p {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--text-base);
+}
+
+@media (min-width: 1000px) {
+  .quote p {
+    font-size: 26px;
+  }
+}
+
+.quote figcaption {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  color: var(--grey-mid);
+}
+
+.cta {
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 649px) {
+  .section {
+    padding-block: 72px;
+  }
+
+  .list {
+    margin-top: 40px;
+  }
+
+  .case {
+    padding-block: 36px;
+  }
+
+  .metrics {
+    gap: 10px;
+  }
+
+  .metricLabel {
+    font-size: 13px;
+  }
+
+  .quote {
+    padding: 22px 20px;
+  }
+}

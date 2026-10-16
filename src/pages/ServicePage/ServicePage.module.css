@@ -4,7 +4,7 @@
   font-weight: var(--fw-body-medium);
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--accent-blue);
+  color: var(--accent-blue-ink);
 }
 
 .headline {
@@ -183,7 +183,7 @@
   height: 24px;
   border-radius: var(--radius-circle);
   border: 1px solid var(--accent-blue);
-  color: var(--accent-blue);
+  color: var(--accent-blue-ink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,7 +338,7 @@
 }
 
 .relatedArrow {
-  color: var(--accent-blue);
+  color: var(--accent-blue-ink);
 }
 
 /* ---------- CTA ---------- */

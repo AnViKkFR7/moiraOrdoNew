@@ -2,31 +2,28 @@ import { useEffect, useRef, useState } from 'react'
 import styles from './ProjectsShowcase.module.css'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import arquelia from '../../assets/images/arquelia.png?w=1400&format=webp'
-import regiamare from '../../assets/images/regiamare-web.webp'
+import vemaro from '../../assets/images/projects/vemaro-transfers.webp?w=1600&format=webp'
 
-// TODO: reemplazar por contenido real
 const PROJECTS = [
   {
     image: arquelia,
-    alt: 'Arquelia',
-    city: 'Madrid',
-    size: '120 m²',
+    alt: 'Web de Arquelia, constructora de reformas premium',
     name: 'Arquelia',
-    headline: 'Tu hogar llevado a otro nivel',
+    headline: 'Una web a la altura de sus obras',
     description:
-      'Lo que prometemos, lo cumplimos en obra.No hacemos reformas en serie. Aceptamos un número limitado de proyectos al año para poder dedicar a cada uno el tiempo, el equipo propio y la atención que merece — desde el primer boceto hasta la última junta.',
+      'Diseño editorial a medida para una constructora premium en Cataluña, con las obras gestionadas desde nuestro CRM. Además llevamos su marketing online y su publicidad para que la web traiga clientes.',
     accent: 'var(--accent-yellow)',
+    href: 'https://arquelia.es/',
   },
   {
-    image: regiamare,
-    alt: 'Regiamare',
-    city: 'Barcelona',
-    size: '240 m²',
-    name: 'Regiamare',
-    headline: 'Encuentra tu vivienda ideal en la costa',
+    image: vemaro,
+    alt: 'Web de Vemaro Transfers con el formulario de reserva de traslados',
+    name: 'Vemaro Transfers',
+    headline: 'SaaS a medida para la gestión de flota',
     description:
-      'Un enfoque integral.En Regia Mare Properties, no solo vendemos propiedades. Ofrecemos una experiencia completa que abarca desde la primera consulta hasta el seguimiento post-venta. Nuestro equipo de profesionales especializados trabaja de manera coordinada para asegurar cada transacción.',
+      'Plataforma propia para gestionar flota, chóferes y reservas, más un frontal moderno y responsive que calcula el precio al instante y cobra online con tarjeta, Apple Pay, Google Pay o PayPal.',
     accent: 'var(--accent-blue-light)',
+    href: 'https://www.vemarotransfers.com/',
   },
 ]
 
@@ -89,13 +86,16 @@ export default function ProjectsShowcase() {
               refs[i].current = node
               if (i === 0) narrowCardRef.current = node
             }}
-            href="#"
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
             className={styles.card}
             style={{ '--accent': project.accent }}
             data-cursor-hover
             onMouseEnter={() => setActiveIndex(i)}
             onClick={(e) => {
-              if (canHover) return
+              // En táctil, el primer toque abre el panel y el segundo abre la web
+              if (canHover || isActive) return
               e.preventDefault()
               toggleCard(i)
             }}
@@ -103,11 +103,6 @@ export default function ProjectsShowcase() {
           >
             <img src={project.image} alt={project.alt} />
             <div className={styles.overlay} />
-
-            <div className={styles.badges}>
-              <span className={styles.badge}>{project.city}</span>
-              <span className={styles.badge}>{project.size}</span>
-            </div>
 
             <div
               className={`${styles.panel} ${isActive ? styles.isActive : ''}`}

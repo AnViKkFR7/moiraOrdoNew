@@ -6,7 +6,7 @@
   font-weight: var(--fw-body-medium);
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--accent-blue);
+  color: var(--accent-blue-ink);
 }
 
 .headline {
@@ -196,7 +196,7 @@
 }
 
 .serviceItem:hover .serviceIndex {
-  color: var(--accent-blue);
+  color: var(--accent-blue-ink);
 }
 
 .serviceItem:hover .serviceTitle {
@@ -286,7 +286,7 @@
     grid-template-columns: 1.6fr 1fr;
   }
 
-  /* Misma "ola" que en Conocé al equipo */
+  /* Misma "ola" que en Conoce al equipo */
   .bandGrid > :nth-child(2) {
     margin-top: 80px;
   }

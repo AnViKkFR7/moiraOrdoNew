@@ -1,9 +1,6 @@
 import styles from './ProjectsIntro.module.css'
 import RevealText from '../../components/RevealText/RevealText'
 
-/**
- * TODO: reemplazar por contenido real.
- */
 export default function ProjectsIntro() {
   return (
     <div className={styles.wrapper}>

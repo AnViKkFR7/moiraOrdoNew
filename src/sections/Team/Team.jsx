@@ -8,40 +8,62 @@ import aaron from '../../assets/images/aaron.png?w=1000&format=webp'
 import joselyn from '../../assets/images/joselyn.png?w=1000&format=webp'
 import fede from '../../assets/images/fede.png?w=1000&format=webp'
 
-// TODO: reemplazar por contenido real (apellidos, bios y proyectos)
+// Webs y juegos publicados: Aaron y Joselyn han participado en todos
+const SITES = {
+  Navagli: 'https://www.navagli.com/',
+  'Regia Mare': 'https://regiamare.com/',
+  Arquelia: 'https://arquelia.es/',
+  'Reformas Llobregat': 'https://reformasllobregat.com/',
+  'Vemaro Transfers': 'https://www.vemarotransfers.com/',
+  MusiBingo: 'https://musibingo.com/',
+  MatchRise: 'https://www.matchrise.es/',
+}
+const projectsOf = (...names) => names.map((name) => ({ name, href: SITES[name] }))
+
+// TODO: añadir la URL de LinkedIn de cada miembro en `linkedin` (el botón aparece solo si hay URL)
 const MEMBERS = [
   {
     image: aaron,
     name: 'Aaron',
     firstName: 'Aaron',
     className: 'col1',
+    role: 'Software engineer',
+    linkedin: '',
     bio: [
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Encargado de traducir cada brief en un sistema de diseño claro y funcional.',
-      'Con más de ocho años de experiencia, se especializa en interfaces que priorizan la legibilidad y la estabilidad del contenido por sobre la moda pasajera.',
+      'Soy software engineer y llevo más de ocho años construyendo software. Trabajo en todo el stack: el frontend que ve el usuario, el backend que lo sostiene y las bases de datos donde vive la información.',
+      'Me encargo de la arquitectura de Moira Ordo: el CRM, los modelos de datos a medida y las integraciones, como los pagos o el envío de emails. Me gusta que cada pieza sea sencilla de entender y de mantener, y que lo que entregamos siga funcionando bien mucho después del lanzamiento.',
+      'He participado en todos los proyectos que verás aquí, desde las webs de empresa hasta los juegos.',
     ],
-    projects: ['Arquelia', 'Regiamare'],
+    projects: projectsOf('Navagli', 'Regia Mare', 'Arquelia', 'Reformas Llobregat', 'Vemaro Transfers', 'MusiBingo', 'MatchRise'),
   },
   {
     image: joselyn,
     name: 'Joselyn',
     firstName: 'Joselyn',
     className: 'col2',
+    role: 'Desarrolladora web',
+    linkedin: '',
     bio: [
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lidera el desarrollo técnico, cuidando cada detalle de rendimiento y accesibilidad.',
-      'Cree que un buen sistema es aquel que un desarrollador nuevo puede entender en minutos, no en semanas.',
+      'Soy desarrolladora web y me ocupo de que lo que diseñamos se vea y funcione como debe: del diseño de cada web a su frontal, con atención a la velocidad, al móvil y a la accesibilidad.',
+      'También soy la persona con la que hablarás al empezar. Escucho qué necesita tu negocio, te explico las opciones sin tecnicismos y te acompaño hasta que la web está publicada y sabes gestionarla.',
+      'He participado en todos los proyectos que verás aquí, desde las webs de empresa hasta los juegos.',
     ],
-    projects: ['Navagli', 'MusiBingo', 'Matchrise'],
+    projects: projectsOf('Navagli', 'Regia Mare', 'Arquelia', 'Reformas Llobregat', 'Vemaro Transfers', 'MusiBingo', 'MatchRise'),
   },
   {
     image: fede,
     name: 'Fede',
     firstName: 'Fede',
     className: 'col3',
+    role: 'Marketing, SEO y publicidad',
+    linkedin: '',
     bio: [
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Acompaña a cada cliente desde el primer diagnóstico hasta la entrega final.',
-      'Su trabajo es asegurar que el sistema que construimos siga sirviendo al negocio mucho después de la entrega.',
+      'Me ocupo de la parte que hace que una web no se quede en bonita: que se encuentre y que traiga clientes. Llevo el marketing online, el SEO y la publicidad de las webs de los clientes que confían en nosotros.',
+      'Empiezo por entender el negocio y a quién quiere llegar: qué busca esa gente en Google, qué zonas y servicios dan más margen y qué competencia hay. Con eso defino las palabras clave, ordeno la estructura de la web para posicionarla y mejoro los textos y los formularios para que cada visita tenga más opciones de convertirse en una solicitud.',
+      'Después gestiono las campañas de publicidad de pago —Google Ads y redes sociales—, mido cada euro invertido con analítica sin cookies y ajusto mes a mes lo que funciona. Así, en Reformas Llobregat el formulario trae cuatro veces más clientes y en Arquelia las visitas desde buscadores se han más que duplicado.',
+      'Mi trabajo es que el sistema que construimos siga sirviendo al negocio mucho después de la entrega, con informes claros y sin jerga.',
     ],
-    projects: ['Arquelia', 'Navagli'],
+    projects: projectsOf('Reformas Llobregat', 'Arquelia', 'Vemaro Transfers'),
   },
 ]
 
@@ -67,7 +89,7 @@ export default function Team() {
     <section id="equipo" className={styles.team}>
       <div className="section container">
         <RevealText as="h2">
-          Conocé al <span className="accent-yellow">equipo</span>
+          Conoce al <span className="accent-yellow">equipo</span>
         </RevealText>
 
         <p className={styles.text}>
@@ -111,8 +133,8 @@ export default function Team() {
         </div>
 
         <div className={styles.cta}>
-          <Button as="a" href="#" variant="filled">
-            Conocer al equipo
+          <Button as="a" href="/contacto" variant="filled">
+            Habla con el equipo
           </Button>
         </div>
       </div>

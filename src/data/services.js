@@ -17,7 +17,7 @@ export const SERVICES = [
       'Diseñamos la interfaz de tu web desde cero: estructura, jerarquía visual, tipografía y color pensados para tu marca y para lo que tus usuarios necesitan encontrar.',
     paragraphs: [
       'Partimos de una conversación sobre tu negocio y tu público. Con eso definimos la arquitectura de la web —qué páginas hay, qué contiene cada una y cómo se conectan— antes de dibujar una sola pantalla.',
-      'Después diseñamos cada página en versión escritorio, tablet y móvil, con un sistema visual coherente que facilita que la web crezca sin perder su identidad.',
+      'Después diseñamos cada página en versión escritorio, tablet y móvil, con un sistema visual coherente que facilita que la web crezca sin perder su identidad. Así hemos trabajado webs como Arquelia o Regia Mare, donde el diseño tenía que estar a la altura de lo que venden.',
     ],
     includes: [
       'Arquitectura de contenidos y estructura de páginas',
@@ -32,11 +32,15 @@ export const SERVICES = [
       },
       {
         q: '¿Usáis plantillas?',
-        a: 'No. Cada diseño se hace a medida para tu marca y tu proyecto.',
+        a: 'No. Cada diseño se hace desde cero para tu marca y tu proyecto, por eso dos webs nuestras nunca se parecen entre sí.',
       },
       {
         q: '¿El diseño incluye la versión móvil?',
         a: 'Sí. Diseñamos cada página para escritorio, tablet y móvil.',
+      },
+      {
+        q: '¿Qué necesito tener preparado para empezar?',
+        a: 'Basta con una idea clara de tu negocio. Si tienes logotipo, textos o fotos, mejor; si no, te ayudamos a definirlos o empezamos por el diseño de marca.',
       },
     ],
   },
@@ -54,7 +58,7 @@ export const SERVICES = [
       'Convertimos el diseño en una web real construida sobre Moira Ordo, nuestro CRM: tú actualizas textos, imágenes y catálogo desde un panel, y el diseño se mantiene intacto.',
     paragraphs: [
       'Programamos con código limpio y pensado para rendir: carga rápida, buena puntuación en buscadores y una experiencia fluida en cualquier dispositivo.',
-      'El contenido vive en nuestro CRM, así que no dependes de nadie para publicar una novedad, cambiar un precio o añadir un proyecto. Y si un día necesitas más funciones, la web crece sin rehacerla.',
+      'El contenido vive en nuestro CRM, así que no dependes de nadie para publicar una novedad, cambiar un precio o añadir un proyecto. Y si un día necesitas más funciones, la web crece sin rehacerla. Es lo que hace Navagli, una empresa familiar de reformas que publica sus proyectos sin depender de nadie.',
     ],
     includes: [
       'Desarrollo a medida del diseño aprobado',
@@ -70,6 +74,10 @@ export const SERVICES = [
       {
         q: '¿Podré actualizar la web yo mismo?',
         a: 'Sí. Gestionas textos, imágenes y catálogo desde el panel de nuestro CRM, sin tocar código y sin romper el diseño.',
+      },
+      {
+        q: '¿Y si más adelante necesito más funciones?',
+        a: 'La web está construida para crecer: añadimos secciones, catálogos o integraciones sobre la misma base, sin rehacerla desde cero.',
       },
       {
         q: '¿Ofrecéis mantenimiento?',
@@ -108,6 +116,10 @@ export const SERVICES = [
         q: '¿Puedo combinarlo con el diseño de mi web?',
         a: 'Sí. Es lo ideal: la identidad de marca es la base visual sobre la que diseñamos la web.',
       },
+      {
+        q: '¿Qué archivos recibo?',
+        a: 'El logotipo y sus variantes en formatos para web, redes sociales e impresión, junto con la paleta de colores y las tipografías para que cualquiera pueda aplicar tu marca correctamente.',
+      },
     ],
   },
   {
@@ -139,7 +151,11 @@ export const SERVICES = [
       },
       {
         q: '¿Podéis integrar pagos online?',
-        a: 'Sí, integramos pasarelas de pago en el frontal y en el panel de gestión.',
+        a: 'Sí, integramos pasarelas de pago en el frontal y en el panel de gestión. En Vemaro Transfers, por ejemplo, el cliente paga con tarjeta, Apple Pay, Google Pay o PayPal.',
+      },
+      {
+        q: '¿Cómo es el proceso de desarrollo?',
+        a: 'Trabajamos por fases con entregas que puedes probar desde el principio, de modo que el sistema se ajusta a tu operativa real antes de darlo por terminado.',
       },
     ],
   },

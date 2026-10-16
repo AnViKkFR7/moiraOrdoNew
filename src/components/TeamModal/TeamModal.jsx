@@ -9,7 +9,7 @@ const CLIP_OPEN = 'inset(0% 0% 0% 0% round 20px)'
 
 /**
  * Modal con la ficha de un miembro del equipo. `member` = { image, name,
- * firstName, bio: [párrafo1, párrafo2], projects: [nombre, ...] }
+ * firstName, bio: [párrafo1, párrafo2], projects: [{ name, href }], role?, linkedin? }
  *
  * Apertura: el fondo se oscurece y la tarjeta se revela desde la esquina
  * superior izquierda (clip-path), sin escalar el contenido. Cierre: inverso.
@@ -105,6 +105,7 @@ export default function TeamModal({ member, isOpen, onClose }) {
 
         <div className={styles.left}>
           <h3 className={styles.name}>{current.firstName}</h3>
+          {current.role && <span className={styles.role}>{current.role}</span>}
 
           <div className={styles.bio}>
             {current.bio.map((paragraph) => (
@@ -112,13 +113,44 @@ export default function TeamModal({ member, isOpen, onClose }) {
             ))}
           </div>
 
+          {current.linkedin && (
+            <a
+              className={styles.linkedin}
+              href={current.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              data-cursor-hover
+              aria-label={`LinkedIn de ${current.firstName}`}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.5H3V9.75Zm6.5 0h3.83v1.57h.06c.53-1 1.84-2.07 3.78-2.07 4.04 0 4.78 2.66 4.78 6.12v5.88h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75v5.29h-4V9.75Z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+          )}
+
           <div className={styles.projects}>
-            <span className={styles.projectsLabel}>Proyectos de {current.firstName}:</span>
+            <span className={styles.projectsLabel}>
+              {current.projects.length === 1
+                ? '1 proyecto'
+                : `${current.projects.length} proyectos`}{' '}
+              con {current.firstName}
+            </span>
             <div className={styles.projectsList}>
               {current.projects.map((project) => (
-                <span key={project} className={styles.projectPill} data-cursor-hover>
-                  {project} ↗
-                </span>
+                <a
+                  key={project.name}
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.projectPill}
+                  data-cursor-hover
+                >
+                  {project.name} <span aria-hidden="true">↗</span>
+                </a>
               ))}
             </div>
           </div>
