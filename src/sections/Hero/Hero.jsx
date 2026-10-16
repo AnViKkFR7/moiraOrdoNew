@@ -10,8 +10,9 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.textBlock}>
         <RevealText as="h1" className={styles.title}>
-          El destino ordenado del contenido. Un sistema estable para contenido cambiante. Pensado
-          para <span className="accent-blue">webs que no se improvisan</span>.
+          Somos una consultora digital. Diseñamos tu web, la conectamos a un panel que gestionas
+          tú y hacemos que te encuentren:{' '}
+          <span className="accent-blue">una presencia online que no se improvisa</span>.
         </RevealText>
       </div>
 
@@ -32,11 +33,10 @@ export default function Hero() {
         <span className={styles.eyebrow}>Tu Centro de Control</span>
 
         <p className={styles.mediaText}>
-          Analizamos a fondo la operativa de tu negocio para diseñar un modelo de datos
-          dinámico a medida. Estructuramos meticulosamente toda tu información —desde contenidos
-          multimedia y documentos corporativos hasta catálogos complejos— creando{' '}
-          <span className="accent-blue">un ecosistema digital que se adapta exactamente a tus
-          necesidades reales</span>.
+          Empezamos por entender cómo funciona tu negocio. Con eso diseñamos una web a medida, un
+          panel (CRM) donde gestionas tus contenidos sin depender de nadie y, si lo necesitas, nos
+          encargamos de tu SEO y de tu publicidad. <span className="accent-blue">Un solo equipo,
+          de la idea a los primeros clientes</span>.
         </p>
       </div>
 

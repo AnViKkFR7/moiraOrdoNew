@@ -31,18 +31,17 @@ for (const route of routes) {
 
 fs.writeFileSync(path.join(dist, '404.html'), page(notFoundPath))
 
+// Sitemap mínimo (protocolo sitemaps.org): solo <loc> y <lastmod>. Google ignora priority/changefreq
+// y el sitio es de un solo idioma, así que no hacen falta enlaces hreflang aquí.
 const today = new Date().toISOString().slice(0, 10)
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes
   .map((route) => {
     const loc = route.path === '/' ? site.url : `${site.url}${route.path}`
     return `  <url>
     <loc>${loc}</loc>
-    <xhtml:link rel="alternate" hreflang="${site.lang}" href="${loc}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}" />
     <lastmod>${today}</lastmod>
-    <priority>${route.priority.toFixed(1)}</priority>
   </url>`
   })
   .join('\n')}

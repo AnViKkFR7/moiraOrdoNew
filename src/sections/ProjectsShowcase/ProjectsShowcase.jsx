@@ -3,6 +3,7 @@ import styles from './ProjectsShowcase.module.css'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import arquelia from '../../assets/images/arquelia.png?w=1400&format=webp'
 import vemaro from '../../assets/images/projects/vemaro-transfers.webp?w=1600&format=webp'
+import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
 const PROJECTS = [
   {
@@ -120,7 +121,7 @@ export default function ProjectsShowcase() {
               </div>
 
               <span className={`${styles.arrow} ${isActive ? styles.isActive : ''}`} aria-hidden="true">
-                ↗
+                <ArrowIcon />
               </span>
               {showHint && (
                 <span className={styles.plus} aria-hidden="true">

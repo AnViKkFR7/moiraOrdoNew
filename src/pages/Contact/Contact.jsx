@@ -414,12 +414,25 @@ export default function Contact() {
                   </span>
                 </div>
 
+                <p className={styles.legalLayer} data-anim="field">
+                  <strong>Información básica sobre protección de datos.</strong> Responsable: Aaron
+                  García Sánchez (Moira Ordo). Finalidad: atender tu solicitud y responderte.
+                  Legitimación: tu consentimiento. Destinatarios: proveedores técnicos que actúan por
+                  nuestra cuenta (alojamiento, formulario y correo); no cedemos tus datos a otros
+                  terceros. Derechos: acceso, rectificación, supresión, oposición, limitación y
+                  portabilidad, escribiendo a info@moiraordo.es. Más información en la{' '}
+                  <a href="/privacidad" target="_blank" rel="noreferrer" className={styles.inlineLink}>
+                    política de privacidad
+                  </a>
+                  .
+                </p>
+
                 <div className={styles.submitRow} data-anim="field">
                   <Button type="submit" variant="filled" disabled={status === 'sending'}>
                     {status === 'sending' ? 'Enviando…' : 'Enviar solicitud'}
                   </Button>
                   <p className={styles.note}>
-                    * Campos obligatorios. Respetamos tu privacidad y no compartimos tu información.
+                    * Campos obligatorios. Solo usamos tus datos para responderte.
                   </p>
                 </div>
 

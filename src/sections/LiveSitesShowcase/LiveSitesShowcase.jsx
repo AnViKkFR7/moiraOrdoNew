@@ -3,6 +3,7 @@ import { useScrollReveal } from '../../hooks/useScrollReveal'
 import navagliImage from '../../assets/images/projects/navagli.jpg?format=webp'
 import musibingoImage from '../../assets/images/projects/musibingo.png?w=1200&format=webp'
 import matchriseImage from '../../assets/images/projects/matchrise.webp'
+import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
 const SITES = [
   { name: 'Navagli', url: 'https://www.navagli.com/', image: navagliImage },
@@ -40,7 +41,7 @@ export default function LiveSitesShowcase() {
           <div className={styles.info}>
             <span className={styles.name}>{site.name}</span>
             <span className={styles.arrow} aria-hidden="true">
-              ↗
+              <ArrowIcon />
             </span>
           </div>
         </a>

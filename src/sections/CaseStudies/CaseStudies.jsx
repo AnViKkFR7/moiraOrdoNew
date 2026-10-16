@@ -3,6 +3,7 @@ import RevealText from '../../components/RevealText/RevealText'
 import Reveal from '../../components/Reveal/Reveal'
 import Button from '../../components/Button/Button'
 import { CASE_STUDIES } from '../../data/caseStudies'
+import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
 /**
  * Casos de éxito: reto, solución, cifras y una frase de cada cliente.
@@ -41,7 +42,7 @@ export default function CaseStudies() {
                   className={styles.visit}
                   data-cursor-hover
                 >
-                  Visitar la web <span aria-hidden="true">↗</span>
+                  Visitar la web <span aria-hidden="true"><ArrowIcon /></span>
                 </a>
               </header>
 

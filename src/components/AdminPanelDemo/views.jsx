@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import styles from './AdminPanelDemo.module.css'
+import ArrowIcon from '../ArrowIcon/ArrowIcon'
 import {
   BILLS,
   CLIENTS,
@@ -756,7 +757,7 @@ export function CompaniesView({ notify }) {
               </div>
               {c.website ? (
                 <button type="button" className={styles.websiteButton} onClick={() => notify(`Abriría ${c.website}`)}>
-                  🌐 Visitar sitio web <span aria-hidden="true">↗</span>
+                  🌐 Visitar sitio web <span aria-hidden="true"><ArrowIcon /></span>
                 </button>
               ) : (
                 <span className={styles.websitePending}>🚧 Sitio web en construcción</span>

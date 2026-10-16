@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from './ProjectCard.module.css'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import ImageSlot from '../ImageSlot/ImageSlot'
+import ArrowIcon from '../ArrowIcon/ArrowIcon'
 
 /**
  * Tarjeta de proyecto con el mismo efecto que "Nuestros Proyectos" de la home:
@@ -75,7 +76,7 @@ export default function ProjectCard({
             {isTouch && <span className={styles.visitHint}>Toca otra vez para visitar la web</span>}
           </span>
         )}
-        <span className={styles.arrow} aria-hidden="true">↗</span>
+        <span className={styles.arrow} aria-hidden="true"><ArrowIcon /></span>
         {isTouch && !isOpen && (
           <span className={styles.plus} aria-hidden="true">
             +

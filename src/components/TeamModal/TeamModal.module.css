@@ -32,7 +32,8 @@
 
 @media (min-width: 800px) {
   .modal {
-    width: 66vw;
+    /* en ventanas pequeñas se ensancha para que la ficha quepa sin scroll */
+    width: min(92vw, max(66vw, 900px));
   }
 }
 
@@ -70,7 +71,7 @@
 .name {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: max(44px, 12.5cqw);
+  font-size: max(44px, min(12.5cqw, 14vh));
   line-height: 1;
   color: var(--text-base);
   padding-right: calc(max(52px, 12cqw) + 2cqw);
@@ -90,8 +91,8 @@
 }
 
 .bio p {
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: clamp(14px, 2.5vh, 17px);
+  line-height: 1.55;
   color: #3a3d4b;
 }
 
@@ -120,7 +121,7 @@
 }
 
 .bio p + p {
-  margin-top: 20px;
+  margin-top: clamp(10px, 2vh, 20px);
 }
 
 .projects {
@@ -173,6 +174,18 @@
   overflow: hidden;
 }
 
+/* Móvil: la ficha es solo texto, sin foto, y se ajusta a su contenido */
+@media (max-width: 799px) {
+  .photo {
+    display: none;
+  }
+
+  .modal {
+    height: auto;
+    max-height: calc(100dvh - 48px);
+  }
+}
+
 .photo img {
   position: absolute;
   inset: 0;
@@ -204,7 +217,7 @@
 
   .bio + .projects,
   .linkedin + .projects {
-    margin-top: 28px;
+    margin-top: clamp(14px, 3vh, 28px);
   }
 
   .name {

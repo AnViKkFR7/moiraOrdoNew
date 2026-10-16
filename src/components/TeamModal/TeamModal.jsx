@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import styles from './TeamModal.module.css'
+import ArrowIcon from '../ArrowIcon/ArrowIcon'
 
 // Recorte cerrado anclado a la esquina superior izquierda
 const CLIP_CLOSED = 'inset(0% 100% 100% 0% round 20px)'
@@ -149,7 +150,7 @@ export default function TeamModal({ member, isOpen, onClose }) {
                   className={styles.projectPill}
                   data-cursor-hover
                 >
-                  {project.name} <span aria-hidden="true">↗</span>
+                  {project.name} <span aria-hidden="true"><ArrowIcon /></span>
                 </a>
               ))}
             </div>

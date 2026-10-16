@@ -499,3 +499,11 @@
   line-height: 1.5;
   color: var(--grey-mid);
 }
+
+.legalLayer {
+  margin-top: 20px;
+  max-width: 62ch;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--grey-mid);
+}

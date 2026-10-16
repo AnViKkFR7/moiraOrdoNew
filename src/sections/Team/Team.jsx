@@ -7,8 +7,9 @@ import { useScrollReveal } from '../../hooks/useScrollReveal'
 import aaron from '../../assets/images/aaron.png?w=1000&format=webp'
 import joselyn from '../../assets/images/joselyn.png?w=1000&format=webp'
 import fede from '../../assets/images/fede.png?w=1000&format=webp'
+import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
-// Webs y juegos publicados: Aaron y Joselyn han participado en todos
+// Webs y juegos publicados (Aaron y Joselyn han participado en todos)
 const SITES = {
   Navagli: 'https://www.navagli.com/',
   'Regia Mare': 'https://regiamare.com/',
@@ -30,9 +31,8 @@ const MEMBERS = [
     role: 'Software engineer',
     linkedin: '',
     bio: [
-      'Soy software engineer y llevo más de ocho años construyendo software. Trabajo en todo el stack: el frontend que ve el usuario, el backend que lo sostiene y las bases de datos donde vive la información.',
-      'Me encargo de la arquitectura de Moira Ordo: el CRM, los modelos de datos a medida y las integraciones, como los pagos o el envío de emails. Me gusta que cada pieza sea sencilla de entender y de mantener, y que lo que entregamos siga funcionando bien mucho después del lanzamiento.',
-      'He participado en todos los proyectos que verás aquí, desde las webs de empresa hasta los juegos.',
+      'Soy software engineer con más de ocho años de experiencia. Trabajo en todo el stack: frontend, backend y bases de datos.',
+      'Diseño la arquitectura de Moira Ordo —el CRM, los modelos de datos y las integraciones— para que cada pieza sea sencilla de mantener y siga funcionando mucho después del lanzamiento.',
     ],
     projects: projectsOf('Navagli', 'Regia Mare', 'Arquelia', 'Reformas Llobregat', 'Vemaro Transfers', 'MusiBingo', 'MatchRise'),
   },
@@ -44,9 +44,8 @@ const MEMBERS = [
     role: 'Desarrolladora web',
     linkedin: '',
     bio: [
-      'Soy desarrolladora web y me ocupo de que lo que diseñamos se vea y funcione como debe: del diseño de cada web a su frontal, con atención a la velocidad, al móvil y a la accesibilidad.',
-      'También soy la persona con la que hablarás al empezar. Escucho qué necesita tu negocio, te explico las opciones sin tecnicismos y te acompaño hasta que la web está publicada y sabes gestionarla.',
-      'He participado en todos los proyectos que verás aquí, desde las webs de empresa hasta los juegos.',
+      'Soy desarrolladora web y me ocupo de que lo que diseñamos se vea y funcione como debe: del diseño de cada web a su frontal, cuidando la velocidad, el móvil y la accesibilidad.',
+      'También soy tu primera interlocutora: escucho qué necesita tu negocio y te acompaño hasta que la web está publicada y sabes gestionarla.',
     ],
     projects: projectsOf('Navagli', 'Regia Mare', 'Arquelia', 'Reformas Llobregat', 'Vemaro Transfers', 'MusiBingo', 'MatchRise'),
   },
@@ -58,10 +57,8 @@ const MEMBERS = [
     role: 'Marketing, SEO y publicidad',
     linkedin: '',
     bio: [
-      'Me ocupo de la parte que hace que una web no se quede en bonita: que se encuentre y que traiga clientes. Llevo el marketing online, el SEO y la publicidad de las webs de los clientes que confían en nosotros.',
-      'Empiezo por entender el negocio y a quién quiere llegar: qué busca esa gente en Google, qué zonas y servicios dan más margen y qué competencia hay. Con eso defino las palabras clave, ordeno la estructura de la web para posicionarla y mejoro los textos y los formularios para que cada visita tenga más opciones de convertirse en una solicitud.',
-      'Después gestiono las campañas de publicidad de pago —Google Ads y redes sociales—, mido cada euro invertido con analítica sin cookies y ajusto mes a mes lo que funciona. Así, en Reformas Llobregat el formulario trae cuatro veces más clientes y en Arquelia las visitas desde buscadores se han más que duplicado.',
-      'Mi trabajo es que el sistema que construimos siga sirviendo al negocio mucho después de la entrega, con informes claros y sin jerga.',
+      'Me ocupo de que una web no se quede en bonita: que se encuentre y traiga clientes. Llevo el marketing online, el SEO y la publicidad de las webs de nuestros clientes.',
+      'Investigo qué busca su público, optimizo la web para posicionarla y gestiono las campañas de pago midiendo cada euro. Así, el formulario de Reformas Llobregat trae cuatro veces más clientes.',
     ],
     projects: projectsOf('Reformas Llobregat', 'Arquelia', 'Vemaro Transfers'),
   },
@@ -116,7 +113,7 @@ export default function Team() {
                 <img src={member.image} alt={member.name} loading="lazy" />
 
                 <span className={styles.hoverCircle} aria-hidden="true">
-                  ↗
+                  <ArrowIcon />
                 </span>
                 <span className={styles.hoverName} aria-hidden="true">
                   {member.firstName}

@@ -10,6 +10,7 @@ import heroImage from '../../assets/images/proyecto.png?w=1600&format=webp'
 import teamProcessImage from '../../assets/images/equipo-proceso.png?w=1600&format=webp'
 import bandLeftImage from '../../assets/images/diseno-desarrollo.png?w=1600&format=webp'
 import bandRightImage from '../../assets/images/diseno-detalle.png?w=1600&format=webp'
+import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
 const IMAGES = {
   hero: heroImage,
@@ -258,7 +259,7 @@ export default function Services() {
                       )}
                     </span>
                     <span className={styles.priceArrow} aria-hidden="true">
-                      ↗
+                      <ArrowIcon />
                     </span>
                   </a>
                 </Reveal>

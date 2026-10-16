@@ -21,7 +21,7 @@ export const ROUTES = [
     Component: Home,
     title: 'Moira Ordo — Webs a medida y CRM para empresas',
     description:
-      'Diseñamos y desarrollamos webs a medida conectadas a nuestro CRM: contenido que gestionas tú y un diseño que no se rompe. Webs para empresas y juegos HTML5.',
+      'Consultora digital: diseñamos tu web a medida, la conectamos a un CRM que gestionas tú y nos encargamos de tu SEO y publicidad. También software y juegos HTML5.',
     og: 'inicio',
     priority: 1,
   },

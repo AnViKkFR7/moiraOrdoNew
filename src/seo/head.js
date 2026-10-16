@@ -16,7 +16,7 @@ const organization = {
   image: absoluteUrl('/og/inicio.png'),
   email: SITE.email,
   description:
-    'Estudio de diseño y desarrollo web: webs a medida conectadas a nuestro CRM, software a medida y juegos HTML5.',
+    'Consultora digital: diseño y desarrollo web a medida, CRM propio, marketing online y publicidad, software a medida y juegos HTML5.',
   address: {
     '@type': 'PostalAddress',
     addressLocality: SITE.locality,

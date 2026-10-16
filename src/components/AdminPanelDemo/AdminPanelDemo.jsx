@@ -122,7 +122,7 @@ export default function AdminPanelDemo() {
 
           <div className={styles.sidebarFooter}>
             <button type="button" className={`${styles.navLink} ${styles.collapseButton}`} onClick={() => setCollapsed((v) => !v)}>
-              <span className={styles.collapseIcon} aria-hidden="true">{collapsed ? '▶' : '◀'}</span>
+              <span className={styles.collapseIcon} aria-hidden="true">{collapsed ? '▶︎' : '◀︎'}</span>
               <span className={styles.navLabel}>Contraer menú</span>
             </button>
             <button type="button" className={styles.themeSwitch} onClick={() => setDark((v) => !v)} data-cursor-hover>

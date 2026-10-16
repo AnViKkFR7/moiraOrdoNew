@@ -4,6 +4,7 @@ import Button from '../../components/Button/Button'
 import Reveal from '../../components/Reveal/Reveal'
 import { PROCESS, SERVICES, formatPrice } from '../../data/services'
 import styles from './ServicePage.module.css'
+import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
 /** Página por intención de búsqueda de un servicio (/servicios/:slug). */
 export default function ServicePage({ slug }) {
@@ -115,7 +116,7 @@ export default function ServicePage({ slug }) {
                     <span className={styles.relatedPrice}>
                       {item.priceFrom ? `desde ${formatPrice(item.priceFrom)}` : 'A medida'}
                     </span>
-                    <span className={styles.relatedArrow} aria-hidden="true">↗</span>
+                    <span className={styles.relatedArrow} aria-hidden="true"><ArrowIcon /></span>
                   </a>
                 </li>
               ))}
