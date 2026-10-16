@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Services from './pages/Services/Services'
 import Contact from './pages/Contact/Contact'
 import Crm from './pages/Crm/Crm'
+import Projects from './pages/Projects/Projects'
 import { lenisRef, useLenis } from './hooks/useLenis'
 import { useViewportUnits } from './hooks/useViewportUnits'
 import { notifyPageVisible, useLinkInterception, usePathname } from './router'
@@ -14,6 +15,7 @@ const ROUTES = {
   '/servicios': Services,
   '/contacto': Contact,
   '/crm': Crm,
+  '/proyectos': Projects,
 }
 
 export default function App() {

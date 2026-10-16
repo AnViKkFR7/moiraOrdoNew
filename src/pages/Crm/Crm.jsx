@@ -4,6 +4,7 @@ import RevealText from '../../components/RevealText/RevealText'
 import Reveal from '../../components/Reveal/Reveal'
 import Button from '../../components/Button/Button'
 import ImageSlot from '../../components/ImageSlot/ImageSlot'
+import AdminPanelDemo from '../../components/AdminPanelDemo/AdminPanelDemo'
 import { useParallax } from '../../hooks/useParallax'
 import heroImage from '../../assets/images/10d22448-d0fc-427c-8eaa-681c5b797ab8.png'
 import whatIsImage from '../../assets/images/mackbook.admin.moiraordo.es.png'
@@ -193,61 +194,13 @@ export default function Crm() {
                 La estructura del <span className="accent-blue">panel</span>
               </RevealText>
               <p className={styles.text}>
-                Menú lateral colapsable con la empresa activa y los módulos del panel. Arriba,
-                cabecera con el usuario conectado. Vista ilustrativa, sin funcionalidad real.
+                Pruébalo tú mismo: navega por el menú, cambia de empresa, filtra items, abre su
+                ficha o mira la analítica. Es una demo con datos de ejemplo; nada se guarda.
               </p>
             </div>
 
-            <Reveal y={40}>
-              <div className={styles.mockup} aria-hidden="true">
-                <div className={styles.mockupSidebar}>
-                  <div className={styles.mockupCompany}>
-                    <span className={styles.mockupAvatar}>M</span>
-                    <div>
-                      <div className={styles.mockupCompanyName}>Moira Ordo</div>
-                      <div className={styles.mockupCompanySub}>Admin Panel</div>
-                    </div>
-                  </div>
-
-                  <ul className={styles.mockupNav}>
-                    {['Dashboard', 'Items', 'Analítica', 'Atributos', 'Empresas', 'Usuarios', 'Blog', 'Planning'].map(
-                      (label, i) => (
-                        <li
-                          key={label}
-                          className={`${styles.mockupNavItem} ${i === 0 ? styles.isActive : ''}`}
-                        >
-                          <span className={styles.mockupNavIcon} />
-                          {label}
-                        </li>
-                      ),
-                    )}
-                  </ul>
-
-                  <span className={styles.mockupThemeToggle}>Modo oscuro</span>
-                </div>
-
-                <div className={styles.mockupMain}>
-                  <div className={styles.mockupHeader}>
-                    <span className={styles.mockupHeaderTitle}>Panel de administración</span>
-                    <div className={styles.mockupUser}>
-                      <span className={styles.mockupUserAvatar}>A</span>
-                      <div className={styles.mockupUserText}>
-                        <span className={styles.mockupUserName}>Ana López</span>
-                        <span className={styles.mockupUserStatus}>Conectado</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.mockupBody}>
-                    {Array.from({ length: 6 }).map((_, i) => (
-                      <div key={i} className={styles.mockupCard}>
-                        <div className={`${styles.mockupCardBar} ${styles.isAccent}`} />
-                        <div className={styles.mockupCardBar} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            <Reveal y={40} className={styles.demoWrap}>
+              <AdminPanelDemo />
             </Reveal>
           </div>
         </section>

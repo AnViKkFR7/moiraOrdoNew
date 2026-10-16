@@ -6,7 +6,7 @@ import Button from '../Button/Button'
 
 // TODO: reemplazar por contenido real
 const NAV_ITEMS = [
-  { label: 'Proyectos', href: '#' },
+  { label: 'Proyectos', href: '/proyectos' },
   { label: 'CRM', href: '/crm' },
   { label: 'Nosotros', href: '/#equipo' },
   { label: 'Servicios', href: '/servicios' },
