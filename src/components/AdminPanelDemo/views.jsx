@@ -1023,7 +1023,9 @@ function BillingView({ clients }) {
 export function PlanningView({ notify }) {
   const [selected, setSelected] = useState(CLIENTS.map((c) => c.id))
   const [search, setSearch] = useState('')
-  const [view, setView] = useState(() => (window.matchMedia('(max-width: 760px)').matches ? 'day' : 'week'))
+  const [view, setView] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 760px)').matches ? 'day' : 'week',
+  )
   const [current, setCurrent] = useState(() => new Date())
   const [mainView, setMainView] = useState('calendar')
 

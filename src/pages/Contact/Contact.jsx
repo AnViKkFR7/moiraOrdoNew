@@ -1,4 +1,5 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import SplitType from 'split-type'
 import Header from '../../components/Header/Header'
@@ -6,13 +7,18 @@ import Footer from '../../components/Footer/Footer'
 import Button from '../../components/Button/Button'
 import { whenPageVisible } from '../../router'
 import { easeReveal } from '../../utils/easing'
+import { useHydrated } from '../../hooks/useHydrated'
+import { SERVICES } from '../../data/services'
 import styles from './Contact.module.css'
 
 const CONTACT_EMAIL = 'info@moiraordo.es'
 
-// TODO: poner la URL de un servicio de formularios (Formspree, Getform, backend
-// propio…). Mientras sea null, "Enviar" abre el cliente de correo con los datos.
-const FORM_ENDPOINT = null
+// Misma Edge Function de Supabase que la web anterior: ella envía el email con
+// Resend y guarda la API key como secreto del servidor. Sin estas variables
+// (p. ej. en local sin .env.local), "Enviar" abre el cliente de correo.
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+const FORM_ENDPOINT = SUPABASE_URL ? `${SUPABASE_URL}/functions/v1/moira-ordo-contact-form` : null
 
 const REASONS = [
   { title: 'Consulta gratuita', text: 'Primera conversación sin compromiso' },
@@ -67,9 +73,21 @@ export default function Contact() {
   const successRef = useRef(null)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | sent | failed
+  const hydrated = useHydrated()
+
+  // Desde /servicios/:slug se llega con ?servicio=slug: tipo y mensaje ya encaminados
+  useEffect(() => {
+    if (!hydrated) return
+    const slug = new URLSearchParams(window.location.search).get('servicio')
+    const service = SERVICES.find((s) => s.slug === slug)
+    if (!service || !formRef.current) return
+    const { type, message } = formRef.current.elements
+    type.value = service.contactType
+    if (!message.value) message.value = `Hola, me interesa el servicio de ${service.name.toLowerCase()}. `
+  }, [hydrated])
 
   // Entrada de la página: una sola timeline que arranca al levantarse el telón
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const root = rootRef.current
     const split = new SplitType(titleRef.current, { types: 'words' })
     let tl
@@ -115,7 +133,7 @@ export default function Contact() {
   }, [])
 
   // Pantalla de "enviado": check que se dibuja + texto
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (status !== 'sent') return
     const panel = successRef.current
     const ctx = gsap.context(() => {
@@ -168,11 +186,24 @@ export default function Contact() {
 
     setStatus('sending')
     try {
-      if (FORM_ENDPOINT) {
+      if (FORM_ENDPOINT && SUPABASE_ANON_KEY) {
+        // Mismo formato de payload que espera la función de la web anterior
         const res = await fetch(FORM_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            apikey: SUPABASE_ANON_KEY,
+          },
+          body: JSON.stringify({
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            company: data.company,
+            projectType: { value: data.type, label: data.type },
+            message: data.message,
+            language: 'es',
+          }),
         })
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
       } else {
@@ -372,8 +403,7 @@ export default function Contact() {
                     <span className={styles.box} aria-hidden="true" />
                     <span>
                       He leído y acepto la{' '}
-                      {/* TODO: enlazar la política de privacidad real */}
-                      <a href="#" className={styles.inlineLink}>
+                      <a href="/privacidad" target="_blank" rel="noreferrer" className={styles.inlineLink}>
                         política de privacidad
                       </a>
                       <span className={styles.required}> *</span>

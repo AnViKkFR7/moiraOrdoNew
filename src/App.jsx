@@ -1,31 +1,28 @@
 import { useEffect, useState } from 'react'
 import Loader from './components/Loader/Loader'
 import PageTransition from './components/PageTransition/PageTransition'
-import Home from './pages/Home'
-import Services from './pages/Services/Services'
-import Contact from './pages/Contact/Contact'
-import Crm from './pages/Crm/Crm'
-import Projects from './pages/Projects/Projects'
+import { findRoute } from './routes'
+import { applyHead, buildHead } from './seo/head'
 import { lenisRef, useLenis } from './hooks/useLenis'
 import { useViewportUnits } from './hooks/useViewportUnits'
 import { notifyPageVisible, useLinkInterception, usePathname } from './router'
 
-const ROUTES = {
-  '/': Home,
-  '/servicios': Services,
-  '/contacto': Contact,
-  '/crm': Crm,
-  '/proyectos': Projects,
-}
+/* global __SITE_INDEXABLE__ */
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const pathname = usePathname()
-  const Page = ROUTES[pathname.replace(/\/+$/, '') || '/'] ?? Home
+  const route = findRoute(pathname)
+  const { Component: Page, props } = route
 
   useLenis()
   useViewportUnits()
   useLinkInterception()
+
+  // Al navegar en el cliente se reescriben título, metas y datos estructurados
+  useEffect(() => {
+    applyHead(buildHead(route, { indexable: __SITE_INDEXABLE__ }))
+  }, [route])
 
   useEffect(() => {
     document.body.classList.toggle('is-loaded', isLoaded)
@@ -41,7 +38,7 @@ export default function App() {
     <>
       <Loader onFinish={() => setIsLoaded(true)} />
       <PageTransition />
-      <Page key={pathname} />
+      <Page key={pathname} {...props} />
     </>
   )
 }

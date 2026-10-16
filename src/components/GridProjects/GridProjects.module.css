@@ -16,7 +16,3 @@
     gap: var(--space-lg);
   }
 }
-
-.aside {
-  align-self: stretch;
-}

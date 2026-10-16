@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './styles/global.css'
 
@@ -7,8 +7,14 @@ import './styles/global.css'
 // asegura el arranque arriba de todo (ver también App al terminar el loader).
 window.scrollTo(0, 0)
 
-createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root')
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+
+// En producción cada página llega pregenerada: se hidrata, no se repinta.
+// En desarrollo (vite) el contenedor viene vacío y se monta desde cero.
+if (container.firstElementChild) hydrateRoot(container, app)
+else createRoot(container).render(app)

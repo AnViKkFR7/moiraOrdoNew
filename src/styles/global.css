@@ -35,3 +35,9 @@ html.has-custom-cursor,
 html.has-custom-cursor * {
   cursor: none;
 }
+
+/* Foco visible solo al navegar con teclado (no aparece al hacer clic) */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}

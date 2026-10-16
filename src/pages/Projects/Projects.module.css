@@ -31,7 +31,7 @@
 }
 
 .text {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--grey-mid);
 }
@@ -77,7 +77,7 @@
 
 .heroTagline {
   margin-top: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: var(--fw-body-medium);
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -115,7 +115,7 @@
 .ctaText {
   margin: 28px auto 40px;
   max-width: 44ch;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--grey-mid);
 }
@@ -215,7 +215,7 @@
 
 .groupText {
   max-width: 40ch;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--grey-mid);
 }
@@ -223,40 +223,32 @@
 .groupMeta {
   display: block;
   margin-top: 16px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: var(--fw-body-medium);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--text-base);
 }
 
-/* ---------- Bloque lateral de Games ---------- */
+/* ---------- Intro de Games (texto plano) ---------- */
 
-.gamesAside {
-  height: 100%;
-  min-height: 260px;
-  padding: 32px;
-  border: 1px dashed rgba(0, 5, 30, 0.3);
-  border-radius: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 28px;
+.gamesIntro {
+  max-width: 62ch;
+  margin: -24px 0 40px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--grey-mid);
 }
 
-.gamesAsideTitle {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 30px;
-  line-height: 1.15;
+.gamesIntro strong {
+  font-weight: var(--fw-body-medium);
   color: var(--text-base);
 }
 
-.gamesAsideText {
-  margin-top: 14px;
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--grey-mid);
+.gamesIntro a {
+  color: var(--accent-blue);
+  white-space: nowrap;
+  border-bottom: 1px solid currentColor;
 }
 
 @media (min-width: 1000px) {

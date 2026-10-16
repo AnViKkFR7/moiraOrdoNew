@@ -105,3 +105,9 @@
     font-size: 52px;
   }
 }
+
+.cta {
+  margin-top: var(--space-lg);
+  display: flex;
+  justify-content: center;
+}

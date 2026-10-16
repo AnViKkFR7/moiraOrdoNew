@@ -3,15 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Design System Boilerplate</title>
+    <!--app-head-->
+    <title>Moira Ordo</title>
+    <!--/app-head-->
+    <meta name="theme-color" content="#fcfbf7" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icons/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <script>
       // Antes que nada: al recargar, que el navegador no restaure el scroll ni salte a un #hash
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
       if (location.hash) history.replaceState(null, '', location.pathname + location.search)
     </script>
+    <noscript>
+      <!-- Sin JavaScript el loader nunca terminaría: se oculta para leer el contenido -->
+      <style>[data-loader] { display: none !important; }</style>
+    </noscript>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

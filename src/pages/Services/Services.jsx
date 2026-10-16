@@ -4,11 +4,12 @@ import RevealText from '../../components/RevealText/RevealText'
 import Reveal from '../../components/Reveal/Reveal'
 import Button from '../../components/Button/Button'
 import ImageSlot from '../../components/ImageSlot/ImageSlot'
+import { PROCESS, SERVICES, formatPrice } from '../../data/services'
 import styles from './Services.module.css'
-import heroImage from '../../assets/images/proyecto.png'
-import teamProcessImage from '../../assets/images/equipo-proceso.png'
-import bandLeftImage from '../../assets/images/diseno-desarrollo.png'
-import bandRightImage from '../../assets/images/diseno-detalle.png'
+import heroImage from '../../assets/images/proyecto.png?w=1600&format=webp'
+import teamProcessImage from '../../assets/images/equipo-proceso.png?w=1600&format=webp'
+import bandLeftImage from '../../assets/images/diseno-desarrollo.png?w=1600&format=webp'
+import bandRightImage from '../../assets/images/diseno-detalle.png?w=1600&format=webp'
 
 const IMAGES = {
   hero: heroImage,
@@ -40,12 +41,7 @@ const WHAT_WE_DO = [
   },
 ]
 
-const STEPS = [
-  { title: 'Escuchamos', text: 'Entendemos tu proyecto, tu audiencia y tus objetivos reales.' },
-  { title: 'Diseñamos', text: 'Creamos una estructura visual y funcional pensada para durar.' },
-  { title: 'Construimos', text: 'Desarrollamos con código limpio y sistemas robustos.' },
-  { title: 'Acompañamos', text: 'Te enseñamos a gestionar tu contenido con total autonomía.' },
-]
+const STEPS = PROCESS
 
 const FEATURES = [
   {
@@ -80,34 +76,11 @@ const FEATURES = [
   },
 ]
 
-// TODO: revisar descripciones (las de diseño/desarrollo/software/juegos son provisionales)
-const PRICES = [
-  {
-    name: 'Diseño web',
-    text: 'Interfaz a medida pensada para tu marca y tus usuarios.',
-    price: '199 €',
-  },
-  {
-    name: 'Desarrollo web',
-    text: 'Tu web construida sobre Moira Ordo: estable, rápida y autogestionable.',
-    price: '399 €',
-  },
-  {
-    name: 'Diseño de marca',
-    text: 'Branding, logo, paleta de colores y tarjetas.',
-    price: '199 €',
-  },
-  {
-    name: 'Software a medida',
-    text: 'Herramientas y sistemas adaptados a la operativa de tu negocio.',
-    price: null,
-  },
-  {
-    name: 'Juegos móviles HTML5',
-    text: 'Experiencias jugables para web y móvil con Moira Ordo Games.',
-    price: null,
-  },
-]
+const PRICES = SERVICES.map((service) => ({
+  name: service.name,
+  text: service.summary,
+  price: service.priceFrom ? formatPrice(service.priceFrom) : null,
+}))
 
 export default function Services() {
   return (

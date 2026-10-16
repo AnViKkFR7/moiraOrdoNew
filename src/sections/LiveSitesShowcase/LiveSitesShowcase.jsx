@@ -1,16 +1,14 @@
 import styles from './LiveSitesShowcase.module.css'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import navagliImage from '../../assets/images/projects/navagli.jpg?format=webp'
+import musibingoImage from '../../assets/images/projects/musibingo.png?w=1200&format=webp'
+import matchriseImage from '../../assets/images/projects/matchrise.webp'
 
-// TODO: reemplazar por contenido real
 const SITES = [
-  { name: 'Navagli', url: 'https://www.navagli.com/' },
-  { name: 'MusiBingo', url: 'https://musibingo.com/' },
-  { name: 'Matchrise', url: 'https://matchrise.es/' },
+  { name: 'Navagli', url: 'https://www.navagli.com/', image: navagliImage },
+  { name: 'MusiBingo', url: 'https://musibingo.com/', image: musibingoImage },
+  { name: 'MatchRise', url: 'https://www.matchrise.es/', image: matchriseImage },
 ]
-
-// Captura de pantalla en vivo del sitio, vía el servicio público mshots
-// de WordPress (no requiere API key). Se actualiza sola con el tiempo.
-const screenshotUrl = (url) => `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1200&h=1500`
 
 /**
  * Grid de 3 cards que enlazan a sitios reales en producción. Pensado
@@ -36,7 +34,7 @@ export default function LiveSitesShowcase() {
           className={styles.card}
           data-cursor-hover
         >
-          <img src={screenshotUrl(site.url)} alt={site.name} loading="lazy" />
+          <img src={site.image} alt={site.name} loading="lazy" />
           <div className={styles.overlay} />
 
           <div className={styles.info}>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SERVICES } from '../../data/services'
 import styles from './Footer.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -10,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger)
  * descubriendo al hacer scroll. Una capa oscura se aclara a medida que
  * aparece. El wrapper con clip-path reserva el alto y recorta el fijo.
  *
- * TODO: reemplazar por contenido real (links, contacto y redes).
  */
 export default function Footer() {
   const wrapperRef = useRef(null)
@@ -82,51 +82,33 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <div className={styles.columns}>
-            <div className={styles.column}>
+            <nav className={styles.column} aria-label="Web">
+              <a className={styles.link} href="/proyectos">Proyectos</a>
+              <a className={styles.link} href="/crm">CRM</a>
+              <a className={styles.link} href="/servicios">Servicios</a>
+              <a className={styles.link} href="/servicios#tarifas">Tarifas</a>
+            </nav>
+
+            <nav className={styles.column} aria-label="Servicios">
+              {SERVICES.map((service) => (
+                <a key={service.slug} className={styles.link} href={`/servicios/${service.slug}`}>
+                  {service.name}
+                </a>
+              ))}
+            </nav>
+
+            <nav className={styles.column} aria-label="Empresa">
+              <a className={styles.link} href="/#equipo">Sobre nosotros</a>
+              <a className={styles.link} href="/contacto">Contacto</a>
+              <a className={styles.link} href="mailto:info@moiraordo.es">info@moiraordo.es</a>
+            </nav>
+
+            <nav className={styles.column} aria-label="Legal">
+              <a className={styles.link} href="/privacidad">Política de Privacidad</a>
+              <a className={styles.link} href="/aviso-legal">Aviso Legal</a>
+              <a className={styles.link} href="/cookies">Cookies</a>
               <span>© {new Date().getFullYear()} Moira Ordo</span>
-              <a className={styles.link} href="#">
-                Política de Privacidad
-              </a>
-              <a className={styles.link} href="#">
-                Aviso Legal
-              </a>
-              <a className={styles.link} href="#">
-                Cookies
-              </a>
-            </div>
-
-            <div className={styles.column}>
-              <a className={styles.link} href="#">
-                Características
-              </a>
-              <a className={styles.link} href="#">
-                Documentación
-              </a>
-            </div>
-
-            <div className={styles.column}>
-              <a className={styles.link} href="#">
-                Sobre nosotros
-              </a>
-              <a className={styles.link} href="/contacto">
-                Contacto
-              </a>
-            </div>
-          </div>
-
-          <div className={styles.social}>
-            <a className={styles.socialLink} href="#" aria-label="Instagram" data-cursor-hover>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
-              </svg>
-            </a>
-            <a className={styles.socialLink} href="#" aria-label="LinkedIn" data-cursor-hover>
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm6.5 0h3.8v1.6c.6-1 1.9-1.9 3.8-1.9 3.4 0 3.9 2.2 3.9 5v6.3h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7h-3.5v-11Z" />
-              </svg>
-            </a>
+            </nav>
           </div>
         </div>
 

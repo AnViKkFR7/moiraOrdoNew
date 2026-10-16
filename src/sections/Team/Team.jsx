@@ -4,9 +4,9 @@ import RevealText from '../../components/RevealText/RevealText'
 import Button from '../../components/Button/Button'
 import TeamModal from '../../components/TeamModal/TeamModal'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
-import aaron from '../../assets/images/aaron.png'
-import joselyn from '../../assets/images/joselyn.png'
-import fede from '../../assets/images/fede.png'
+import aaron from '../../assets/images/aaron.png?w=1000&format=webp'
+import joselyn from '../../assets/images/joselyn.png?w=1000&format=webp'
+import fede from '../../assets/images/fede.png?w=1000&format=webp'
 
 // TODO: reemplazar por contenido real (apellidos, bios y proyectos)
 const MEMBERS = [

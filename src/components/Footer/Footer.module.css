@@ -80,31 +80,6 @@
   color: var(--accent-blue);
 }
 
-.social {
-  display: flex;
-  gap: 8px;
-}
-
-.socialLink {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-circle);
-  background-color: var(--grey-light);
-  color: var(--text-base);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color var(--dur-micro) var(--ease-micro);
-}
-
-.socialLink:hover {
-  background-color: #e4e4e8;
-}
-
-.socialLink svg {
-  width: 18px;
-  height: 18px;
-}
 
 /* Móvil: columnas en rejilla y enlaces fáciles de pulsar */
 @media (max-width: 999px) {

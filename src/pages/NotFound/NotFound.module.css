@@ -1,0 +1,60 @@
+.page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-warm-1);
+  padding-block: calc(var(--space-xl) * 1.6) var(--space-xl);
+}
+
+.inner {
+  text-align: center;
+}
+
+.code {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(96px, 22vw, 240px);
+  line-height: 0.9;
+  color: var(--accent-blue);
+}
+
+.title {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  color: var(--text-base);
+}
+
+.text {
+  margin: 20px auto 0;
+  max-width: 44ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--grey-mid);
+}
+
+.actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.links {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.links a {
+  border-bottom: 1px solid currentColor;
+}

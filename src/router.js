@@ -61,13 +61,15 @@ export function scrollToHash(hash, { immediate = false } = {}) {
   else el.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' })
 }
 
-/** `to` admite hash: "/servicios", "/#equipo". */
+/** `to` admite query y hash: "/servicios", "/#equipo", "/contacto?servicio=diseno-web". */
 export function navigate(to) {
-  const [pathname, hash] = to.split('#')
+  const [pathAndQuery, hash] = to.split('#')
+  const [pathname, query = ''] = pathAndQuery.split('?')
   const targetPath = pathname || '/'
+  const sameQuery = (query ? `?${query}` : '') === window.location.search
 
   // Misma página: scroll suave a la sección, o de vuelta arriba si no hay hash
-  if (targetPath === window.location.pathname) {
+  if (targetPath === window.location.pathname && sameQuery) {
     if (window.location.hash !== (hash ? `#${hash}` : '')) {
       window.history.pushState({}, '', to)
     }
@@ -85,8 +87,16 @@ export function navigate(to) {
   else go()
 }
 
+// Ruta que se está pregenerando en el build (en el servidor no hay window)
+let serverPathname = '/'
+export function setServerPathname(path) {
+  serverPathname = path
+}
+
 export function usePathname() {
-  const [pathname, setPathname] = useState(window.location.pathname)
+  const [pathname, setPathname] = useState(() =>
+    typeof window === 'undefined' ? serverPathname : window.location.pathname
+  )
 
   useEffect(() => {
     const onPop = () => setPathname(window.location.pathname)

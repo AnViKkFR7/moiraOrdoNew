@@ -31,7 +31,7 @@
 }
 
 .text {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--grey-mid);
 }
@@ -77,7 +77,7 @@
 
 .heroTagline {
   margin-top: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: var(--fw-body-medium);
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -194,7 +194,7 @@
 .conceptText {
   margin-top: 12px;
   max-width: 46ch;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
   color: var(--grey-mid);
 }
@@ -338,7 +338,7 @@
 .featureText {
   margin-top: 12px;
   max-width: 34ch;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--grey-mid);
 }
@@ -400,7 +400,7 @@
 .roleText {
   margin-top: 12px;
   max-width: 32ch;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
   color: var(--grey-mid);
 }
@@ -424,7 +424,7 @@
 .ctaText {
   margin: 28px auto 40px;
   max-width: 44ch;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--grey-mid);
 }

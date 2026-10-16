@@ -112,7 +112,7 @@
   margin-top: 32px;
   max-width: 34ch;
   /* sin esto el ch se calcula con el rem diminuto del móvil y el texto queda en una columna de 30px */
-  font-size: 16px;
+  font-size: 18px;
 }
 
 @media (min-width: 1000px) {
@@ -122,7 +122,7 @@
 }
 
 .text {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   color: var(--grey-mid);
 }

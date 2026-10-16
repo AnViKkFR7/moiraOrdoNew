@@ -1,6 +1,9 @@
 import styles from './Hero.module.css'
 import RevealText from '../../components/RevealText/RevealText'
-import heroImage from '../../assets/images/creacion-paginas.webp'
+import Button from '../../components/Button/Button'
+import heroImage from '../../assets/images/hero-equipo.webp?w=1600&format=webp'
+// La imagen anterior (creacion-paginas.webp) se conserva en assets por si hay que volver atrás
+import heroSrcSet from '../../assets/images/hero-equipo.webp?w=640;1024;1600&format=webp&as=srcset'
 
 export default function Hero() {
   return (
@@ -13,7 +16,16 @@ export default function Hero() {
       </div>
 
       <div className={styles.media}>
-        <img src={heroImage} alt="" />
+        <img
+          src={heroImage}
+          srcSet={heroSrcSet}
+          sizes="(min-width: 1000px) calc(100vw - 6.4rem), calc(100vw - 48px)"
+          width="1600"
+          height="900"
+          alt="Equipo de Moira Ordo revisando el diseño y el código de una web"
+          fetchpriority="high"
+          decoding="async"
+        />
         <a href="#proyectos" className={styles.scrollButton} data-cursor-hover aria-label="Ver más">
           ↓
         </a>
@@ -29,6 +41,12 @@ export default function Hero() {
           <span className="accent-blue">un ecosistema digital que se adapta exactamente a tus
           necesidades reales</span>.
         </p>
+      </div>
+
+      <div className={styles.cta}>
+        <Button as="a" href="/contacto" variant="filled">
+          Contactar
+        </Button>
       </div>
     </section>
   )

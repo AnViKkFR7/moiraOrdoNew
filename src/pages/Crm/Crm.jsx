@@ -6,9 +6,9 @@ import Button from '../../components/Button/Button'
 import ImageSlot from '../../components/ImageSlot/ImageSlot'
 import AdminPanelDemo from '../../components/AdminPanelDemo/AdminPanelDemo'
 import { useParallax } from '../../hooks/useParallax'
-import heroImage from '../../assets/images/10d22448-d0fc-427c-8eaa-681c5b797ab8.png'
-import whatIsImage from '../../assets/images/mackbook.admin.moiraordo.es.png'
-import macbookImage from '../../assets/images/Macbook-Air-admin.moiraordo.es.png'
+import heroImage from '../../assets/images/10d22448-d0fc-427c-8eaa-681c5b797ab8.png?w=1600&format=webp'
+import whatIsImage from '../../assets/images/mackbook.admin.moiraordo.es.png?w=1400&format=webp'
+import macbookImage from '../../assets/images/Macbook-Air-admin.moiraordo.es.png?w=1600&format=webp'
 import styles from './Crm.module.css'
 
 const CONCEPTS = [

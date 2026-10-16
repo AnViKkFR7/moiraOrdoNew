@@ -1,4 +1,5 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useIsomorphicLayoutEffect } from '../../hooks/useIsomorphicLayoutEffect'
 import gsap from 'gsap'
 import styles from './TeamModal.module.css'
 
@@ -38,7 +39,7 @@ export default function TeamModal({ member, isOpen, onClose }) {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [isOpen, onClose])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!current) return
     const overlay = overlayRef.current
     const modal = modalRef.current

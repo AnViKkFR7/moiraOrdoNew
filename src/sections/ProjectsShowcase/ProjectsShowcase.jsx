@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './ProjectsShowcase.module.css'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
-import arquelia from '../../assets/images/arquelia.png'
-import regiamare from '../../assets/images/regiamare.jpg'
+import arquelia from '../../assets/images/arquelia.png?w=1400&format=webp'
+import regiamare from '../../assets/images/regiamare-web.webp'
 
 // TODO: reemplazar por contenido real
 const PROJECTS = [
@@ -39,8 +39,13 @@ const HOVER_QUERY = '(min-width: 1000px) and (hover: hover)'
 
 export default function ProjectsShowcase() {
   const [activeIndex, setActiveIndex] = useState(0)
-  // En móvil/tablet o en pantallas táctiles no hay hover: todos los paneles quedan abiertos
-  const [canHover, setCanHover] = useState(() => window.matchMedia(HOVER_QUERY).matches)
+  // En móvil/tablet o en pantallas táctiles no hay hover: cada panel se abre al tocar su tarjeta.
+  // Se arranca en modo escritorio (igual que el HTML pregenerado) y se ajusta al hidratar
+  const [canHover, setCanHover] = useState(true)
+  const [openCards, setOpenCards] = useState([])
+
+  const toggleCard = (i) =>
+    setOpenCards((open) => (open.includes(i) ? open.filter((n) => n !== i) : [...open, i]))
   const gridRef = useRef(null)
   const narrowCardRef = useRef(null)
   const leftRef = useScrollReveal({ y: 30 })
@@ -53,6 +58,7 @@ export default function ProjectsShowcase() {
   // terminaría siendo más grande que el de la izquierda).
   useEffect(() => {
     const query = window.matchMedia(HOVER_QUERY)
+    setCanHover(query.matches)
     const onChange = (e) => setCanHover(e.matches)
     query.addEventListener('change', onChange)
     return () => query.removeEventListener('change', onChange)
@@ -73,7 +79,8 @@ export default function ProjectsShowcase() {
   return (
     <div ref={gridRef} className={styles.grid}>
       {PROJECTS.map((project, i) => {
-        const isActive = !canHover || i === activeIndex
+        const isActive = canHover ? i === activeIndex : openCards.includes(i)
+        const showHint = !canHover && !isActive
 
         return (
           <a
@@ -84,8 +91,15 @@ export default function ProjectsShowcase() {
             }}
             href="#"
             className={styles.card}
+            style={{ '--accent': project.accent }}
             data-cursor-hover
             onMouseEnter={() => setActiveIndex(i)}
+            onClick={(e) => {
+              if (canHover) return
+              e.preventDefault()
+              toggleCard(i)
+            }}
+            aria-expanded={canHover ? undefined : isActive}
           >
             <img src={project.image} alt={project.alt} />
             <div className={styles.overlay} />
@@ -103,6 +117,8 @@ export default function ProjectsShowcase() {
                 {project.name}
               </h3>
 
+              {showHint && <span className={styles.tapHint}>Toca para descubrir</span>}
+
               <div className={`${styles.extra} ${isActive ? styles.isActive : ''}`}>
                 <p className={styles.headline}>{project.headline}</p>
                 <p className={styles.desc}>{project.description}</p>
@@ -111,6 +127,11 @@ export default function ProjectsShowcase() {
               <span className={`${styles.arrow} ${isActive ? styles.isActive : ''}`} aria-hidden="true">
                 ↗
               </span>
+              {showHint && (
+                <span className={styles.plus} aria-hidden="true">
+                  +
+                </span>
+              )}
             </div>
           </a>
         )
