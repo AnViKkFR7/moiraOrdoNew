@@ -26,7 +26,7 @@ const CONCEPTS = [
   },
   {
     title: 'Todo en un solo lugar',
-    text: 'Contenido, usuarios, blog, analítica y agenda conviven en una misma interfaz, sin saltar entre herramientas.',
+    text: 'Contenido, contactos, presupuestos, facturación y agenda conviven en una misma interfaz, sin saltar entre herramientas.',
   },
 ]
 
@@ -34,7 +34,7 @@ const MODULES = [
   {
     symbol: '◇',
     title: 'Dashboard',
-    text: 'Punto de partida: elige la empresa activa y accede a un resumen de su actividad.',
+    text: 'Un resumen de contenido, solicitudes, contactos, agenda, analítica y documentos de la empresa activa.',
   },
   {
     symbol: '○',
@@ -43,7 +43,7 @@ const MODULES = [
   },
   {
     symbol: '△',
-    title: 'Atributos',
+    title: 'Mis datos',
     text: 'Define los tipos de ítem de cada empresa y las propiedades que los describen, totalmente configurables.',
   },
   {
@@ -55,6 +55,16 @@ const MODULES = [
     symbol: '⬡',
     title: 'Usuarios',
     text: 'Miembros de cada empresa, su rol y su actividad: cuánto contenido han creado.',
+  },
+  {
+    symbol: '↗',
+    title: 'Solicitudes y contactos',
+    text: 'Consulta las solicitudes de la web y explora contactos con etapas comerciales, responsables y un historial de actividad.',
+  },
+  {
+    symbol: '▤',
+    title: 'Presupuestos y facturación',
+    text: 'Explora documentos, capítulos, partidas, diseños y el seguimiento de cobros. Prueba el editor con una vista previa de ejemplo.',
   },
   {
     symbol: '⬢',
@@ -195,7 +205,7 @@ export default function Crm() {
               </RevealText>
               <p className={styles.text}>
                 Pruébalo tú mismo: navega por el menú, cambia de empresa, filtra items, abre su
-                ficha o mira la analítica. Es una demo con datos de ejemplo; nada se guarda.
+                ficha, explora los contactos o prueba un presupuesto. Es una demo con datos ficticios; nada se guarda ni se envía.
               </p>
             </div>
 

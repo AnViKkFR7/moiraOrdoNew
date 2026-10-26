@@ -76,6 +76,7 @@ function SearchInput({ value, onChange, placeholder }) {
         style={{ paddingLeft: 36 }}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        aria-label={placeholder}
         placeholder={placeholder}
       />
       {value && (
@@ -84,61 +85,6 @@ function SearchInput({ value, onChange, placeholder }) {
         </button>
       )}
     </div>
-  )
-}
-
-/* ---------------- Dashboard ---------------- */
-
-export function DashboardView({ company, onSelectCompany }) {
-  return (
-    <>
-      <PageHeader title="Dashboard" description="Elige una empresa para empezar a trabajar" />
-
-      <div className={`${styles.card} ${styles.heroCard}`}>
-        <div className={styles.heroInner}>
-          <div className={styles.heroIcon} aria-hidden="true">⚠️</div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div className={styles.heroTitle}>Selecciona una Empresa</div>
-            <div className={styles.heroText}>Elige una empresa para empezar a trabajar</div>
-
-            <div className={styles.companyGrid}>
-              {COMPANIES.map((c) => {
-                const isSelected = c.id === company.id
-                return (
-                  <button
-                    type="button"
-                    key={c.id}
-                    className={`${styles.companyCard} ${isSelected ? styles.isSelected : ''}`}
-                    onClick={() => onSelectCompany(c.id)}
-                    data-cursor-hover
-                  >
-                    {isSelected && <span className={styles.companyCheck}>✓</span>}
-                    <span className={styles.companyCardHead}>
-                      <span className={styles.companyAvatar}>{c.name.charAt(0)}</span>
-                      <span className={styles.companyCardName}>{c.name}</span>
-                    </span>
-                    <span
-                      className={styles.roleBadge}
-                      style={{ background: ROLE_INFO[c.role].bg, color: ROLE_INFO[c.role].color }}
-                    >
-                      {ROLE_INFO[c.role].label}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.card}>
-        <div className={styles.cardTitle}>Trabajando en: {company.name}</div>
-        <div className={styles.mutedText}>
-          Todos los datos que veas en las demás secciones pertenecen a <strong>{company.name}</strong>.
-          Puedes cambiar de empresa en cualquier momento volviendo a este dashboard.
-        </div>
-      </div>
-    </>
   )
 }
 
@@ -818,18 +764,6 @@ export function UsersView({ company, can, notify }) {
         {users.length === 0 && <div className={`${styles.card} ${styles.emptyState}`}>No hay usuarios disponibles</div>}
       </div>
     </>
-  )
-}
-
-/* ---------------- Blog ---------------- */
-
-export function BlogView() {
-  return (
-    <div className={`${styles.card} ${styles.comingSoon}`}>
-      <div className={styles.comingSoonIcon} aria-hidden="true">🚧</div>
-      <div className={styles.comingSoonTitle}>Blog</div>
-      <div className={styles.mutedText}>Próximamente...</div>
-    </div>
   )
 }
 
