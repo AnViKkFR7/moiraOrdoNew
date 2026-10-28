@@ -25,3 +25,30 @@ El navegador no necesita `VITE_COMPANY_ID` para enviar. Si un bundle antiguo sí
 ## Incidencia del 28/10/2026
 
 El bundle público devolvía `{ ok: false, reason: 'invalid' }` sin petición HTTP: `VITE_COMPANY_ID` no estaba disponible al compilar y el optimizador había eliminado el envío. Se traslada la autoridad de empresa al servidor y se declara la función de Vercel con la firma Web Standard `export default { fetch: handler }`. Los tests se ubican fuera de `api/` para que no se desplieguen como endpoints.
+
+## Destinatario del aviso por email
+
+La fuente de la Edge Function está en `supabase/functions/moira-ordo-contact-form/index.ts` en este proyecto. También se actualizó la copia del proyecto anterior `moira_ordo`.
+
+- Destinatario fijo: `info@moiraordo.es`.
+- Remitente predeterminado: `Moira Ordo <info@moiraordo.es>`.
+- Si se necesita otro remitente de un dominio verificado, configurar `CONTACT_FROM_EMAIL` en los secretos de Supabase (no en Vercel).
+- Mantener `RESEND_API_KEY` en los secretos de la función de Supabase.
+
+Antes de enviar: comprobar que `moiraordo.es` aparece como verificado en la cuenta Resend de esa API key. El remitente anterior `onboarding@resend.dev` solo permite pruebas al correo de la propia cuenta.
+
+Publicar este código en Supabase → Edge Functions → `moira-ordo-contact-form` → editor → Deploy. Alternativamente, con una CLI autenticada: `supabase functions deploy moira-ordo-contact-form --project-ref <referencia-del-proyecto>`.
+
+Cambiar las variables de Vercel o desplegar únicamente la web no actualiza esta función. El cambio local no acredita el despliegue ni la recepción del correo.
+
+## Diseño del email de contacto
+
+La plantilla actual utiliza la paleta de la web (azul noche, crema y azul), cabecera de marca, bloque de proyecto, ficha de contacto, mensaje destacado y botón para responder. Incluye texto plano y estilos inline con estructura de tablas y alternativa de botón para Outlook.
+
+La fuente a desplegar es la de este proyecto: `supabase/functions/moira-ordo-contact-form/index.ts`. La copia histórica del proyecto `moira_ordo` no contiene este rediseño.
+
+- Generar una muestra con datos ficticios: `node scripts/preview-contact-email.mjs <ruta-de-salida.html>`.
+- Verificar plantilla y envío simulado: `node --test tests/contact-email.test.mjs`.
+- Se verifican escape HTML, enlaces de respuesta, omisión de opcionales vacíos, texto plano, destinatario y reply-to. No se envían correos durante estas pruebas.
+- La herramienta de navegador bloqueó la apertura del archivo local de vista previa. No se ha completado revisión visual en navegador ni en clientes de correo reales.
+- Para aplicar el estilo, volver a desplegar la Edge Function en Supabase. No requiere cambios de variables de entorno.

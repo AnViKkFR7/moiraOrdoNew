@@ -1,12 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { imagetools } from 'vite-imagetools'
+import { rrssPreview } from './server/rrss-preview.js'
 
 // Solo la web de producción se deja indexar; previews y builds locales llevan noindex.
 const indexable = process.env.VERCEL_ENV === 'production' || process.env.SITE_INDEXABLE === 'true'
 
 export default defineConfig(({ isSsrBuild }) => ({
-  plugins: [react(), imagetools()],
+  plugins: [react(), imagetools(), rrssPreview()],
   // El build del servidor (prerender) empaqueta todas las dependencias
   ssr: { noExternal: true },
   define: {

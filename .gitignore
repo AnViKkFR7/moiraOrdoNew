@@ -3,3 +3,6 @@ dist
 dist-ssr
 .DS_Store
 *.local
+
+# Contenido privado de redes sociales
+/rrss/

@@ -4,7 +4,12 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.moiraordo.es" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.moiraordo.es"
+        }
+      ],
       "destination": "https://moiraordo.es/:path*",
       "statusCode": 301
     }
@@ -12,7 +17,27 @@
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/srr.js": {
+      "includeFiles": "server/private/rrss.zip"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/srr",
+      "destination": "/api/srr"
+    },
+    {
+      "source": "/srr/:resource*",
+      "destination": "/api/srr?resource=:resource*"
     }
   ]
 }
