@@ -9,9 +9,11 @@ import { whenPageVisible } from '../../router'
 import { easeReveal } from '../../utils/easing'
 import { useHydrated } from '../../hooks/useHydrated'
 import { SERVICES } from '../../data/services'
+import { submitLead } from '../../lib/leads'
 import styles from './Contact.module.css'
 
 const CONTACT_EMAIL = 'info@moiraordo.es'
+const LEAD_PRIVACY_TEXT_VERSION = 'moira-contact-2026-10-v1'
 
 // Misma Edge Function de Supabase que la web anterior: ella envía el email con
 // Resend y guarda la API key como secreto del servidor. Sin estas variables
@@ -161,66 +163,66 @@ export default function Contact() {
     e.preventDefault()
     const form = new FormData(formRef.current)
     const data = {
-      name: form.get('name') ?? '',
-      email: form.get('email') ?? '',
-      phone: form.get('phone') ?? '',
-      company: form.get('company') ?? '',
-      type: form.get('type') ?? '',
-      message: form.get('message') ?? '',
+      name: form.get('name') ?? '', email: form.get('email') ?? '', phone: form.get('phone') ?? '',
+      company: form.get('company') ?? '', type: form.get('type') ?? '', message: form.get('message') ?? '',
       privacy: form.get('privacy') === 'on',
     }
-
     const nextErrors = validate(data)
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length) {
-      // Pequeño "shake" en el primer campo con error y foco ahí
       const first = formRef.current.querySelector(`[name="${Object.keys(nextErrors)[0]}"]`)
       first?.focus({ preventScroll: true })
-      gsap.fromTo(
-        first?.closest('label') ?? formRef.current,
-        { x: -8 },
-        { x: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' }
-      )
+      gsap.fromTo(first?.closest('label') ?? formRef.current, { x: -8 }, { x: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' })
       return
     }
 
     setStatus('sending')
+    const serviceSlug = new URLSearchParams(window.location.search).get('servicio')
+    const sourceService = SERVICES.find((service) => service.slug === serviceSlug)
+    const crmResult = await submitLead({
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      message: [
+        `Tipo de proyecto: ${data.type}`,
+        data.company && `Empresa / Proyecto: ${data.company}`,
+        data.message,
+      ].filter(Boolean).join('\n'),
+      source_item: sourceService ? `${sourceService.name} · ${sourceService.slug}` : undefined,
+      company_website: form.get('company_website') ?? '',
+      consent_given: data.privacy,
+      consent_text_version: LEAD_PRIVACY_TEXT_VERSION,
+    })
+    if (!crmResult.ok) {
+      console.error('No se pudo guardar la solicitud en CRM.', crmResult.reason)
+      setStatus('failed')
+      return
+    }
+
     try {
       if (FORM_ENDPOINT && SUPABASE_ANON_KEY) {
-        // Mismo formato de payload que espera la función de la web anterior
         const res = await fetch(FORM_ENDPOINT, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            apikey: SUPABASE_ANON_KEY,
-          },
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${SUPABASE_ANON_KEY}`, apikey: SUPABASE_ANON_KEY },
           body: JSON.stringify({
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            company: data.company,
-            projectType: { value: data.type, label: data.type },
-            message: data.message,
-            language: 'es',
+            name: data.name, email: data.email, phone: data.phone, company: data.company,
+            projectType: { value: data.type, label: data.type }, message: data.message, language: 'es',
           }),
         })
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
       } else {
         const details = [
-          `Nombre: ${data.name}`,
-          `Email: ${data.email}`,
-          data.phone && `Teléfono: ${data.phone}`,
-          data.company && `Empresa / Proyecto: ${data.company}`,
-          `Tipo de proyecto: ${data.type}`,
+          `Nombre: ${data.name}`, `Email: ${data.email}`, data.phone && `Teléfono: ${data.phone}`,
+          data.company && `Empresa / Proyecto: ${data.company}`, `Tipo de proyecto: ${data.type}`,
         ].filter(Boolean)
         const body = [...details, '', data.message].join('\n')
         const subject = `Nuevo proyecto: ${data.type} — ${data.name}`
         window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
       }
       setStatus('sent')
-    } catch {
-      setStatus('failed')
+    } catch (error) {
+      console.error('CRM guardado; falló el aviso interno por email.', error)
+      setStatus('sent')
     }
   }
 
@@ -388,6 +390,7 @@ export default function Contact() {
                   />
                 </Field>
 
+                <input type="text" name="company_website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1 }} />
                 <div
                   className={`${styles.privacy} ${errors.privacy ? styles.hasError : ''}`}
                   data-anim="field"
