@@ -1,8 +1,7 @@
 const ENDPOINT = '/api/lead'
-const COMPANY_ID = import.meta.env.VITE_COMPANY_ID
+const COMPANY_ID = import.meta.env?.VITE_COMPANY_ID
 
 export async function submitLead(input) {
-  if (!COMPANY_ID) return { ok: false, reason: 'invalid' }
   if (!input.name?.trim() || (!input.email?.trim() && !input.phone?.trim())) {
     return { ok: false, reason: 'invalid' }
   }
@@ -12,8 +11,8 @@ export async function submitLead(input) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        company_id: COMPANY_ID,
         ...input,
+        company_id: COMPANY_ID || undefined,
         source_path: window.location.pathname,
         source_referrer: document.referrer || undefined,
         source_utm_source: params.get('utm_source') ?? undefined,
@@ -27,7 +26,8 @@ export async function submitLead(input) {
       window.dispatchEvent(new CustomEvent('moira:lead-sent'))
       return { ok: true }
     }
-    return { ok: false, reason: response.status === 400 ? 'invalid' : 'server' }
+    if (response.status === 200 && input.company_website?.trim()) return { ok: true }
+    return { ok: false, reason: response.status === 400 ? 'invalid' : response.status === 503 ? 'unavailable' : 'server' }
   } catch {
     return { ok: false, reason: 'network' }
   }

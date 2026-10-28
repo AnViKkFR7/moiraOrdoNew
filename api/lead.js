@@ -7,7 +7,7 @@ const response = (status, message) => new Response(message, { status })
 function config() {
   const supabaseUrl = process.env.SUPABASE_URL?.replace(/\/+$/, '')
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  const companyId = process.env.VITE_COMPANY_ID?.trim()
+  const companyId = (process.env.COMPANY_ID || process.env.VITE_COMPANY_ID)?.trim()
   if (!companyId || !UUID.test(companyId)) return { error: response(503, 'Service unavailable') }
   if (!supabaseUrl || !serviceKey) return { error: response(500, 'Server error') }
   try {
@@ -33,7 +33,7 @@ async function rows(configured, table, query) {
   })
 }
 
-export default async function handler(req) {
+async function handler(req) {
   if (req.method !== 'POST') return response(405, 'Method not allowed')
   let raw
   try { raw = await req.text() } catch { return response(400, 'Bad request') }
@@ -46,7 +46,9 @@ export default async function handler(req) {
   const configured = config()
   if (configured.error) return configured.error
   const companyId = configured.companyId
-  if (clean(body.company_id, 64)?.toLowerCase() !== companyId.toLowerCase()) return response(400, 'Bad request')
+  // La empresa pertenece al despliegue, no al bundle del navegador.
+  // Se admiten clientes sin ID; si lo envían, no pueden seleccionar otra empresa.
+  if (body.company_id != null && clean(body.company_id, 64)?.toLowerCase() !== companyId.toLowerCase()) return response(400, 'Bad request')
   const name = clean(body.name, MAX.name)
   const email = clean(body.email, MAX.email)
   const phone = clean(body.phone, MAX.phone)
@@ -109,3 +111,6 @@ export default async function handler(req) {
 }
 
 
+
+// Vercel entrega un Request web únicamente con esta firma.
+export default { fetch: handler }

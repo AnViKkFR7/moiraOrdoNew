@@ -1,7 +1,8 @@
 /* global process */
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import handler from './lead.js'
+import endpoint from '../api/lead.js'
+const handler = endpoint.fetch
 
 const companyId = '0aad4a59-d6ee-47c9-bb9e-da5e2bb3fb48'
 const originalFetch = globalThis.fetch
@@ -36,6 +37,19 @@ test('lead endpoint pins tenant, checks CRM and maps consent and attribution', a
   assert.equal('crm_contact_id' in inserted, false)
   crmEnabled = false
   assert.equal((await handler(makeRequest())).status, 503)
+})
+
+test('usa la empresa del servidor sin exigirla al navegador y rechaza otra empresa', async () => {
+  crmEnabled = true
+  process.env.COMPANY_ID = companyId
+  delete process.env.VITE_COMPANY_ID
+  const request = body => new Request('https://client.example/api/lead', { method: 'POST', body: JSON.stringify({ name: 'Test', email: 'test@example.test', ...body }) })
+  assert.equal((await handler(request({}))).status, 201)
+  assert.equal(inserted.company_id, companyId)
+  assert.equal((await handler(request({ company_id: '11111111-1111-1111-1111-111111111111' }))).status, 400)
+  delete process.env.COMPANY_ID
+  assert.equal((await handler(request({}))).status, 503)
+  assert.equal((await handler(new Request('https://client.example/api/lead'))).status, 405)
 })
 
 test.after(() => {

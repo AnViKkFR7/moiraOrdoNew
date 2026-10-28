@@ -16,8 +16,8 @@ const CONTACT_EMAIL = 'info@moiraordo.es'
 const LEAD_PRIVACY_TEXT_VERSION = 'moira-contact-2026-10-v1'
 
 // Misma Edge Function de Supabase que la web anterior: ella envía el email con
-// Resend y guarda la API key como secreto del servidor. Sin estas variables
-// (p. ej. en local sin .env.local), "Enviar" abre el cliente de correo.
+// Resend y guarda la API key como secreto del servidor. El aviso por email
+// es opcional: la recepción de la solicitud se confirma desde /api/lead.
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
 const FORM_ENDPOINT = SUPABASE_URL ? `${SUPABASE_URL}/functions/v1/moira-ordo-contact-form` : null
@@ -73,7 +73,9 @@ export default function Contact() {
   const titleRef = useRef(null)
   const formRef = useRef(null)
   const successRef = useRef(null)
+  const sendingRef = useRef(false)
   const [errors, setErrors] = useState({})
+  const [failureReason, setFailureReason] = useState(null)
   const [status, setStatus] = useState('idle') // idle | sending | sent | failed
   const hydrated = useHydrated()
 
@@ -161,6 +163,7 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (sendingRef.current) return
     const form = new FormData(formRef.current)
     const data = {
       name: form.get('name') ?? '', email: form.get('email') ?? '', phone: form.get('phone') ?? '',
@@ -176,6 +179,8 @@ export default function Contact() {
       return
     }
 
+    sendingRef.current = true
+    setFailureReason(null)
     setStatus('sending')
     const serviceSlug = new URLSearchParams(window.location.search).get('servicio')
     const sourceService = SERVICES.find((service) => service.slug === serviceSlug)
@@ -194,7 +199,8 @@ export default function Contact() {
       consent_text_version: LEAD_PRIVACY_TEXT_VERSION,
     })
     if (!crmResult.ok) {
-      console.error('No se pudo guardar la solicitud en CRM.', crmResult.reason)
+      setFailureReason(crmResult.reason)
+      sendingRef.current = false
       setStatus('failed')
       return
     }
@@ -210,19 +216,13 @@ export default function Contact() {
           }),
         })
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      } else {
-        const details = [
-          `Nombre: ${data.name}`, `Email: ${data.email}`, data.phone && `Teléfono: ${data.phone}`,
-          data.company && `Empresa / Proyecto: ${data.company}`, `Tipo de proyecto: ${data.type}`,
-        ].filter(Boolean)
-        const body = [...details, '', data.message].join('\n')
-        const subject = `Nuevo proyecto: ${data.type} — ${data.name}`
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
       }
       setStatus('sent')
-    } catch (error) {
-      console.error('CRM guardado; falló el aviso interno por email.', error)
+    } catch {
+      console.error('[contact] email_notification_failed')
       setStatus('sent')
+    } finally {
+      sendingRef.current = false
     }
   }
 
@@ -304,9 +304,7 @@ export default function Contact() {
                   ¡Gracias! <span className="accent-blue">Ya estamos en ello.</span>
                 </h2>
                 <p className={styles.successText} data-success="text">
-                  {FORM_ENDPOINT
-                    ? 'Recibimos tu solicitud. Te respondemos en menos de 24 horas.'
-                    : `Se abrió tu correo con la solicitud lista para enviar a ${CONTACT_EMAIL}. Te respondemos en menos de 24 horas.`}
+                  Recibimos tu solicitud. Te respondemos en menos de 24 horas.
                 </p>
                 <div data-success="text">
                   <Button as="a" href="/">
@@ -441,7 +439,11 @@ export default function Contact() {
 
                 {status === 'failed' && (
                   <p className={styles.failed} role="alert">
-                    No pudimos enviar la solicitud. Prueba de nuevo o escríbenos a{' '}
+                    {failureReason === 'unavailable'
+                      ? 'El formulario no está disponible temporalmente. Puedes escribirnos a '
+                      : failureReason === 'network'
+                        ? 'No se pudo conectar. Comprueba tu conexión e inténtalo de nuevo, o escríbenos a '
+                        : 'No pudimos enviar la solicitud. Prueba de nuevo o escríbenos a '}
                     <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
                   </p>
                 )}

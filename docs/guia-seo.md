@@ -16,7 +16,7 @@ Qué está montado en la web y qué hay que hacer fuera de ella para que Google,
 ## Antes de publicar
 
 1. En Vercel, añadir el dominio `moiraordo.es` y `www.moiraordo.es` (este redirige al primero).
-2. Comprobar que el proyecto de Vercel tiene las variables `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` (formulario de contacto).
+2. Comprobar la configuración del formulario en [formulario-contacto.md](./formulario-contacto.md): `COMPANY_ID` (o `VITE_COMPANY_ID`), `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` en servidor. El aviso por email utiliza opcionalmente `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`.
 3. Tras el primer despliegue, abrir `https://moiraordo.es/robots.txt` y confirmar que pone `Allow: /`.
 
 ## Google Search Console
