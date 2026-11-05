@@ -10,6 +10,9 @@ import navagliImage from '../../assets/images/projects/navagli.jpg?format=webp'
 import llobregatImage from '../../assets/images/projects/reformas-llobregat.png?w=1400&format=webp'
 import musibingoImage from '../../assets/images/projects/musibingo.png?w=1200&format=webp'
 import matchriseImage from '../../assets/images/projects/matchrise.webp'
+import fredericImage from '../../assets/images/projects/frederic-martinez.webp'
+import salomonImage from '../../assets/images/projects/salomon-visual.webp'
+import aaronPortfolioImage from '../../assets/images/projects/aaron-garcia-portfolio.svg'
 import styles from './Projects.module.css'
 
 const COMPANIES = [
@@ -95,9 +98,47 @@ const GAMES = [
   },
 ]
 
+const PORTFOLIOS = [
+  {
+    image: fredericImage,
+    tag: 'Comunicación y estrategia digital',
+    title: 'Frederic Martínez',
+    headline: 'Un portfolio personal de comunicación',
+    description:
+      'Presenta trabajos de comunicación corporativa, estrategia de marca y producción audiovisual. La web reúne su trayectoria, servicios y proyectos destacados.',
+    accent: '#d5f56b',
+    href: 'https://fredericmartinez.vercel.app/',
+    external: true,
+  },
+  {
+    image: salomonImage,
+    tag: 'Ilustración y libros infantiles',
+    title: 'Salomon Visual',
+    headline: 'Un portfolio creativo lleno de mundos',
+    description:
+      'La web presenta personajes e ilustración editorial en dos universos interactivos: Momo y Submarines. La navegación invita a explorar su narrativa visual.',
+    accent: '#c8f0d8',
+    href: 'https://salomon-visual.vercel.app/',
+    external: true,
+  },
+  {
+    image: aaronPortfolioImage,
+    imageAlt: 'Portada gráfica del portfolio de Aaron García, con el titular Una web que deja huella.',
+    tag: 'Desarrollo web y software',
+    title: 'Aaron García',
+    headline: 'Un portfolio web que también se recorre',
+    description:
+      'Una experiencia interactiva presenta nueve proyectos en producción, su trayectoria y servicios de desarrollo web, software a medida e integraciones.',
+    accent: '#d2d0ca',
+    href: 'https://aaron-garcia-portfolio-phi.vercel.app/',
+    external: true,
+  },
+]
+
 const GROUPS = [
   { id: 'empresas', index: '01', label: 'Para empresas', count: COMPANIES.length },
-  { id: 'games', index: '02', label: 'Moira Ordo Games', count: GAMES.length },
+  { id: 'portfolios', index: '02', label: 'Portfolios profesionales', count: PORTFOLIOS.length },
+  { id: 'games', index: '03', label: 'Moira Ordo Games', count: GAMES.length },
 ]
 
 export default function Projects() {
@@ -114,8 +155,8 @@ export default function Projects() {
               Proyectos que <span className="accent-blue">hablan por sí solos</span>
             </RevealText>
             <p className={styles.heroLead}>
-              Webs y productos digitales que diseñamos y desarrollamos de principio a fin para
-              negocios reales.
+              Webs y productos digitales que diseñamos y desarrollamos para empresas, profesionales
+              y proyectos creativos.
             </p>
             <nav className={styles.groupNav} aria-label="Tipos de proyecto">
               {GROUPS.map((group) => (
@@ -153,11 +194,35 @@ export default function Projects() {
           </div>
         </section>
 
+        {/* Portfolios profesionales */}
+        <section id="portfolios" className={`${styles.showcase} ${styles.games}`}>
+          <div className="container">
+            <div className={`${styles.groupHead} ${styles.group}`}>
+              <span className={styles.groupNumber}>02</span>
+              <div>
+                <span className={styles.kicker}>Portfolios profesionales</span>
+                <RevealText as="h2" className={styles.headline}>
+                  Una web propia para <span className="accent-blue">mostrar el trabajo</span>
+                </RevealText>
+              </div>
+              <div>
+                <p className={styles.groupText}>
+                  Presentaciones digitales para profesionales y proyectos creativos, cada una con su
+                  propio lenguaje visual.
+                </p>
+                <span className={styles.groupMeta}>{PORTFOLIOS.length} proyectos</span>
+              </div>
+            </div>
+
+            <GridProjects projects={PORTFOLIOS} columns={2} />
+          </div>
+        </section>
+
         {/* Moira Ordo Games */}
         <section id="games" className={`${styles.showcase} ${styles.games}`}>
           <div className="container">
             <div className={`${styles.groupHead} ${styles.group}`}>
-              <span className={styles.groupNumber}>02</span>
+              <span className={styles.groupNumber}>03</span>
               <div>
                 <span className={styles.kicker}>Moira Ordo Games</span>
                 <RevealText as="h2" className={styles.headline}>

@@ -6,7 +6,6 @@ import TeamModal from '../../components/TeamModal/TeamModal'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 import aaron from '../../assets/images/aaron.png?w=1000&format=webp'
 import joselyn from '../../assets/images/joselyn.png?w=1000&format=webp'
-import fede from '../../assets/images/fede.png?w=1000&format=webp'
 import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
 // Webs y juegos publicados (Aaron y Joselyn han participado en todos)
@@ -21,7 +20,6 @@ const SITES = {
 }
 const projectsOf = (...names) => names.map((name) => ({ name, href: SITES[name] }))
 
-// TODO: añadir la URL de LinkedIn de cada miembro en `linkedin` (el botón aparece solo si hay URL)
 const MEMBERS = [
   {
     image: aaron,
@@ -29,7 +27,7 @@ const MEMBERS = [
     firstName: 'Aaron',
     className: 'col1',
     role: 'Software engineer',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/aaron-garcia-84088a154/',
     bio: [
       'Soy software engineer con más de ocho años de experiencia. Trabajo en todo el stack: frontend, backend y bases de datos.',
       'Diseño la arquitectura de Moira Ordo —el CRM, los modelos de datos y las integraciones— para que cada pieza sea sencilla de mantener y siga funcionando mucho después del lanzamiento.',
@@ -42,25 +40,12 @@ const MEMBERS = [
     firstName: 'Joselyn',
     className: 'col2',
     role: 'Desarrolladora web',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/joselyn-ninahuaman-calcina-/',
     bio: [
       'Soy desarrolladora web y me ocupo de que lo que diseñamos se vea y funcione como debe: del diseño de cada web a su frontal, cuidando la velocidad, el móvil y la accesibilidad.',
       'También soy tu primera interlocutora: escucho qué necesita tu negocio y te acompaño hasta que la web está publicada y sabes gestionarla.',
     ],
     projects: projectsOf('Navagli', 'Regia Mare', 'Arquelia', 'Reformas Llobregat', 'Vemaro Transfers', 'MusiBingo', 'MatchRise'),
-  },
-  {
-    image: fede,
-    name: 'Fede',
-    firstName: 'Fede',
-    className: 'col3',
-    role: 'Marketing, SEO y publicidad',
-    linkedin: '',
-    bio: [
-      'Me ocupo de que una web no se quede en bonita: que se encuentre y traiga clientes. Llevo el marketing online, el SEO y la publicidad de las webs de nuestros clientes.',
-      'Investigo qué busca su público, optimizo la web para posicionarla y gestiono las campañas de pago midiendo cada euro. Así, el formulario de Reformas Llobregat trae cuatro veces más clientes.',
-    ],
-    projects: projectsOf('Reformas Llobregat', 'Arquelia', 'Vemaro Transfers'),
   },
 ]
 
@@ -71,7 +56,6 @@ export default function Team() {
   const photoRefs = [
     useScrollReveal({ y: 30 }),
     useScrollReveal({ y: 30, delay: 0.1 }),
-    useScrollReveal({ y: 30, delay: 0.2 }),
   ]
 
   const handleOpen = (i) => {

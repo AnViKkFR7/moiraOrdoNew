@@ -12,6 +12,7 @@ import ArrowIcon from '../ArrowIcon/ArrowIcon'
  */
 export default function ProjectCard({
   image,
+  imageAlt,
   tag,
   title,
   headline,
@@ -50,7 +51,7 @@ export default function ProjectCard({
       data-cursor-hover
       {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
     >
-      <ImageSlot src={image} alt={title} label={title} className={styles.media} />
+      <ImageSlot src={image} alt={imageAlt || title} label={title} className={styles.media} />
       <span className={styles.overlay} aria-hidden="true" />
 
       {tag && <span className={styles.badge}>{tag}</span>}

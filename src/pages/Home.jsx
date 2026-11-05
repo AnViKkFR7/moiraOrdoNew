@@ -7,6 +7,7 @@ import CaseStudies from '../sections/CaseStudies/CaseStudies'
 import ProjectsIntro from '../sections/ProjectsIntro/ProjectsIntro'
 import ProjectsShowcase from '../sections/ProjectsShowcase/ProjectsShowcase'
 import ServicesHighlight from '../sections/ServicesHighlight/ServicesHighlight'
+import CrmDemoPreview from '../sections/CrmDemoPreview/CrmDemoPreview'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
 
       <main>
         <Hero />
+        <CrmDemoPreview />
 
         <section className="section container">
           <ProjectsIntro />

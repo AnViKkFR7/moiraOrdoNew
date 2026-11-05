@@ -28,9 +28,9 @@ export const ROUTES = [
   {
     path: '/proyectos',
     Component: Projects,
-    title: 'Proyectos: webs para empresas y Moira Ordo Games | Moira Ordo',
+    title: 'Proyectos: webs, portfolios profesionales y juegos | Moira Ordo',
     description:
-      'Webs a medida para inmobiliarias, constructoras y movilidad conectadas a nuestro CRM, un SaaS de gestión de flota y juegos HTML5 como MusiBingo y MatchRise.',
+      'Webs a medida para empresas y portfolios profesionales de comunicación, ilustración y desarrollo, junto con juegos HTML5 como MusiBingo y MatchRise.',
     og: 'proyectos',
     breadcrumbs: [HOME, { name: 'Proyectos', path: '/proyectos' }],
     priority: 0.8,

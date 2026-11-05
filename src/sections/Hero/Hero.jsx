@@ -41,8 +41,11 @@ export default function Hero() {
       </div>
 
       <div className={styles.cta}>
-        <Button as="a" href="/contacto" variant="filled">
-          Contactar
+        <Button as="a" href="#demo-crm" variant="filled">
+          Probar la demo interactiva
+        </Button>
+        <Button as="a" href="/contacto">
+          Cuéntanos tu proyecto
         </Button>
       </div>
     </section>
