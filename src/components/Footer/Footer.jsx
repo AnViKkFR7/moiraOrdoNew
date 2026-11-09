@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SERVICES } from '../../data/services'
+import { SECTORS } from '../../data/sectors'
 import styles from './Footer.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -97,9 +98,24 @@ export default function Footer() {
               ))}
             </nav>
 
+            <nav className={styles.column} aria-label="Sectores">
+              {SECTORS.map((sector) => (
+                <a key={sector.slug} className={styles.link} href={`/sectores/${sector.slug}`}>
+                  {sector.name}
+                </a>
+              ))}
+            </nav>
+
+            <nav className={styles.column} aria-label="Recursos">
+              <a className={styles.link} href="/guias">Guías</a>
+              <a className={styles.link} href="/preguntas-frecuentes">Preguntas frecuentes</a>
+              <a className={styles.link} href="/diseno-web-barcelona">Diseño web en Barcelona</a>
+              <a className={styles.link} href="/diseno-web-vilanova-i-la-geltru">Diseño web en Vilanova</a>
+            </nav>
+
             <nav className={styles.column} aria-label="Empresa">
               <a className={styles.link} href="/#casos">Opiniones de clientes</a>
-              <a className={styles.link} href="/#equipo">Sobre nosotros</a>
+              <a className={styles.link} href="/sobre-nosotros">Sobre nosotros</a>
               <a className={styles.link} href="/contacto">Contacto</a>
               <a className={styles.link} href="mailto:info@moiraordo.es">info@moiraordo.es</a>
             </nav>

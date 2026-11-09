@@ -1,0 +1,257 @@
+/* Extras de las páginas SEO (sectores, guías, proyectos, local, FAQ). El resto de clases
+   (hero, faq, related, cta…) se reutilizan de ServicePage.module.css. */
+
+.meta {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 14px;
+  color: var(--grey-mid);
+}
+
+.pill {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid rgba(0, 5, 30, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  color: var(--text-base);
+}
+
+.tags {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.section {
+  padding-block: var(--space-lg);
+}
+
+.sectionAlt {
+  background-color: var(--bg-warm-1);
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+@media (min-width: 1000px) {
+  .twoCol {
+    grid-template-columns: 1fr 1.4fr;
+    gap: 96px;
+  }
+}
+
+.list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-base);
+}
+
+.list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 10px;
+  height: 1px;
+  background-color: var(--accent-blue-ink);
+}
+
+.cards {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 700px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px;
+  border-radius: 18px;
+  background-color: var(--bg-base);
+  border: 1px solid rgba(0, 5, 30, 0.1);
+  transition: border-color var(--dur-micro) var(--ease-micro), transform var(--dur-micro) var(--ease-micro);
+}
+
+a.card:hover {
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.cardKicker {
+  font-size: 12px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-blue-ink);
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.15;
+  color: var(--text-base);
+}
+
+.cardText {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--grey-mid);
+}
+
+.cardMeta {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 13px;
+  color: var(--grey-mid);
+}
+
+/* ---------- Artículo ---------- */
+
+.article {
+  padding-block: var(--space-xl);
+  background-color: var(--bg-base);
+}
+
+.prose {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.prose h2 {
+  margin-top: 56px;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.15;
+  color: var(--text-base);
+}
+
+.prose p {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #2b2f40;
+}
+
+.prose ul {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prose li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #2b2f40;
+}
+
+.prose li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 10px;
+  height: 1px;
+  background-color: var(--accent-blue-ink);
+}
+
+.lede {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1.4;
+  color: var(--text-base);
+}
+
+.group {
+  margin-top: 56px;
+}
+
+.groupTitle {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 34px;
+  line-height: 1.1;
+  color: var(--text-base);
+}
+
+.facts {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid rgba(0, 5, 30, 0.12);
+}
+
+.facts div {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 5, 30, 0.12);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+@media (min-width: 700px) {
+  .facts div {
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+  }
+}
+
+.facts dt {
+  font-size: 13px;
+  font-weight: var(--fw-body-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grey-mid);
+}
+
+.facts dd {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-base);
+}
+
+.facts a {
+  color: var(--accent-blue-ink);
+  border-bottom: 1px solid currentColor;
+}
+
+.inlineLink {
+  color: var(--accent-blue-ink);
+  border-bottom: 1px solid currentColor;
+}

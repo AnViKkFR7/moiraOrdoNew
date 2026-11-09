@@ -6,7 +6,10 @@ Qué está montado en la web y qué hay que hacer fuera de ella para que Google,
 
 - Cada página pública se genera como HTML completo en el build (`npm run build`) y React la hidrata en el navegador.
 - Por página: título, meta descripción, canonical, `hreflang` (es + x-default), Open Graph y Twitter con imagen propia 1200×630 (`public/og`).
-- `sitemap.xml`, `robots.txt` y `llms.txt` se generan en cada build (`scripts/prerender.mjs`).
+- `sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt` y una versión en Markdown de cada página (`/servicios/diseno-web.md`) se generan en cada build (`scripts/prerender.mjs`). El `lastmod` del sitemap solo aparece en páginas con fecha real de modificación.
+- **Cobertura ampliada de búsquedas** (ver [seo-estrategia.md](./seo-estrategia.md)): 5 páginas de sector (`/sectores/:slug`), 7 casos de estudio (`/proyectos/:slug`), 12 guías (`/guias/:slug`), 2 páginas locales (`/diseno-web-vilanova-i-la-geltru` y `/diseno-web-barcelona`), `/preguntas-frecuentes` y `/sobre-nosotros`. Todo se alimenta de `src/data/*` y entra solo en el sitemap, el pie, llms.txt y los datos estructurados.
+- **SEO para IA** (ver [seo-ia.md](./seo-ia.md)): bots de IA permitidos, llms.txt y llms-full.txt, Markdown por página, grafo de datos estructurados enlazado por `@id`, página de entidad y FAQ de respuestas directas.
+- Imágenes Open Graph por página: `python scripts/og/generar_og.py` crea las que falten (tras `npm run build`).
 - `robots.txt` solo permite rastrear en producción (`VERCEL_ENV=production`), incluidos los bots de IA. En previews y builds locales bloquea todo y las páginas llevan `noindex`.
 - Datos estructurados: negocio (ProfessionalService), web, migas de pan, catálogo de servicios con precio «desde» y FAQ en cada página de servicio.
 - Páginas por servicio en `/servicios/:slug`, generadas desde `src/data/services.js`. Para añadir un servicio basta con añadirlo ahí: entra solo en el pie, en el sitemap y en los datos estructurados.
@@ -38,6 +41,7 @@ Qué está montado en la web y qué hay que hacer fuera de ella para que Google,
 2. Crear `public/<clave>.txt` con la clave como único contenido y desplegar.
 3. Al publicar cambios importantes, avisar con:
    `https://api.indexnow.org/indexnow?url=https://moiraordo.es/servicios&key=<clave>`
+   O avisar de todo el sitemap de una vez con `INDEXNOW_KEY=<clave> node scripts/indexnow.mjs` (después de desplegar).
 
 ## Perfil de Empresa de Google
 
@@ -55,9 +59,16 @@ Qué está montado en la web y qué hay que hacer fuera de ella para que Google,
 - Pedir reseña en Google a cada cliente al cerrar un proyecto (enlace corto desde el Perfil de Empresa).
 - Responder todas, también las negativas, en menos de una semana.
 
+## Añadir una página nueva
+
+- **Servicio:** entrada en `src/data/services.js`.
+- **Sector, guía, proyecto, página local o pregunta:** entrada en `src/data/sectors.js`, `guides.js`, `portfolio.js`, `locations.js` o `faqs.js`.
+- Después: `npm run build`, `python scripts/og/generar_og.py` (imagen para compartir) y otra vez `npm run build`.
+- Los datos de empresa (precios de partida, equipo, tecnología) están en `src/data/entity.js`.
+
 ## Revisión mensual en asistentes de IA
 
-Una vez al mes, preguntar en ChatGPT, Claude, Perplexity, Gemini y Copilot cosas como:
+Una vez al mes, preguntar en ChatGPT, Claude, Perplexity, Gemini y Copilot cosas como (banco completo en [seo-ia.md](./seo-ia.md)):
 
 - «¿Quién hace webs a medida con CRM en Vilanova i la Geltrú?»
 - «Estudios de diseño web en Barcelona con precio desde 199 €»

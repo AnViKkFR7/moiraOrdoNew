@@ -3,6 +3,8 @@ import Footer from '../../components/Footer/Footer'
 import Button from '../../components/Button/Button'
 import Reveal from '../../components/Reveal/Reveal'
 import { PROCESS, SERVICES, formatPrice } from '../../data/services'
+import { SECTORS } from '../../data/sectors'
+import { GUIDES } from '../../data/guides'
 import styles from './ServicePage.module.css'
 import ArrowIcon from '../../components/ArrowIcon/ArrowIcon'
 
@@ -116,6 +118,31 @@ export default function ServicePage({ slug }) {
                     <span className={styles.relatedPrice}>
                       {item.priceFrom ? `desde ${formatPrice(item.priceFrom)}` : 'A medida'}
                     </span>
+                    <span className={styles.relatedArrow} aria-hidden="true"><ArrowIcon /></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className={styles.related}>
+          <div className="container">
+            <span className={styles.kicker}>Sectores y guías</span>
+            <ul className={styles.relatedList}>
+              {SECTORS.filter((sector) => sector.services.includes(slug)).map((sector) => (
+                <li key={sector.slug}>
+                  <a href={`/sectores/${sector.slug}`} className={styles.relatedLink} data-cursor-hover>
+                    <span className={styles.relatedName}>{sector.title}</span>
+                    <span className={styles.relatedArrow} aria-hidden="true"><ArrowIcon /></span>
+                  </a>
+                </li>
+              ))}
+              {GUIDES.filter((guide) => guide.services.includes(slug)).slice(0, 3).map((guide) => (
+                <li key={guide.slug}>
+                  <a href={`/guias/${guide.slug}`} className={styles.relatedLink} data-cursor-hover>
+                    <span className={styles.relatedName}>{guide.title}</span>
+                    <span className={styles.relatedPrice}>{guide.readMinutes} min</span>
                     <span className={styles.relatedArrow} aria-hidden="true"><ArrowIcon /></span>
                   </a>
                 </li>

@@ -8,7 +8,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
 const ssrEntry = path.join(root, 'dist-ssr', 'entry-server.js')
 
-const { render, routes, notFoundPath, services, site, indexable } = await import(pathToFileURL(ssrEntry).href)
+const { render, routes, notFoundPath, site, indexable, markdownPages, llms, ogPages } = await import(pathToFileURL(ssrEntry).href)
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
 const headPattern = /<!--app-head-->[\s\S]*?<!--\/app-head-->/
@@ -31,17 +31,17 @@ for (const route of routes) {
 
 fs.writeFileSync(path.join(dist, '404.html'), page(notFoundPath))
 
-// Sitemap mínimo (protocolo sitemaps.org): solo <loc> y <lastmod>. Google ignora priority/changefreq
-// y el sitio es de un solo idioma, así que no hacen falta enlaces hreflang aquí.
-const today = new Date().toISOString().slice(0, 10)
+// Sitemap (protocolo sitemaps.org): <loc> y, solo cuando la página declara una fecha real de
+// modificación, <lastmod>. Google ignora priority/changefreq y desconfía de lastmod falsos
+// (p. ej. la fecha del build en todas las URLs), así que no se inventa.
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes
   .map((route) => {
     const loc = route.path === '/' ? site.url : `${site.url}${route.path}`
     return `  <url>
-    <loc>${loc}</loc>
-    <lastmod>${today}</lastmod>
+    <loc>${loc}</loc>${route.modified ? `
+    <lastmod>${route.modified}</lastmod>` : ''}
   </url>`
   })
   .join('\n')}
@@ -50,32 +50,34 @@ ${routes
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap)
 
 // Producción: se permite todo, también a los bots de IA. Previews/local: se bloquea todo.
+// Se permiten explícitamente los rastreadores de búsqueda y citación (los que alimentan las
+// respuestas de ChatGPT, Claude, Perplexity, Gemini, Copilot y Apple) y los de entrenamiento.
+// Si algún día se quiere no participar en el entrenamiento, bastaría con poner «Disallow: /»
+// en GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, CCBot y Meta-ExternalAgent.
+const AI_BOTS = [
+  ['OpenAI', ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User']],
+  ['Anthropic', ['ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'anthropic-ai']],
+  ['Perplexity', ['PerplexityBot', 'Perplexity-User']],
+  ['Google', ['Google-Extended', 'GoogleOther']],
+  ['Microsoft y Bing', ['Bingbot']],
+  ['Apple', ['Applebot', 'Applebot-Extended']],
+  ['Amazon', ['Amazonbot']],
+  ['Meta', ['Meta-ExternalAgent', 'FacebookBot']],
+  ['DuckDuckGo', ['DuckAssistBot']],
+  ['Mistral y Cohere', ['MistralAI-User', 'cohere-ai']],
+  ['Otros', ['YouBot', 'CCBot']],
+]
 const robots = indexable
   ? `User-agent: *
 Allow: /
 
 # Bots de IA permitidos explícitamente
-User-agent: GPTBot
+${AI_BOTS.map(
+  ([owner, bots]) => `# ${owner}
+${bots.map((bot) => `User-agent: ${bot}
 Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
+`).join('\n')}`,
+).join('\n')}
 Sitemap: ${site.url}/sitemap.xml
 `
   : `User-agent: *
@@ -83,29 +85,20 @@ Disallow: /
 `
 fs.writeFileSync(path.join(dist, 'robots.txt'), robots)
 
-const pageLine = (route) => `- [${route.title}](${route.path === '/' ? site.url : site.url + route.path}): ${route.description}`
-const llms = `# ${site.name}
+// Para asistentes de IA: llms.txt (resumen y mapa), llms-full.txt (todo el contenido) y una
+// versión en Markdown de cada página (/servicios/diseno-web.md, /index.md…).
+fs.writeFileSync(path.join(dist, 'llms.txt'), llms.txt)
+fs.writeFileSync(path.join(dist, 'llms-full.txt'), llms.full)
+for (const { path: urlPath, markdown } of markdownPages) {
+  const file = path.join(dist, urlPath === '/' ? 'index.md' : `${urlPath.slice(1)}.md`)
+  fs.mkdirSync(path.dirname(file), { recursive: true })
+  fs.writeFileSync(file, markdown)
+}
 
-> Estudio de diseño y desarrollo web en ${site.locality} (España). Hacemos webs a medida conectadas a nuestro CRM —el cliente gestiona el contenido sin tocar el diseño—, software a medida y juegos HTML5 (Moira Ordo Games). Contacto: ${site.email}.
-
-## Páginas principales
-
-${routes.filter((r) => r.priority >= 0.7 && !r.path.startsWith('/servicios/')).map(pageLine).join('\n')}
-
-## Servicios
-
-${services
-  .map(
-    (s) =>
-      `- [${s.name}](${site.url}/servicios/${s.slug}): ${s.summary} ${s.priceFrom ? `Desde ${s.priceFrom} €.` : 'Presupuesto a medida.'}`,
-  )
-  .join('\n')}
-
-## Legal
-
-${routes.filter((r) => r.priority < 0.5).map(pageLine).join('\n')}
-`
-fs.writeFileSync(path.join(dist, 'llms.txt'), llms)
+// Lista de páginas para las imágenes Open Graph (scripts/og/generar_og.py)
+fs.mkdirSync(path.join(root, 'scripts', 'og'), { recursive: true })
+fs.writeFileSync(path.join(root, 'scripts', 'og', 'pages.json'), `${JSON.stringify(ogPages, null, 2)}
+`)
 
 fs.rmSync(path.join(root, 'dist-ssr'), { recursive: true, force: true })
-console.log(`Prerender: ${routes.length} páginas + 404 · indexable=${indexable}`)
+console.log(`Prerender: ${routes.length} páginas + 404 + ${markdownPages.length} versiones .md · indexable=${indexable}`)
